@@ -1,8 +1,33 @@
-#bann {
-    width: auto;
+#page {
+    margin: 0;
+    padding: auto;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
 }
 
-img {
-    max-width: auto;
+#content {
+    text-align: justify;
+}
+
+#image {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-image: url("../img/sudouest-photo-1-23497253.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
     width: 100%;
+    height: 40em;
+
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    color: #b1e810;
+}
+
+a {
+    text-decoration: none;
+    color: white;
+    transition: color 250ms ease-out 100ms;
+}
+
+a:hover {
+    color: #b1e810;
 }

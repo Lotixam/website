@@ -1,0 +1,25 @@
+#banniere {
+    /* Type de display*/
+    display: flex;
+
+    /* La forme */
+    background-color: #555557;
+    padding: 1%;
+    justify-content: center;
+
+    /* Les alignements */
+    align-items: baseline;
+}
+
+#logo {
+    display: flex;
+    resize: none;
+}
+
+#devanture {
+    color: white;
+}
+#lien {
+    text-decoration: none;
+    padding: 1em;
+}
