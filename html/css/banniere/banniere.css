@@ -1,25 +1,154 @@
 #banniere {
     /* Type de display*/
     display: flex;
+    flex-direction: column;
 
     /* La forme */
     background-color: #555557;
-    padding: 1%;
+    padding: 0;
     justify-content: center;
 
     /* Les alignements */
-    align-items: baseline;
+    align-items: center;
+    object-fit: contain;
+    width: 100%;
 }
 
 #logo {
     display: flex;
     resize: none;
+    object-fit: contain;
 }
 
 #devanture {
+    display: flex;
+    object-fit: contain;
     color: white;
+    flex-direction: column;
+    justify-content: center;
 }
-#lien {
+
+#liens {
+    display: flex;
+    flex-direction: row;
     text-decoration: none;
     padding: 1em;
+    justify-content: space-between;
+    width: 80%;
+    font-size: large;
+}
+
+@media screen and (max-width: 1200px) {
+    #liens {
+        display: flex;
+        flex-direction: column;
+        text-decoration: none;
+        padding: 1em;
+        justify-content:space-around;
+        align-items: center;
+        width: 80%;
+        font-size: 30;
+        display: none;
+    }
+    
+    #logo {
+        display: flex;
+        resize: none;
+        object-fit: contain;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+    
+    #devanture {
+        justify-content: center;
+            align-items: center;
+            text-align: center;
+            font-size: 20px;
+    }
+}
+
+#sentence {
+    padding-left: 0.7em;
+    padding-bottom: 0.3em;
+}
+
+.menu-toggle {
+    display: none;
+    position: absolute;
+    top: 10px;
+    /* Ajustez la position verticale selon vos besoins */
+    left: 10px;
+    /* Ajustez la position horizontale selon vos besoins */
+}
+
+.menu-toggle label {
+    display: block;
+    padding: 10px;
+    cursor: pointer;
+    font-size: 50px;
+}
+
+.menu {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    display: none;
+    /* Masque le menu par défaut sur mobile */
+    background-color: #f9f9f9;
+    position: absolute;
+    top: calc(100% + 10px);
+    /* Utilisation de calc pour ajouter un espace entre le bouton et le menu */
+    left: 0;
+    width: calc(100% + 200px);
+    /* Utilisation de calc pour ajuster la largeur du menu */
+    text-align: center;
+    border-radius: 5px;
+    /* Ajout d'une bordure arrondie */
+}
+
+.menu li {
+    padding: 15px;
+    /*border-bottom: 1px solid #5f5f5f;*/
+    position: relative;
+}
+
+.menu li:last-child {
+    border-bottom: none;
+}
+
+.menu li:not(:last-child)::after {
+    content: '';
+    /* Ajoute un contenu pseudo-élément */
+    position: absolute;
+    /* Position absolue pour les séparateurs */
+    bottom: 0;
+    /* Place les séparateurs au bas de chaque élément */
+    left: 50px;
+    /* Ajustez la position des séparateurs selon vos besoins */
+    right: 50px;
+    /* Ajustez la position des séparateurs selon vos besoins */
+    border-bottom: 1px solid #363636;
+    /* Style du séparateur */
+}
+.menu a {
+    text-decoration: none;
+    color: black;
+}
+
+/* Affiche le menu lorsqu'il est coché */
+.menu-toggle input[type="checkbox"]:checked~.menu {
+    display: block;
+}
+
+.menu-toggle input[type="checkbox"] {
+    display: none;
+    /* Masque la case à cocher par défaut */
+}
+
+/* Affiche le menu sur mobile */
+@media screen and (max-width: 1200px) {
+    .menu-toggle {
+        display: block;
+    }
 }

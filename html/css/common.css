@@ -1,0 +1,17 @@
+@font-face {
+    font-family: Montserrat;
+    src: url('../fonts/Montserrat.ttf') format('truetype');
+}
+
+@font-face {
+    font-family: Montserrat-Bold;
+    src: url("../fonts/static/Montserrat-Bold.ttf") format("truetype");
+}
+
+#page {
+    margin: 0;
+    padding: auto;
+    font-family: Montserrat-Bold;
+    background-color: #555557;
+    color: white;
+}

@@ -1,9 +1,3 @@
-#page {
-    margin: 0;
-    padding: auto;
-    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
-}
-
 #content {
     text-align: justify;
 }
@@ -12,13 +6,12 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    background-image: url("../img/sudouest-photo-1-23497253.jpg");
+    background-image: url("../img/Nebot\ Cannelle\ -\ Perpignan.jpg");
     background-repeat: no-repeat;
     background-size: cover;
+    background-position: top;
     width: 100%;
     height: 40em;
-
-    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
     color: #b1e810;
 }
 
@@ -30,4 +23,35 @@ a {
 
 a:hover {
     color: #b1e810;
+}
+
+#image_text{
+    display: flex;
+    text-align: center;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    background-color: rgba(177, 232, 16, 0.75);
+    width: 50%;
+    height: 20%;
+    border-radius: 1em;
+    text-shadow: 1px 1px #000000;
+}
+
+
+@media screen and (max-width: 1200px) {
+    #image_text {
+        width: 80%;
+    }
+}
+
+@media screen and (max-width: 900px) {
+    #image {
+        height: 20em;
+    }
+
+    #image_text {
+        height: 50%;
+    }
 }
