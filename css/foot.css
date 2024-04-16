@@ -1,6 +1,6 @@
 #foot {
     display: flex;
-    justify-content: left;
+    justify-content: center;
     background-color: gray;
     color: white;
     padding: 2em;
