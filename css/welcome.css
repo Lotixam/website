@@ -2,19 +2,6 @@
     text-align: justify;
 }
 
-#image {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background-image: url("../img/Nebot\ Cannelle\ -\ Perpignan.jpg");
-    background-repeat: no-repeat;
-    background-size: cover;
-    background-position: top;
-    width: 100%;
-    height: 40em;
-    color: #b1e810;
-}
-
 a {
     text-decoration: none;
     color: white;
@@ -25,7 +12,22 @@ a:hover {
     color: #b1e810;
 }
 
-#image_text{
+#image {
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-image: url("../img/Nebot\ Cannelle\ -\ Perpignan.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: top;
+    transition: transform 0.2s ease-out;
+    width: 100%;
+    height: 40em;
+    color: #b1e810;
+}
+
+.image_text{
     display: flex;
     text-align: center;
     flex-direction: column;
@@ -41,7 +43,7 @@ a:hover {
 
 
 @media screen and (max-width: 1200px) {
-    #image_text {
+    .image_text {
         width: 80%;
     }
 }
@@ -51,7 +53,20 @@ a:hover {
         height: 20em;
     }
 
-    #image_text {
+    .image_text {
         height: 50%;
     }
+}
+
+.carousel {
+    display: flex;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+}
+
+.carousel-item {
+    flex: 0 0 100%;
+    scroll-snap-align: start;
+    width: 100%;
+    position: relative;
 }

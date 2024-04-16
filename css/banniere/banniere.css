@@ -14,6 +14,23 @@
     width: 100%;
 }
 
+.image-filter {
+    filter: invert(100%);
+    -webkit-filter: invert(100%);
+    transition: color 250ms ease-out 100ms;
+}
+
+a:hover {
+    color: #b1e810;
+}
+
+.sous-liens {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
 #logo {
     display: flex;
     resize: none;
@@ -34,8 +51,12 @@
     text-decoration: none;
     padding: 1em;
     justify-content: space-between;
+    align-items: baseline;
     width: 80%;
     font-size: large;
+}
+.br1 {
+    line-height: -120px;
 }
 
 @media screen and (max-width: 1200px) {
@@ -70,7 +91,7 @@
 
 #sentence {
     padding-left: 0.7em;
-    padding-bottom: 0.3em;
+    padding-bottom: 1em;
 }
 
 .menu-toggle {

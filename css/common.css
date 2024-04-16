@@ -12,6 +12,18 @@
     margin: 0;
     padding: auto;
     font-family: Montserrat-Bold;
+    /*
     background-color: #555557;
     color: white;
+    */
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
 }
