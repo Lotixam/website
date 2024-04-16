@@ -11,6 +11,7 @@
 }
 
 a {
+    font-family: Montserrat-Bold;
     text-decoration: none;
     color: white;
     transition: color 250ms ease-out 100ms;
@@ -20,7 +21,13 @@ a:hover {
     color: #b1e810;
 }
 
+
+#contact-welcome {
+    padding-top: 1em;
+}
+
 h2 {
+    font-family: Montserrat-Bold;
     padding-top: 3em;
     text-align: center;
 }
