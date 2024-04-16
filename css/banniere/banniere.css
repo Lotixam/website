@@ -108,6 +108,7 @@ a:hover {
     padding: 10px;
     cursor: pointer;
     font-size: 50px;
+    color: white;
 }
 
 .menu {
@@ -171,5 +172,6 @@ a:hover {
 @media screen and (max-width: 1200px) {
     .menu-toggle {
         display: block;
+        z-index: 10;
     }
 }
