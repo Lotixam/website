@@ -107,7 +107,7 @@ a:hover {
     display: block;
     padding: 10px;
     cursor: pointer;
-    font-size: 50px;
+    font-size: 40px;
     color: white;
 }
 
@@ -126,7 +126,9 @@ a:hover {
     /* Utilisation de calc pour ajuster la largeur du menu */
     text-align: center;
     border-radius: 5px;
+    border: solid;
     /* Ajout d'une bordure arrondie */
+    transition: display 250ms ease-out;
 }
 
 .menu li {

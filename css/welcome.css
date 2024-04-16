@@ -1,13 +1,9 @@
 .content {
     text-align: justify;
-    padding: 1%;
-}
-
-@media screen and (max-width: 1200) {
-    .content {
-        text-align: justify;
-        padding: 0px;
-    }
+    padding-top: 3%;
+    padding-bottom: 1%;
+    padding-left: 10%;
+    padding-right: 10%;
 }
 
 a {
@@ -28,8 +24,24 @@ a:hover {
 
 h2 {
     font-family: Montserrat-Bold;
-    padding-top: 3em;
+    /* padding-top: 3em; */
     text-align: center;
+}
+
+.h2-icons-zone {
+    display: flex;
+    justify-content: center;
+    padding-top: 3em;
+}
+
+.h2-icons {
+    padding-top: 10px;
+    padding-bottom: 10px;
+    padding-right: 12px;
+    padding-left: 12px;
+    background-color: greenyellow;
+    border-radius: 50%;
+    border: solid;
 }
 
 #image {
@@ -55,17 +67,46 @@ h2 {
     justify-content: center;
     color: white;
     background-color: rgba(177, 232, 16, 0.75);
-    width: 50%;
-    height: 20%;
     border-radius: 1em;
     text-shadow: 1px 1px #000000;
+    padding-top: 15px;
+    padding-bottom: 15px;
+    padding-left: 20px;
+    padding-right: 20px;
 }
 
-
-@media screen and (max-width: 1200px) {
-    .image_text {
-        width: 80%;
+@media screen and (min-width: 1200px) {
+    #paragraphe1 {
+        font-size: 20px;
+        padding-left: 120px;
+        padding-right: 120px;
     }
+
+    .image_text {
+        width: 40%;
+        padding-top: 0px;
+        padding-bottom: 0px;
+        font-size: 18px;
+        height: 20%;
+    }
+
+    #paragraphe6 {
+        padding-left: 120px;
+        padding-right: 120px;
+    }
+}
+
+table {
+    width: 100%;
+    /* Pour que la table occupe toute la largeur disponible */
+}
+
+td {
+    /* Assurez-vous que toutes les cellules ont une largeur équitable */
+    width: 50%;
+    /* Divise la largeur de la table en deux */
+    padding-left: 30px;
+    padding-right: 30px;
 }
 
 @media screen and (max-width: 900px) {
@@ -74,7 +115,31 @@ h2 {
     }
 
     .image_text {
-        height: 50%;
+        height: 20%;
+        font-size: 12px;
+        width: 60%;
+    }
+
+    .content {
+        text-align: justify;
+        padding-top: 5%;
+        padding-bottom: 0px;
+        padding-left: 0px;
+        padding-right: 0px;
+    }
+
+    table {
+        /* Annulez la disposition en tableau et restaurez la disposition normale */
+        display: block;
+        width: 100%;
+    }
+
+    td {
+        /* Annulez les styles de cellule de tableau */
+        display: block;
+        width: 100%;
+        padding-left: 0px;
+        padding-right: 0px;
     }
 }
 
