@@ -8,14 +8,70 @@
     src: url("../fonts/static/Montserrat-Bold.ttf") format("truetype");
 }
 
+@font-face {
+    font-family: Montserrat-Medium;
+    src: url("../fonts/static/Montserrat-Medium.ttf");
+}
+
 #page {
     margin: 0;
     padding: auto;
-    font-family: Montserrat-Bold;
+    font-family: Montserrat;
     /*
     background-color: #555557;
     color: white;
     */
+}
+
+.contact {
+    display: flex;
+    justify-content: center;
+}
+
+@keyframes buttonFadeIn {
+    from {
+        background-color: rgb(179, 30, 30);
+    }
+
+    to {
+        background-color: green;
+    }
+}
+
+@keyframes buttonFadeIn {
+    from {
+        background-color: rgb(179, 30, 30);
+    }
+
+    to {
+        background-color: green;
+    }
+}
+.contact-button {
+    padding-left: 1em;
+    padding-right: 1em;
+    background-color: rgb(179, 30, 30);
+    color: white;
+    font-family: Montserrat-Bold;
+    font-size: 20px;
+    height: 40px;
+    border-radius: 10px;
+    transition: background-color 100ms ease-out;
+}
+
+.contact-button:hover {
+    background-color: green;
+}
+
+p {
+    font-family: Montserrat-Medium;
+}
+
+a {
+    font-family: Montserrat-Bold;
+    text-decoration: none;
+    color: white;
+    transition: color 250ms ease-out 100ms;
 }
 
 @keyframes fadeIn {
