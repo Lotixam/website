@@ -1,5 +1,13 @@
-#content {
+.content {
     text-align: justify;
+    padding: 1%;
+}
+
+@media screen and (max-width: 1200) {
+    .content {
+        text-align: justify;
+        padding: 0px;
+    }
 }
 
 a {
@@ -10,6 +18,11 @@ a {
 
 a:hover {
     color: #b1e810;
+}
+
+h2 {
+    padding-top: 3em;
+    text-align: center;
 }
 
 #image {

@@ -1,3 +1,3 @@
 <?php
-  header('Location: php/maintenance.php');
+  header('Location: php/index.php');
   exit();
