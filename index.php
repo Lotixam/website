@@ -1,3 +1,2 @@
 <?php
-  header('Location: php/index.php');
-  exit();
+  require("./html/index.html");

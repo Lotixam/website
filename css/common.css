@@ -26,6 +26,8 @@
 .contact {
     display: flex;
     justify-content: center;
+    padding-bottom: 20px;
+    padding-top: 20px;
 }
 
 @keyframes buttonFadeIn {
@@ -50,17 +52,24 @@
 .contact-button {
     padding-left: 1em;
     padding-right: 1em;
-    background-color: rgb(179, 30, 30);
+    padding-top: 12px;
+    padding-bottom: 12px;
+    background-color: #ff0000;
     color: white;
     font-family: Montserrat-Bold;
-    font-size: 20px;
-    height: 40px;
+    font-size: 30px;
     border-radius: 10px;
     transition: background-color 100ms ease-out;
 }
 
+@media screen and (max-width: 900px) {
+    .contact-button {
+        font-size: 20px;
+    }
+}
+
 .contact-button:hover {
-    background-color: green;
+    background-color: #b1ea0c;
 }
 
 p {
