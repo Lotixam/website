@@ -3,7 +3,7 @@ footer {
     display: flex;
     flex-direction: row;
     justify-content: center;
-    background-color: gray;
+    background-color: #555555;
     color: white;
     padding: 2em;
     width: auto;
@@ -14,16 +14,17 @@ footer {
     padding-right: 1em;
 }
 
-@media screen and (max-width: 1200) {
+@media screen and (max-width: 1200px) {
     footer {
         display: flex;
         flex-direction: column;
         justify-content: start;
-        background-color: aliceblue;
+        background-color: #555555;
+        text-align: center;
     }
 
     .separator {
-        padding-top: 1em;
-        padding-bottom: 1em;
+        padding-top: 0px;
+        padding-bottom: 0px;
     }
 }
