@@ -1,6 +1,7 @@
-.foot {
+footer {
     margin-top: 5em;
     display: flex;
+    flex-direction: row;
     justify-content: center;
     background-color: gray;
     color: white;
@@ -8,13 +9,21 @@
     width: auto;
 }
 
-@media screen and (max-width: 1200) {
-    .foot {
-        padding-top: 1em;
-        margin-top: 0em;
-    }    
-}
 .separator {
     padding-left: 1em;
     padding-right: 1em;
+}
+
+@media screen and (max-width: 1200) {
+    footer {
+        display: flex;
+        flex-direction: column;
+        justify-content: start;
+        background-color: aliceblue;
+    }
+
+    .separator {
+        padding-top: 1em;
+        padding-bottom: 1em;
+    }
 }
