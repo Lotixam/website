@@ -1,2 +1,3 @@
 <?php
-  require("./html/index.html");
+  session_start();
+  require("../html/index.html");

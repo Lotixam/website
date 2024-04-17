@@ -62,13 +62,34 @@ a:hover {
     font-size: large;
     background-color: black;
     padding-bottom: 10px;
-    margin-top: 45px;
+    padding-top: 10px;
+    margin-top: 23px;
 }
+
+#banniere #logo img {
+    margin-top: 23px;
+}
+
+.sign {
+    position: absolute;
+    right: 30px;
+    top: 20px;
+}
+
+.sign a {
+    font-family: Montserrat;
+}
+
 .br1 {
     line-height: -120px;
 }
 
 @media screen and (max-width: 1200px) {
+
+    .sign {
+        display: none;
+    }
+
     #liens {
         display: flex;
         flex-direction: column;

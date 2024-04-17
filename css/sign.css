@@ -1,0 +1,116 @@
+.td-1 {
+    width: 40%;
+    max-width: 700px;
+    background-color: rgba(85, 85, 85, 0.95);
+    z-index: 2;
+}
+
+.div-connexion {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+}
+
+input {
+    border: solid;
+    border-width: 2px;
+    border-radius: 5px;
+    height: 25px;
+    font-size: 20px;
+}
+
+/* .td-2 {
+    background-image: url("../img/Nebot\ Cannelle\ -\ Perpignan-1.jpg");
+    background-size: cover;
+    overflow: hidden;
+    height: 100%;
+    width: 60%;
+} */
+
+.td-2 {
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    background-image: url("../img/Nebot\ Cannelle\ -\ Perpignan-1.jpg");
+    background-size: cover;
+    background-position: center;
+    overflow: hidden;
+    height: 100%;
+    width: 100%;
+    z-index: 1;
+}
+
+html {
+    height: 100%;
+}
+
+.sign-page {
+    display: flex;
+    height: 100%;
+    width: 100%;
+}
+
+body {
+    display: flex;
+    overflow: hidden;
+    justify-content: center;
+    margin: 0px;
+    padding: 0px;
+    font-family: Montserrat;
+    height: 100%;
+    color: white;
+    background-color: black;
+    /* Couleur du texte */
+}
+
+@media screen and (max-width: 900px) and (orientation: portrait) {
+    .td-2 {
+        position: absolute;
+        top: 0px;
+        left: 0px;
+        background-image: url("../img/Nebot\ Cannelle\ -\ Perpignan-1.jpg");
+        background-size: cover;
+        background-position: center;
+        overflow: hidden;
+        height: 100%;
+        width: 100%;
+        z-index: 1;
+    }
+
+    .td-1 {
+        background-color: rgba(85, 85, 85, 0.7);
+        width: 80%;
+        height: 80%;
+        z-index: 2;
+        border-radius: 25px;
+    }
+
+    .sign-page {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-size: 2rem;
+        z-index: 0;
+    }
+
+    .sign-page form {
+        text-align: center;
+    }
+
+    .sign-page h1,
+    .sign-page form {
+        text-align: center;
+        width: 100%;
+        /* Utilise toute la largeur disponible */
+        font-size: calc(2rem + 3vw);
+        /* Taille de police dynamique basée sur la largeur de la vue */
+    }
+
+    .sign-page input {
+        font-size: calc(2rem + 3vw);
+        height: calc(2rem + 3vw);
+        width: 50%;
+    }
+}
