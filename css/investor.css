@@ -11,11 +11,23 @@
     height: 12em;
     background-color: #b1e810;
     color: black;
+    overflow: hidden;
+}
+
+.encadre {
+    border-radius: 5px;
+    border: double;
+    border-width: 10px;
+    padding: 10px;
 }
 
 .entete {
     padding: 20px;
     padding-left: 10%;
+}
+
+.logo-investor {
+    width: 50px;
 }
 
 .h1-up {
@@ -27,7 +39,7 @@
 }
 
 .p-up {
-    font-size: 25px;
+    font-size: 18px;
 }
 
 .photo-investor {
@@ -60,7 +72,11 @@ a:hover {
 
 h2 {
     font-family: Montserrat-Bold;
-    /* padding-top: 3em; */
+    
+    text-align: center;
+}
+
+.result-line {
     text-align: center;
 }
 
@@ -68,6 +84,7 @@ h2 {
     display: flex;
     justify-content: center;
     padding-top: 3em;
+    padding-bottom: 30px ;
 }
 
 .h2-icons {
@@ -85,7 +102,60 @@ h2 {
     width: auto
 }
 
+.mounth {
+    color: #8db80c;
+    font-family: Montserrat-Bold;
+}
+
+
+.stonks {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding-top: 25px;
+    padding-bottom: 25px;
+}
+.result {
+    text-decoration: underline;
+    text-decoration-style: solid;
+    text-decoration-thickness: 4px;
+    text-decoration-color: currentColor;
+    /* color: #09bb94; */
+    color: black;
+    font-family: Montserrat-Bold;
+    font-size: 22px;
+
+}
+
+.liste-conditons li {
+    padding-bottom: 20px;
+}
+
+.liste-conditons li:last-child {
+    padding-bottom: 0px;
+}
+
 @media screen and (min-width: 1200px) {
+
+    .body-main {
+        padding-left: 90px;
+        padding-right: 90px;
+    }
+
+    .img-1 {
+        padding-right: 25%;
+    }
+
+    #p-up-1 {
+        margin-right: 70px;
+        margin-left: 10px;
+    }
+
+    #exemple {
+        padding-left: 10%;
+        padding-right: 10%;
+        margin-top: 50px;
+    }
 
     .youtube {
         display: flex;
@@ -113,6 +183,11 @@ h2 {
         padding-right: 240px;
         text-align: center;
     }
+
+    .conditions {
+        padding-top: 40px;
+    }
+
 }
 
 table {
@@ -128,33 +203,50 @@ td {
     padding-right: 30px;
 }
 
+.loading {
+    font-size: 40px;
+}
+
 .special-td {
-    width: 30%;
-        /* Divise la largeur de la table en deux */
+     width: 30%;
+         /*Divise la largeur de la table en deux*/
     padding-left: 30px;
     padding-right: 30px;
 }
 
 @media screen and (max-width: 900px) {
 
+    .logo-investor {
+            width: 50px;
+        }
 
     .special-td {
-            display: flex;
-            width: 100%;
-            align-items: center;
-            justify-content: center;
+        display: block;
+        width: 84%;
     }
 
     .photo-investor {
-        display: flex;
+        display: block;
+        width: 100%;
+        align-items: center;
+        justify-content: center;
     }
 
     .h1-up {
-        font-size: 30px;
+        font-size: 200%;
+
+    }
+
+    .p-up {
+        font-size: 17px;
+        padding-left: 10px;
+        padding-right: 10px;
+        text-align: justify;
+        line-height: 150%;
     }
 
     .img-1 {
-        width: 80%;
+        width: 100%;
         height: auto;
     }
 
@@ -189,6 +281,20 @@ td {
         padding-left: 0px;
         padding-right: 0px;
     }
+
+    .second-row {
+        display: flex;
+        flex-direction: column-reverse;
+    }
+
+    .belle-espacement {
+        padding-top: 30px;
+        padding-bottom: 30px;
+    }
+
+    .conditions {
+        padding-right: 20px;
+    }
 }
 
 .carousel {
@@ -197,9 +303,24 @@ td {
     scroll-snap-type: x mandatory;
 }
 
+.nota-bene {
+    padding-top: 70px;
+    padding-left: 30px;
+    font-size: 15px;
+}
+
 .carousel-item {
     flex: 0 0 100%;
     scroll-snap-align: start;
     width: 100%;
     position: relative;
+}
+
+.attention {
+    padding-left: 15px;
+    padding-right: 15px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: justify;
 }
