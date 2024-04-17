@@ -52,6 +52,26 @@ html {
     width: 100%;
 }
 
+.logo-sign {
+    display: flex;
+        justify-content: center;
+        align-items: center;
+}
+
+.logo-sign img {
+    width: 50%;
+}
+
+.lotixam {
+    position: absolute;
+    bottom: 15px;
+    right: 15px;
+}
+
+.lotixam img {
+    width: 300px;
+}
+
 body {
     display: flex;
     overflow: hidden;
@@ -80,7 +100,7 @@ body {
     }
 
     .td-1 {
-        background-color: rgba(85, 85, 85, 0.7);
+        background-color: rgba(85, 85, 85, 0.8);
         width: 80%;
         height: 80%;
         z-index: 2;
@@ -111,6 +131,7 @@ body {
     .sign-page input {
         font-size: calc(2rem + 3vw);
         height: calc(2rem + 3vw);
+        max-height: 3rem;
         width: 50%;
     }
 }
