@@ -15,17 +15,23 @@
         <div class="sign-page">
             <!-- Page de gauche -->
             <div class="td-1">
-                <div class="logo-sign"></div>
                 <div class="div-connexion">
+                    <div class="logo-sign">
+                        <img src="../img/logo.png"/>
+                    </div>
                     <h1>Connexion</h1>
                     <form id="loginForm" action="sign.php" method="post">
                         <label>Identifiant :</label>
                         <br>
-                        <input name="username" id="username" type="text"/>
+                        <input name="username" id="username" type="text" required
+                        oninvalid="this.setCustomValidity('Veuillez entrer votre identifiant')"
+                        oninput="this.setCustomValidity('')" />
                         <br><br>
                         <label>Mot de passe :</label>
                         <br>
-                        <input name="password" id="password" type="password"/>
+                        <input name="password" id="password" type="password" required
+                        oninvalid="this.setCustomValidity('Veuillez entrer votre mot de passe')"
+        oninput="this.setCustomValidity('')" />
                         <br></p>
                         <button type="submit">Valider</button>
                     </form>
@@ -33,6 +39,9 @@
             </div>
             <!-- Page de droite -->
             <div class="td-2">
+                <div class="lotixam">
+                    <img src="../img/lotixam.png" />
+                </div>
             </div>
         </div>
 
