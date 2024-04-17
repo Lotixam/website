@@ -17,18 +17,25 @@
 .image-filter {
     filter: invert(100%);
     -webkit-filter: invert(100%);
-    transition: color 250ms ease-out 100ms;
+    transition: filter 0.3s;
 }
 
 a:hover {
     color: #b1e810;
 }
-
 .sous-liens {
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
+}
+
+.sous-liens br {
+
+    content: "";
+    display: block;
+    margin-bottom: 10px;
+
 }
 
 #logo {
@@ -49,11 +56,13 @@ a:hover {
     display: flex;
     flex-direction: row;
     text-decoration: none;
-    padding: 1em;
-    justify-content: space-between;
+    justify-content: space-around;
     align-items: baseline;
-    width: 80%;
+    width: 100%;
     font-size: large;
+    background-color: black;
+    padding-bottom: 10px;
+    margin-top: 45px;
 }
 .br1 {
     line-height: -120px;
