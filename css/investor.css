@@ -1,0 +1,205 @@
+.content {
+    text-align: justify;
+    padding-top: 3%;
+    padding-bottom: 1%;
+    padding-left: 10%;
+    padding-right: 10%;
+}
+
+.longueur {
+    width: 100%;
+    height: 12em;
+    background-color: #b1e810;
+    color: black;
+}
+
+.entete {
+    padding: 20px;
+    padding-left: 10%;
+}
+
+.h1-up {
+    font-size: 50px;
+}
+
+#investor-table {
+    margin-top: 5%;
+}
+
+.p-up {
+    font-size: 25px;
+}
+
+.photo-investor {
+    display: flex;
+    justify-content: right;
+    align-items: center;
+}
+
+a {
+    font-family: Montserrat-Bold;
+    text-decoration: none;
+    color: white;
+    transition: color 250ms ease-out 100ms;
+}
+
+a:hover {
+    color: #b1e810;
+}
+
+
+#contact-welcome {
+    padding-top: 1em;
+}
+
+#contact-button-index-1 {
+    font-size: large;
+    margin-top: 40px;
+    margin-bottom: 40px;
+}
+
+h2 {
+    font-family: Montserrat-Bold;
+    /* padding-top: 3em; */
+    text-align: center;
+}
+
+.h2-icons-zone {
+    display: flex;
+    justify-content: center;
+    padding-top: 3em;
+}
+
+.h2-icons {
+    padding-top: 10px;
+    padding-bottom: 10px;
+    padding-right: 12px;
+    padding-left: 12px;
+    background-color: greenyellow;
+    border-radius: 50%;
+    border: solid;
+}
+
+.img-1 {
+    height: 800px;
+    width: auto
+}
+
+@media screen and (min-width: 1200px) {
+
+    .youtube {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    #paragraphe1 {
+        font-size: 20px;
+        padding-left: 240px;
+        padding-right: 240px;
+        text-align: center;
+    }
+
+    .image_text {
+        width: 40%;
+        padding-top: 0px;
+        padding-bottom: 0px;
+        font-size: 18px;
+        height: 20%;
+    }
+
+    #paragraphe6 {
+        padding-left: 240px;
+        padding-right: 240px;
+        text-align: center;
+    }
+}
+
+table {
+    width: 100%;
+    /* Pour que la table occupe toute la largeur disponible */
+}
+
+td {
+    /* Assurez-vous que toutes les cellules ont une largeur équitable */
+    width: 50%;
+    /* Divise la largeur de la table en deux */
+    padding-left: 30px;
+    padding-right: 30px;
+}
+
+.special-td {
+    width: 30%;
+        /* Divise la largeur de la table en deux */
+    padding-left: 30px;
+    padding-right: 30px;
+}
+
+@media screen and (max-width: 900px) {
+
+
+    .special-td {
+            display: flex;
+            width: 100%;
+            align-items: center;
+            justify-content: center;
+    }
+
+    .photo-investor {
+        display: flex;
+    }
+
+    .h1-up {
+        font-size: 30px;
+    }
+
+    .img-1 {
+        width: 80%;
+        height: auto;
+    }
+
+    .youtube-video {
+        padding-top: 30px;
+        width: 100%;
+        height: 200px;
+    }
+    
+    #image {
+        height: 20em;
+    }
+
+    .content {
+        text-align: justify;
+        padding-top: 5%;
+        padding-bottom: 0px;
+        padding-left: 0px;
+        padding-right: 0px;
+    }
+
+    table {
+        /* Annulez la disposition en tableau et restaurez la disposition normale */
+        display: block;
+        width: 100%;
+    }
+
+    td {
+        /* Annulez les styles de cellule de tableau */
+        display: block;
+        width: 100%;
+        padding-left: 0px;
+        padding-right: 0px;
+    }
+}
+
+.carousel {
+    display: flex;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+}
+
+.carousel-item {
+    flex: 0 0 100%;
+    scroll-snap-align: start;
+    width: 100%;
+    position: relative;
+}
