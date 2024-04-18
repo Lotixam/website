@@ -3,6 +3,42 @@
     max-width: 700px;
     background-color: rgba(85, 85, 85, 0.95);
     z-index: 2;
+    overflow-y: auto;
+}
+
+
+#page {
+    background-color: #555555;
+}
+
+@keyframes opac {
+    0% {
+        opacity: 1;
+    }
+
+    50% {
+        opacity: 0.5;
+    }
+
+    100% {
+        opacity: 1;
+    }
+}
+
+.logo-waiter {
+    width: 20%;
+}
+
+.main {
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    width: 100%;
+    animation: opac 3s infinite;
+    font-size: 2vw;
 }
 
 .div-connexion {
@@ -13,7 +49,16 @@
     height: 100%;
 }
 
-input {
+/* .div-connexion * {
+    height: auto;
+    max-height: 100%;
+    width: auto;
+    max-width: 100%;
+    transform: scale(0.8);
+    /* Échelle verticale de 80% 
+} */
+
+input, textarea {
     border: solid;
     border-width: 2px;
     border-radius: 5px;
@@ -21,11 +66,17 @@ input {
     font-size: 20px;
 }
 
+#msg {
+    height: 100px;
+    resize: none;
+    width: 100%;
+}
+
 .td-2 {
     position: absolute;
     top: 0px;
     left: 0px;
-    background-image: url("../img/Nebot\ Cannelle\ -\ Perpignan-1.jpg");
+    background-image: url("../img/larochelle.jpg");
     background-size: cover;
     background-position: center;
     overflow: hidden;
@@ -46,18 +97,21 @@ html {
 
 .logo-sign {
     display: flex;
-        justify-content: center;
-        align-items: center;
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+    border: black;
 }
 
 .logo-sign img {
-    width: 50%;
+    max-width: 40%;
 }
 
 .lotixam {
     position: absolute;
     bottom: 15px;
     right: 15px;
+    z-index: 99;
 }
 
 .lotixam img {
@@ -79,17 +133,22 @@ body {
 
 .back {
     display: flex;
-    position: absolute;
-    top: 100px;
     justify-content: center;
     width: 100%;
     font-size: 20px;
 }
 
+form {
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
 .submit-button {
     background-color: transparent;
     color: white;
-    border: none;
+    border: solid;
+    border-radius: 5px;
     transition: color 250ms ease-out;
     font-size: 20px;
     font-family: Montserrat-Bold;
@@ -100,15 +159,39 @@ body {
     cursor: pointer;
 }
 
-@media screen and (min-width: 1500px) and (orientation: landscape) {
+@media screen and (min-width: 1200px) and (orientation: landscape) {
     .submit-zone {
         display: flex;
         justify-content: center;
         align-items: center;
     }
+
+    .logo-sign {
+        height: fit-content;
+    }
+
+    .response {
+        color: #b1ea0c;
+        position: absolute;
+        top: 10px;
+        right: 10px;
+        z-index: 999;
+    }
 }
 
-@media screen and (max-width: 1500px) {
+@media screen and (max-width: 1200px) {
+
+    .div-connexion {
+        scale: 0.65;
+    }
+
+    .logo-waiter {
+        width: 50%;
+    }
+
+    .main {
+            font-size: 5vw;
+        }
 
     .submit-button {
         font-size: larger;
@@ -122,9 +205,9 @@ body {
         position: absolute;
         top: 0px;
         left: 0px;
-        background-image: url("../img/Nebot\ Cannelle\ -\ Perpignan-1.jpg");
+        background-image: url("../img/larochelle.jpg");
         background-size: cover;
-        background-position: center;
+        background-position: center right;
         overflow: hidden;
         height: 100%;
         width: 100%;
@@ -134,7 +217,7 @@ body {
     .td-1 {
         background-color: rgba(85, 85, 85, 0.8);
         width: 80%;
-        height: 80%;
+        height: 90%;
         z-index: 2;
         border-radius: 25px;
     }
@@ -168,9 +251,45 @@ body {
     }
 
     .sign-page input {
-        font-size: calc(2rem + 3vw);
+        font-size: calc(4vw);
         height: calc(2rem + 3vw);
         max-height: 3rem;
-        width: 50%;
+        width: 60%;
+        scale: 1.5;
+    }
+
+    .sign-page input {
+        font-size: calc(4vw);
+        height: calc(2rem + 3vw);
+        max-height: 3rem;
+        width: 60%;
+        scale: 1.5;
+    }
+
+    form input[type="file"] {
+        text-align: center;
+        width: 100%;
+        height: 100px;
+        font-size: 40px;
+        font-family: Montserrat;
+        margin-bottom: 30px;
+    }
+
+    #msg {
+        height: 15%;
+        font-size: 20px;
+    }
+
+    .submit-button {
+        border-width: 5px;
+        padding: 5px;
+    }
+
+    .td-1 br {
+        margin-top: 0.1em;
+    }
+
+    .lotixam {
+        opacity: 0.9;
     }
 }
