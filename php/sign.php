@@ -1,14 +1,15 @@
+<?php
+    session_start();
+?>
+
 <!DOCTYPE html>
 <html>
     <head>
-        <title>Maintenance du site</title>
+        <title>Connexion</title>
         <link href="../css/common.css" rel="stylesheet"/>
         <link href="../css/banniere/banniere.css" rel="stylesheet"/>
         <link href="../css/sign.css" rel="stylesheet" />
         <link href="../img/logo.png" rel="icon"/>
-        <?php
-            session_start();
-        ?>
     </head>
     <body>
         <!-- Page principale -->
@@ -18,6 +19,9 @@
                 <div class="div-connexion">
                     <div class="logo-sign">
                         <img src="../img/logo.png"/>
+                    </div>
+                    <div class="back">
+                        <a href="javascript:history.go(-1)">&lsaquo; Retour</a>
                     </div>
                     <h1>Connexion</h1>
                     <form id="loginForm" action="sign.php" method="post">
@@ -33,7 +37,14 @@
                         oninvalid="this.setCustomValidity('Veuillez entrer votre mot de passe')"
         oninput="this.setCustomValidity('')" />
                         <br></p>
-                        <button type="submit">Valider</button>
+                        <div class="remember">
+                            <input id="check-remember" type="checkbox">
+                            <label>Se souvenir de moi</label>
+                        </div>
+                        <br></p>
+                        <div class="submit-zone">
+                            <button class="submit-button" type="submit">Valider</button>
+                        </div>
                     </form>
                 </div>
             </div>
