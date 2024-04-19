@@ -21,21 +21,21 @@
                         <img src="../img/logo.png"/>
                     </div>
                     <div class="back">
-                        <a href="javascript:history.go(-1)">&lsaquo; Retour</a>
+                        <a href="../html/index.html">&lsaquo; Retour</a>
                     </div>
                     <h1>Connexion</h1>
                     <form id="loginForm" action="sign.php" method="post">
                         <label>Identifiant :</label>
                         <br>
                         <input name="username" id="username" type="text" required
-                        oninvalid="this.setCustomValidity('Veuillez entrer votre identifiant')"
-                        oninput="this.setCustomValidity('')" />
+                            oninvalid="this.setCustomValidity('Veuillez entrer votre identifiant')"
+                            oninput="this.setCustomValidity('')" />
                         <br><br>
                         <label>Mot de passe :</label>
                         <br>
                         <input name="password" id="password" type="password" required
-                        oninvalid="this.setCustomValidity('Veuillez entrer votre mot de passe')"
-        oninput="this.setCustomValidity('')" />
+                            oninvalid="this.setCustomValidity('Veuillez entrer votre mot de passe')"
+                            oninput="this.setCustomValidity('')" />
                         <br></p>
                         <div class="remember">
                             <input id="check-remember" type="checkbox">

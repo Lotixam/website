@@ -38,13 +38,13 @@
                         <label>Téléphone :</label>
                         <br>
                         <input name="tel" id="tel" type="text" required
-                        oninvalid="this.setCustomValidity('Veuillez entrer votre prénom')"
+                        oninvalid="this.setCustomValidity('Veuillez entrer votre téléphone.')"
                         oninput="this.setCustomValidity('')" />
                         </p>
                         <label>Votre message :</label>
                         <br>
                         <textarea name="msg" id="msg" type="text" required
-                        oninvalid="this.setCustomValidity('Veuillez entrer votre identifiant')"
+                        oninvalid="this.setCustomValidity('Renseignez votre message.')"
                         oninput="this.setCustomValidity('')"></textarea>
                         </p>
                         <label for="joindre">Joindre un ou plusieurs fichiers</label>
@@ -60,7 +60,7 @@
                         </div>
                         <br>
                         <div class="back">
-                            <a href="javascript:history.go(-1)">&lsaquo; Retour</a>
+                            <a href="../html/index.html">&lsaquo; Retour</a>
                         </div>
                     </form>
                 </div>

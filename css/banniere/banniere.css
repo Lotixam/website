@@ -56,18 +56,19 @@ a:hover {
     display: flex;
     flex-direction: row;
     text-decoration: none;
-    justify-content: space-around;
+    justify-content: center;
     align-items: baseline;
     width: 100%;
-    font-size: large;
+    font-size: 15px;
     background-color: black;
     padding-bottom: 10px;
     padding-top: 10px;
     margin-top: 23px;
 }
 
-#banniere #logo img {
-    margin-top: 23px;
+#liens div {
+    padding-left: 2%;
+    padding-right: 2%;
 }
 
 .sign {
@@ -82,6 +83,12 @@ a:hover {
 
 .br1 {
     line-height: -120px;
+}
+
+@media screen and (min-width: 1200px) {
+    #banniere #logo img {
+        margin-top: 23px;
+    }
 }
 
 @media screen and (max-width: 1200px) {
@@ -109,6 +116,10 @@ a:hover {
         flex-direction: column;
         justify-content: center;
         align-items: center;
+    }
+
+    #logo img[width="170"] {
+        margin-top: 23px;
     }
     
     #devanture {
