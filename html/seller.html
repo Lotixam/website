@@ -4,23 +4,25 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width,initial-scale=1" />
         
-        <title>Lotixam - Welcome</title>
+        <title>Lotixam - Investisseurs</title>
         <link href="../img/logo.png" rel="icon" type="image/x-icon">
     
         <link href="../css/common.css" rel="stylesheet">
-        <link href="../css/welcome.css" rel="stylesheet">
+        <link href="../css/seller.css" rel="stylesheet">
         <link href="../css/banniere/banniere.css" rel="stylesheet">
         <link href="../css/foot.css" rel="stylesheet">
-        <script src="../script/welcome.js"></script>
 
     </head>
+
     <body id="page">
+        <script src="../script/investor.js"></script>
         <!--Bannière-->
         <div id="banniere">
 
             <div class="sign ">
                 <a href="../php/sign.php">Se connecter / S'inscrire</a>
             </div>
+
             <div id="logo">
                 <img src="../img/logo.png" width="170" height="120">
                 <div id="devanture">
@@ -32,32 +34,37 @@
             <div id="liens">
                 <div>
                     <a href="./index.html" class="sous-liens">
-                        <img src="../img/welcome.png" width="40" class="image-filter"><br class="br1">Accueil
+                        Accueil
                     </a>
                 </div>
                 <div>
                     <a href="./about.html" class="sous-liens">
-                        <img src="../img/groupe.png" width="40" class="image-filter"><br>Qui sommes nous
+                        Qui sommes nous
                     </a>
                 </div>
                 <div>
                     <a href="./seller.html" class="sous-liens">
-                        <img src="../img/immobilier.png" width="40" class="image-filter"><br>Marchand de biens
+                        Nous achetons
+                    </a>
+                </div>
+                <div>
+                    <a href="./buyer.html" class="sous-liens">
+                        Nous vendons
                     </a>
                 </div>
                 <div>
                     <a href="./investor.html" class="sous-liens">
-                        <img src="../img/investisseur.png" width="45" class="image-filter"><br>Investisseurs
+                        Investisseurs
                     </a>
                 </div>
                 <div>
                     <a href="./simulation.html" class="sous-liens">
-                        <img src="../img/gestion-de-projet.png" width="40" class="image-filter"><br>Simuler mon projet
+                        Simuler mon projet
                     </a>
                 </div>
                 <div>
-                    <a href="./contact.html" class="sous-liens">
-                        <img src="../img/courriel-de-contact.png" width="40" class="image-filter"><br>Contact
+                    <a href="../php/contact.php?prev=seller&amp;button=false" class="sous-liens">
+                        Contact
                     </a>
                 </div>
             </div>
@@ -67,204 +74,113 @@
                 <input type="checkbox" id="toggle">
                 <label for="toggle">&#9776;</label> <!-- icône du menu hamburger -->
                 <ul class="menu">
-                    <li class="liens"><a href="./index.html"><img src="../img/welcome.png" width="30"><br> Accueil</a></li>
-                    <li class="liens"><a href="./about.html"><img src="../img/groupe.png" width="30"><br> Qui sommes nous</a></li>
-                    <li class="liens"><a href="./seller.html"><img src="../img/immobilier.png" width="30"><br> Marchand de biens</a></li>
-                    <li class="liens"><a href="./investor.html"><img src="../img/investisseur.png" width="35"><br> Investisseurs</a></li>
-                    <li class="liens"><a href="./simulation.html"><img src="../img/gestion-de-projet.png" width="30"><br> Simuler mon projet</a></li>
-                    <li class="liens"><a href="./contact.html"><img src="../img/courriel-de-contact.png" width="30"><br> Contact</a></li>
-                    <li class="liens"><a href="../php/sign.php"><img src="../img/utilisateur.png" width="30"><br> Mon compte</a></li>
-                    <!-- Ajoutez plus d'éléments de menu ici au besoin -->
+                    <li class="liens"><a href="./index.html">Accueil</a></li>
+                    <li class="liens"><a href="./about.html">Qui sommes nous</a></li>
+                    <li class="liens"><a href="./seller.html">Nous achetons</a></li>
+                    <li class="liens"><a href="./buyer.html">Nous vendons</a></li>
+                    <li class="liens"><a href="./investor.html">Investisseurs</a></li>
+                    <li class="liens"><a href="./simulation.html">Simuler mon projet</a></li>
+                    <li class="liens"><a href="../php/contact.php?prev=seller&amp;button=false">Contact</a></li>
+                    <li class="liens"><a href="../php/sign.php">Mon compte</a></li>
                 </ul>
             </div>
         </div>
 
         <!--Corps de la page-->
 
-        <!-- Image de Cannelle -->
-        <div id="image">
-            <div class="image_text">
-                <div>
-                    <h1>Vous cherchez un partenaire fiable ?</h1>
-                </div>
+        <div class="longueur">
+            <div class="entete">
+                <h1 class="h1-up" id="h1up">NOUS ACHETONS</h1>
             </div>
         </div>
-
-        <!-- - Corps principal -->
-        <div class="content" style="margin: 1em;">
-
-            <!-- Bienvenue -->
-            <div id="paragraphe1" class="para">
-                <div class="elem1"></div>
-                <div class="elem2"></div>
-                <p>
-                    Bienvenue chez <b>LOTIXAM</b>, votre partenaire immobilier de confiance, opérant avec passion dans les régions
-                    pittoresques de la
-                    Charente-Maritime et du Nord-Gironde. Chez <b>LOTIXAM</b>, nous ne nous contentons pas de vendre des terrains, nous créons
-                    des
-                    opportunités pour réaliser vos rêves de construction.
-                </p>
-            </div>
-
-            <!-- Tableau  /!\-->
-            <table>
+        <div class="body-main">
+            <table id="investor-table" class="content">
                 <tr>
-                    <td>
-                        <div class="h2-icons-zone">
-                            <div class="h2-icons">
-                                <img src="../img/zone-avec-epingles.png" width="50">
-                            </div>
-                        </div>
-                        <h2>Pourquoi choisir la Charente-Maritime ?</h2>
-                        <div id="paragraphe2" class="para">
-                            <div class="elem1"></div>
-                            <div class="elem2">
-                                <p>
-                                    La Charente-Maritime est la première destination touristique de France, attirant près de trois millions de
-                                    visiteurs chaque année. Cette région offre un cadre de vie exceptionnel, marqué par des paysages époustouflants, une
-                                    riche histoire maritime et un climat agréable. Investir ici, c’est choisir un cadre de vie idyllique tout en
-                                    bénéficiant
-                                    d’une valeur immobilière en constante appréciation.
-                                </p>
-                            </div>
+                    <td class="special-td">
+                        <div class="photo-investor">
+                            <img src="../img/seller-1.jpg" class="img-1">
                         </div>
                     </td>
                     <td>
-                        <div class="h2-icons-zone">
-                            <div class="h2-icons">
-                                <img src="../img/identification.png" width="50">
-                            </div>
-                        </div>
-                        <h2>Notre Approche Unique</h2>
-                        <div id="paragraphe3" class="para">
-                            <div class="elem1"></div>
+                        <div class="para">
                             <div class="elem2">
-                                <p>
-                                    Chez <b>LOTIXAM</b>, notre force réside dans notre capacité à accompagner nos clients du début à la fin de leur
-                                    projet
-                                    immobilier. Si vous envisagez de construire une maison, nous sommes à vos côtés à chaque étape. Nous simplifions le
-                                    processus complexe de l’immobilier en vous offrant un service complet qui inclut l’achat de terrain
-                                    et la gestion du projet de construction avec notre partenaire de confiance.
-                                </p>
+                                <div class="p-up" id="p-up-1">
+                                    <div class="h2-icons-zone">
+                                        <div class="h2-icons">
+                                            <img src="../img/achat.png" class="logo-investor">
+                                        </div>
+                                    </div>
+                                    <h1>Nous Achèterons Votre Bien avec Expertise et Vision</h1>
+                                    <span class="introduction">
+                                        Chez LOTIXAM, notre mission est de découvrir et d'acquérir des biens immobiliers offrant un potentiel exceptionnel de
+                                        valorisation. En tant qu'investisseurs et marchands de biens expérimentés, nous sommes continuellement à la recherche de
+                                        nouvelles opportunités dans des segments variés du marché immobilier.
+                                    </span>
+                                </div>
                             </div>
                         </div>
                     </td>
                 </tr>
-                <tr>
+                <tr class="second-row">
                     <td>
-                        <div class="h2-icons-zone">
-                            <div class="h2-icons">
-                                <img src="../img/renover.png" width="50">
+                        <div class="p-up conditions" id="exemple">
+                            <div class="belle-espacement"></div>
+                            <div>
+                                <h2>Que Recherchons-Nous ?</h2>
+                                <ul>
+                                    <li>
+                                        <b>Terrains constructibles et à bâtir :</b> Nous sommes intéressés par l'acquisition de terrains offrant des possibilités de
+                                        développement attractives, que ce soit pour des projets résidentiels ou commerciaux.
+                                    </li>
+                                    <br>
+                                    <li>
+                                        <b>Maisons et appartements :</b> Nous achetons des propriétés à rénover ou prêtes à l’emploi. Notre objectif est de transformer
+                                        chaque espace pour maximiser sa valeur, que ce soit par des améliorations esthétiques ou par des reconfigurations
+                                        fonctionnelles.
+                                    </li>
+                                    <br>
+                                    <li>
+                                        <b>Bureaux et locaux commerciaux :</b> Notre portefeuille inclut également des espaces commerciaux, où nous appliquons notre
+                                        expertise pour améliorer et valoriser chaque propriété selon les besoins du marché local.
+                                    </li>
+                                </ul>
+                                <h2>Pour Qui ?</h2>
+                                
+                                Nous collaborons avec des particuliers désireux de vendre rapidement et sans complication, ainsi qu'avec des
+                                professionnels de l'immobilier qui recherchent un partenaire fiable pour la valorisation de leurs biens.
                             </div>
                         </div>
-                        <h2>Rénovation et Transformation</h2>
-                        <div id="paragraphe4" class="para">
-                            <div class="elem1"></div>
-                            <div class="elem2">
-                                <p>
-                                    En plus de nos services complets de construction et de division foncière, <b>LOTIXAM</b> est expert
-                                    également dans
-                                    le domaine de
-                                    la rénovation immobilière. Que vous possédiez déjà une propriété ou que vous envisagiez d'acquérir un bien à
-                                    potentiel,
-                                    nous vous offrons notre expertise pour transformer et valoriser tout espace. Nos spécialistes travaillent en
-                                    étroite
-                                    collaboration avec vous pour redéfinir les intérieurs, optimiser les espaces et moderniser les
-                                    installations, tout
-                                    en
-                                    préservant le caractère unique de votre bien. Chez <b>LOTIXAM</b>, nous transformons les vieux murs en
-                                    espaces de vie
-                                    modernes
-                                    et fonctionnels, augmentant ainsi la valeur de votre investissement tout en respectant votre budget et vos
-                                    attentes.
-                                </p>
-                            </div>
-                        </div>
-                        <p>
-                            Ces services de rénovation viennent compléter notre offre globale, vous permettant de bénéficier d'une solution
-                            intégrée
-                            et personnalisée pour tous vos projets immobiliers en Charente-Maritime et Nord-Gironde.
-                        </p>
                     </td>
                     <td>
-                        <div class="h2-icons-zone">
-                            <div class="h2-icons">
-                                <img src="../img/euro.png" width="50">
-                            </div>
-                        </div>
-                        <h2>Investissements Partagés</h2>
-                        <div id="paragraphe5" class="para">
-                            <div class="elem1"></div>
-                            <div class="elem2">
-                                <p>
-                                    Chez <b>LOTIXAM</b>, nous ouvrons la porte aux opportunités d'investissement collaboratif, offrant à la fois
-                                    aux
-                                    professionnels
-                                    et aux particuliers la chance de participer à des projets immobiliers à fort potentiel de rentabilité. Que
-                                    vous
-                                    soyez un
-                                    investisseur aguerri cherchant à diversifier votre portefeuille ou un nouveau venu désireux d'entrer sur le
-                                    marché
-                                    de
-                                    l'immobilier, nous proposons des options flexibles pour s'associer avec nous.
-                        
-                                    Nos projets sont soigneusement sélectionnés pour leur potentiel de croissance et de valorisation,
-                                    garantissant que
-                                    chaque investissement contribue à la fois à la dynamique de développement régional et à la satisfaction de
-                                    nos
-                                    investisseurs. En vous associant à <b>LOTIXAM</b>, vous bénéficiez de notre expertise approfondie et de
-                                    notre
-                                    accompagnement
-                                    dédié tout au long du processus d'investissement, assurant que chaque décision est bien informée et
-                                    stratégiquement
-                                    solide.
-                                </p>
-                            </div>
+                        <div class="belle-espacement"></div>
+                        <div class="p-up" id="exemple">
+                            <img src="../img/seller-2.jpg" class="img-1">
                         </div>
                     </td>
                 </tr>
                 <tr>
                     <td colspan="2">
-                        <div class="h2-icons-zone">
-                            <div class="h2-icons">
-                                <img src="../img/engagement.png" width="50">
-                            </div>
-                        </div>
-                        <h2>Engagement fort sur la Satisfaction Client</h2>
-                        <div id="paragraphe6" class="para">
-                            <div class="elem1"></div>
-                            <div class="elem2">
-                                <p>
-                                    Votre satisfaction est au cœur de notre démarche. Chez <b>LOTIXAM</b>, chaque client est unique, et nous
-                                    nous
-                                    engageons à
-                                    fournir une expérience personnalisée et attentive. Nous comprenons l'importance de l'investissement
-                                    immobilier et
-                                    nous
-                                    nous efforçons de dépasser vos attentes à chaque interaction.
-                                </p>
-                            </div>
-                            <p>
-                                Nous vous invitons à découvrir comment <b>LOTIXAM</b> peut vous aider à réaliser votre projet immobilier en
-                                Charente-Maritime
-                                et Nord-Gironde.
-                            </p>
-                            <div class="contact" id="contact-welcome">
-                                <button class="contact-button" id="contact-button-index-1">CONTACTEZ-NOUS</button>
-                            </div>
+                        <div class="third-row">
+                            Chez LOTIXAM, nous comprenons que chaque bien est unique, et notre approche est toujours personnalisée pour répondre aux
+                            spécificités de chaque propriété et aux attentes de chaque vendeur. Si vous possédez un bien qui pourrait correspondre à
+                            notre recherche, n'hésitez pas à nous contacter pour explorer ensemble les possibilités d'une collaboration fructueuse.
+                            
+                            <h3>
+                                Engagez-vous à nos côtés pour une transaction efficace et bénéfique. Chez LOTIXAM, nous achetons plus qu'un bien ;
+                                nous
+                                investissons dans son potentiel.
+                            </h3>
                         </div>
                     </td>
                 </tr>
             </table>
-        </div> <!-- Fin des paragraphes -->
-        <div class="youtube">
-            <iframe class="youtube-video" width="1020" height="630" src="https://www.youtube.com/embed/0gV9y0RF2Uk?si=D0ktrHVkjhMwHwHv"
-                title="YouTube video player" frameborder="0"
-                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                referrerpolicy="strict-origin-when-cross-origin" allowfullscreen>
-            </iframe>
+        </div>
+        <div class="contact" id="contact-welcome">
+            <button class="contact-button" id="contact-button-index-1"
+                    onclick="window.location.href = '../php/contact.php?prev=seller&amp;button=true';">CONTACTEZ-NOUS</button>
         </div>
     </body>
+
     <footer>
         <div>
             <b>© LOTIXAM SAS 2024. Tous droits réservés</b>
