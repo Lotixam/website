@@ -143,6 +143,14 @@ h2 {
 
 @media screen and (min-width: 1200px) {
 
+    .version-pc {
+        display: block;
+    }
+
+    .version-mobile {
+        display: none;
+    }
+
     .third-row {
         padding-left: 10%;
         padding-right: 10%;
@@ -229,7 +237,25 @@ td {
     padding-right: 30px;
 }
 
+@media screen and (min-width: 900px) {
+    .version-pc {
+        display: block;
+    }
+
+    .version-mobile {
+        display: none;
+    }
+}
+
 @media screen and (max-width: 900px) {
+
+    .version-pc {
+        display: none;
+    }
+
+    .version-mobile {
+        display: block;
+    }
 
     .logo-investor {
             width: 50px;
@@ -268,12 +294,6 @@ td {
     .img-1 {
         width: 100%;
         height: auto;
-    }
-
-    .youtube-video {
-        padding-top: 30px;
-        width: 100%;
-        height: 200px;
     }
     
     #image {
@@ -315,32 +335,4 @@ td {
     .conditions {
         padding-right: 20px;
     }
-}
-
-.carousel {
-    display: flex;
-    overflow-x: auto;
-    scroll-snap-type: x mandatory;
-}
-
-.nota-bene {
-    padding-top: 70px;
-    padding-left: 30px;
-    font-size: 15px;
-}
-
-.carousel-item {
-    flex: 0 0 100%;
-    scroll-snap-align: start;
-    width: 100%;
-    position: relative;
-}
-
-.attention {
-    padding-left: 15px;
-    padding-right: 15px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    text-align: justify;
 }
