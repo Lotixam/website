@@ -21,6 +21,10 @@ input {
     font-size: 20px;
 }
 
+.error {
+    color: #ff995e;
+}
+
 .td-2 {
     position: absolute;
     top: 0px;

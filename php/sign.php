@@ -10,15 +10,59 @@
         return $string;
     }
 
+    $current_user = array();
 
-    if($_GET["connected"] == "true") {
-        setcookie('id', kodex_random_string(), time()+1200, '/', 'lotixam.fr');
-        setcookie('username', $_POST['username'], time()+1200, '/', 'lotixam.fr');
+    function exists() : bool {
+        global $current_user;
+        try
+        {
+            $mysqlClient = new PDO(
+	        'mysql:host=lotixam.fr:3306;dbname=esxa6815_vues;charset=utf8',
+	        'esxa6815_connexion',
+	        'Z@JV@HtxThT2'
+        );
+        }
+        catch (Exception $e)
+        {
+            die('Erreur : ' . $e->getMessage());
+        }
 
-        header('Location: http://accounts.lotixam.fr/index.php?username=' . $_POST['username']);
-        exit();
+        $recipesStatement = $mysqlClient->prepare('SELECT * FROM esxa6815_vues.data_vue');
+        $recipesStatement->execute();
+        $recipes = $recipesStatement->fetchAll();
+
+        foreach($recipes as $user) {
+            if(in_array($_POST['username'], $user)) {
+                $current_user = $user;
+                return true;
+            }
+            else {
+                return false;
+            }
+        }
     }
 
+    $connected = false;
+    $good_password = false;
+    $good_user = false;
+
+    if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+        // La requête provient d'un formulaire POST
+        if(exists()) {
+            if($current_user['sha_password'] == $_POST['password']) {
+                setcookie('id', kodex_random_string(), time()+1200, '/', 'lotixam.fr');
+                setcookie('username', $_POST['username'], time()+1200, '/', 'lotixam.fr');
+
+                header('Location: http://accounts.lotixam.fr/index.php');
+                $connected = true;
+                $good_password = true;
+                $good_user = true;
+                exit();
+            } else {
+                $good_user = true;
+            }
+        }
+    }
 ?>
 
 <!DOCTYPE html>
@@ -43,7 +87,18 @@
                         <a href="../html/index.html">&lsaquo; Retour</a>
                     </div>
                     <h1>Connexion</h1>
-                    <form id="loginForm" action="sign.php?connected=true" method="post">
+                    <form id="loginForm" action="sign.php" method="post">
+                        <span>
+                            <?php
+                            if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+                                if($good_user == false) {
+                                    echo '<p class="error">Nom d\'utilisateur invalide.</p>';
+                                } elseif ($good_password == false) {
+                                    echo '<p class="error">Mot de passe incorrect.</p>';
+                                }
+                            }
+                            ?>
+                        </span>
                         <label>Identifiant :</label>
                         <br>
                         <input name="username" id="username" type="text" required
