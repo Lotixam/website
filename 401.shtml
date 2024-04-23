@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+	<head><meta charset="utf-8">
+	<title>404 LOTIXAM</title>
+	<link href="https://cdn.lotixam.fr/img/logo.png" rel="icon" type="image/x-icon">
+	</head>
+	
+	<body>
+		<link href="https://lotixam.fr/css/common.css" rel="stylesheet">
+		<style>
+			body {
+				background-color: #555555;
+				color: white;
+				font-family: Montserrat-Bold;
+			}
+			.main {
+			    	position: absolute;
+				top: 50%;
+				left: 50%;
+				transform: translate(-50%, -50%);
+			}
+			
+			.center {
+				display: flex;
+				flex-direction: column;
+				justify-content: center;
+				align-items: center;
+			}
+			
+			a {
+				font-family: Montserrat-Bold;
+				text-decoration: none;
+				color: white;
+				transition: color 250ms ease-out;
+			}
+			
+			a:hover {
+				color: #b1e810;
+			}
+			
+		</style>
+		<div class="main">
+			<div class="center">
+				<img src="https://cdn.lotixam.fr/img/logo.png" alt="Logo de la société"/>
+				<h1>Erreur 401 - Autorisation requise !</h1>
+				<h2><a href="https://<!--#echo var="HTTP_HOST" -->">Retourner à <!--#echo var="HTTP_HOST" -->.</a></h2>
+			</div>
+		</div>
+	</body>
+
+</html>
