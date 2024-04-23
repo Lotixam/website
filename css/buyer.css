@@ -48,6 +48,10 @@
     font-size: 18px;
 }
 
+.third-row {
+    padding-top: 3% !important;
+}
+
 .photo-investor {
     display: flex;
     justify-content: right;
@@ -213,6 +217,7 @@ table span {
 
     .conditions {
         padding-top: 40px;
+        padding-bottom: 40px;
     }
 
 }
@@ -243,6 +248,11 @@ img-3 {
          /*Divise la largeur de la table en deux*/
     padding-left: 30px;
     padding-right: 30px;
+}
+.partenariat {
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 @media screen and (min-width: 900px) {
@@ -299,11 +309,12 @@ img-3 {
         width: 100%;
         align-items: center;
         justify-content: center;
+        margin-right: 0px;
+        padding-right: 0px;
     }
 
     .h1-up {
         font-size: 200%;
-
     }
 
     .p-up {
@@ -315,9 +326,10 @@ img-3 {
     }
 
     .img-1 {
-        width: 80%;
+        width: 100%;
         height: auto;
         padding-right: 0px;
+        margin-right: 0px;
     }
     
     #image {
@@ -357,6 +369,7 @@ img-3 {
     }
 
     .conditions {
-        padding-right: 20px;
+        padding-top: 20px;
+        padding-bottom: 20px;
     }
 }
