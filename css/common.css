@@ -81,6 +81,15 @@ html {
     transition: background-color 100ms ease-out;
 }
 
+green {
+    color: #8db80c;
+    font-family: Montserrat-Bold;
+}
+
+body h2 {
+    line-height: 130%;
+}
+
 @media screen and (max-width: 900px) {
     .contact-button {
         font-size: 20px;
