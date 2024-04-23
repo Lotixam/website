@@ -10,6 +10,7 @@
     padding: 15px;
     margin-top: 25px;
     line-height: 1.5;
+    font-size: 18px;
 }
 
 .longueur {
@@ -145,10 +146,12 @@ h2 {
 
     .version-pc {
         display: block;
+        font-size: 18px;
     }
 
     .version-mobile {
         display: none;
+        font-size: 18px;
     }
 
     .third-row {
@@ -240,10 +243,12 @@ td {
 @media screen and (min-width: 900px) {
     .version-pc {
         display: block;
+        font-size: 18px;
     }
 
     .version-mobile {
         display: none;
+        font-size: 18px;
     }
 }
 
@@ -251,10 +256,12 @@ td {
 
     .version-pc {
         display: none;
+        font-size: 18px;
     }
 
     .version-mobile {
         display: block;
+        font-size: 18px;
     }
 
     .logo-investor {
