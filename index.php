@@ -13,17 +13,19 @@
 
         <title>LOTIXAM</title>
 
-        <meta http-equiv="refresh" content="0; ./html/maintenance.html">
+        <meta http-equiv="refresh" content="0; https://lotixam.fr/html/maintenance.html">
 
-        <link href="./css/contact.css" rel="stylesheet">
-        <link href="./css/common.css" rel="stylesheet">
+        <link href="https://lotixam.fr/css/contact.css" rel="stylesheet">
+        <link href="https://lotixam.fr/css/common.css" rel="stylesheet">
+
+        <link href="https://lotixam.fr/img/logo.png" rel="icon" type="image/x-icon">
     </head>
 
     <body>
-        <script src="../script/welcome.js"></script>
+        <script src="https://lotixam.fr/script/welcome.js"></script>
         <body id="page">
             <div class="main">
-                <img src="../img/logo.png" class="logo-waiter" alt="Lotixam logo"/>
+                <img src="https://cdn.lotixam.fr/img/logo.png" class="logo-waiter" alt="Lotixam logo"/>
                 <h1>LOTIXAM</h1>
             </div>
         </body>

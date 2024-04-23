@@ -11,20 +11,31 @@
     }
 
     $current_user = array();
+    $mysqlclient;
 
-    function exists() : bool {
-        global $current_user;
+    function exists() {
+        global $current_user, $mysqlclient;
         try
         {
             $mysqlClient = new PDO(
-	        'mysql:host=lotixam.fr:3306;dbname=esxa6815_vues;charset=utf8',
+	        'mysql:host=localhost:3306;dbname=esxa6815_vues;charset=utf8',
 	        'esxa6815_connexion',
 	        'Z@JV@HtxThT2'
         );
         }
         catch (Exception $e)
         {
-            die('Erreur : ' . $e->getMessage());
+            try {
+                $mysqlClient = new PDO(
+                    'mysql:host=lotixam.fr:3306;charset=utf8',
+                    'esxa6815_connexion',
+                    'Z@JV@HtxThT2'
+                );
+            } catch (Exception $ee) {
+                echo $_SERVER['REMOTE_ADDR'];
+                echo "<br>" . $e->getMessage();
+                die('Erreur : ' . $ee->getMessage());
+            }
         }
 
         $recipesStatement = $mysqlClient->prepare('SELECT * FROM esxa6815_vues.data_vue');

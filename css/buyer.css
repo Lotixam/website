@@ -275,7 +275,24 @@ img-3 {
     padding-top: 25px;
 }
 
+.four {
+    padding-left: 10%;
+    padding-right: 10%;
+    padding-top: 5%;
+}
+
 @media screen and (max-width: 900px) {
+
+    .text-t {
+        padding-left: 5%;
+        padding-right: 5%;
+    }
+
+    .four {
+        padding-left: 5%;
+        padding-right: 5%;
+        padding-top: 5%;
+    }
 
     .img-2 {
         height: auto;
