@@ -113,6 +113,11 @@ h2 {
         padding-right: 240px;
         text-align: center;
     }
+
+    .elem2 {
+        padding-left: 10%;
+        padding-right: 10%;
+    }
 }
 
 table {
