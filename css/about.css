@@ -1,0 +1,156 @@
+.longueur {
+    width: 100%;
+    height: 12em;
+    background-color: #b1e810;
+    color: black;
+    overflow: hidden;
+}
+
+.entete {
+    padding: 20px;
+    padding-left: 10%;
+}
+.h1-up {
+    font-size: 50px;
+}
+a {
+    font-family: Montserrat-Bold;
+    text-decoration: none;
+    color: white;
+    transition: color 250ms ease-out 100ms;
+}
+
+a:hover {
+    color: #b1e810;
+}
+
+
+#contact-welcome {
+    padding-top: 1em;
+}
+
+#contact-button-index-1 {
+    font-size: large;
+    margin-top: 40px;
+    margin-bottom: 40px;
+}
+
+h2 {
+    font-family: Montserrat-Bold;
+    text-align: center;
+    font-size: 120%;
+}
+
+table {
+    width: 100%;
+    /* Pour que la table occupe toute la largeur disponible */
+}
+
+td {
+    /* Assurez-vous que toutes les cellules ont une largeur équitable */
+    width: 50%;
+    /* Divise la largeur de la table en deux */
+    padding-left: 30px;
+    padding-right: 30px;
+}
+
+.body-main {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-top: 2%;
+    margin-bottom: 2%;
+}
+
+.diagramm {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.trait {
+    width: 15%;
+    height: 5px;
+    background-color: black;
+}
+
+.summary {
+    display: flex;
+    justify-content: left;
+    align-items: center;
+    background-image: url("https://cdn.lotixam.fr/img/MG_5804.jpg");
+    background-position: center;
+    background-size: cover;
+    background-position-y: 90%;
+    background-repeat: no-repeat;
+    width: 90%;
+    height: 800px;
+}
+
+.one {
+    margin-top: 10%;
+}
+
+.three {
+    margin-bottom: 10%;
+}
+
+.text-sumary {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+    width: 30%;
+    height: 85%;
+    background-color: rgba(255, 255, 255, 0.8);
+    border-radius: 20px;
+    margin: 5%;
+    color: black;
+    font-family: Montserrat-Bold;
+    font-size: 30px;
+}
+
+@media screen and (min-width: 900px) {
+
+    .image-diag {
+        width: 50%;
+    }
+}
+
+@media screen and (max-width: 900px) {
+
+    .image-diag {
+        width: 100%;
+    }
+
+    table {
+        /* Annulez la disposition en tableau et restaurez la disposition normale */
+        display: block;
+        width: 100%;
+    }
+
+    .summary {
+        background-position-x: 60%;
+        background-position-y: 0%;
+        height: 500px;
+        background-size: 270%;
+        justify-content: center;
+    }
+
+    td {
+        /* Annulez les styles de cellule de tableau */
+        display: block;
+        width: 100%;
+        padding-left: 0px;
+        padding-right: 0px;
+    }
+
+    .h1-up {
+            font-size: 200%;
+    }
+
+    .text-sumary {
+        width: 80%;
+    }
+}

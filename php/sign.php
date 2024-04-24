@@ -69,7 +69,8 @@
                 $good_password = true;
                 $good_user = true;
                 exit();
-            } else {
+            } 
+            else {
                 $good_user = true;
             }
         }
