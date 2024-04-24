@@ -1,0 +1,32 @@
+.legals span {
+    text-align: justify;
+}
+
+a#tel {
+    font-family: Montserrat-Bold;
+    text-decoration: none;
+    color: black;
+    transition: color 250ms ease-out 100ms;
+}
+
+a#tel:hover {
+    color: #8db80c;
+}
+
+h1 {
+    margin-top: 60px;
+}
+
+@media screen and (min-width: 1200px) {
+    .legals {
+        padding-left: 20% !important;
+        padding-right: 20% !important;
+    }
+}
+
+@media screen and (max-width: 1200px) {
+    .legals {
+        padding-left: 10% !important;
+        padding-right: 10% !important;
+    }
+}
