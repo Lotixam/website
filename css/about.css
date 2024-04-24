@@ -183,9 +183,27 @@ td {
         width: 50% !important;
         height: 100%;
     }
+
+    .texte {
+        font-size: 20px;
+    }
 }
 
 @media screen and (max-width: 900px) {
+
+    .contact-pc {
+        display: none;
+    }
+
+    .texte-left {
+        padding-right: 10%;
+        padding-left: 10%;
+    }
+
+    .texte-right {
+        padding-right: 10%;
+        padding-left: 10%;
+    }
 
     #para2 {
         flex-direction: column-reverse;
@@ -219,8 +237,8 @@ td {
 
     .right {
         display: flex;
-            justify-content: center;
-            align-items: center;
+        justify-content: center;
+        align-items: center;
     }
 
     .image {
@@ -233,5 +251,11 @@ td {
 
     .text-sumary {
         width: 80%;
+    }
+
+    .zone-d-influence {
+        align-content: center;
+        padding-left: 20px;
+        padding-right: 20px;
     }
 }
