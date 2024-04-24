@@ -13,7 +13,7 @@
 
         <title>LOTIXAM</title>
 
-        <meta http-equiv="refresh" content="0; https://lotixam.fr/html/maintenance.html">
+        <meta http-equiv="refresh" content="0; https://lotixam.fr/html/index.html">
 
         <link href="https://lotixam.fr/css/contact.css" rel="stylesheet">
         <link href="https://lotixam.fr/css/common.css" rel="stylesheet">
