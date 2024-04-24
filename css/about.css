@@ -111,14 +111,85 @@ td {
     font-size: 30px;
 }
 
+.center {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.right {
+    display: flex;
+    justify-content: right;
+    align-items: center;
+}
+
+.left {
+    display: flex;
+    justify-content: left;
+    align-items: center;
+}
+
+.margin-top-div {
+    margin-top: 30px;
+}
+
+.padding-top-div {
+    padding-top: 40px;
+}
+
+.texte {
+    text-align: justify;
+}
+
+.texte-left {
+    padding-right: 10%;
+}
+
+.texte-right {
+    padding-left: 10%;
+}
+
+.enter-txt {
+    align-items: center;
+    height: 100%;
+}
+
 @media screen and (min-width: 900px) {
+
+    .paragraphe {
+        padding-left: 5%;
+        padding-right: 5%;
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+    }
 
     .image-diag {
         width: 50%;
     }
+
+    .zone-d-influence {
+        font-size: 30px;
+    }
+
+    .main {
+        padding-left: 10%;
+        padding-right: 10%;
+    }
+
+    .moitier {
+        width: 50% !important;
+        height: 100%;
+    }
 }
 
 @media screen and (max-width: 900px) {
+
+    #para2 {
+        flex-direction: column-reverse;
+    }
 
     .image-diag {
         width: 100%;
@@ -144,6 +215,16 @@ td {
         width: 100%;
         padding-left: 0px;
         padding-right: 0px;
+    }
+
+    .right {
+        display: flex;
+            justify-content: center;
+            align-items: center;
+    }
+
+    .image {
+        width: 100%;
     }
 
     .h1-up {
