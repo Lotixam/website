@@ -23,6 +23,10 @@ footer {
         text-align: center;
     }
 
+    footer div {
+        padding-top: 20px;
+    }
+
     .separator {
         display: none;
         padding-top: 0px;

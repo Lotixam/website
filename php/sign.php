@@ -98,13 +98,13 @@
                     <div class="back">
                         <a href="../html/index.html">&lsaquo; Retour</a>
                     </div>
-                    <h1>Connexion</h1>
+                    <h2>Connexion</h2>
                     <form id="loginForm" action="sign.php" method="post">
                         <span>
                             <?php
                             if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                                 if($good_user == false) {
-                                    echo '<p class="error">Nom d\'utilisateur invalide.</p>';
+                                    echo '<p class="error">Nom d\'utilisateur "'. $_POST["username"] .'" invalide.</p>';
                                 } elseif ($good_password == false) {
                                     echo '<p class="error">Mot de passe incorrect.</p>';
                                 }
@@ -127,7 +127,7 @@
                             <input id="check-remember" type="checkbox">
                             <label>Se souvenir de moi</label>
                         </div>
-                        <br></p>
+                        <br>
                         <div class="submit-zone">
                             <button class="submit-button" type="submit">Valider</button>
                         </div>
