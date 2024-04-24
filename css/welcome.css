@@ -184,6 +184,10 @@ td {
     }
 }
 
+ul {
+    font-family: Montserrat-Medium;
+}
+
 .carousel {
     display: flex;
     overflow-x: auto;
