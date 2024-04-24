@@ -10,4 +10,12 @@ window.addEventListener('scroll', function () {
     } else {
         image.style.backgroundPositionY = 'calc(0% + ' + -(scrollPosition * 0.1) + 'px)';
     }
+
+
+    var h1_up = document.getElementById("h1up");
+    var scrollPositionText = window.scrollY;
+    var newPositionText = scrollPositionText * 0.1;
+
+    h1_up.style.transform = 'translateY(' + newPositionText + 'px)';
+
 });
