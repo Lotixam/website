@@ -6,7 +6,6 @@
     overflow-y: auto;
 }
 
-
 #page {
     background-color: #555555;
 }
@@ -58,7 +57,8 @@
     /* Échelle verticale de 80% 
 } */
 
-input, textarea {
+input,
+textarea {
     border: solid;
     border-width: 2px;
     border-radius: 5px;
@@ -70,7 +70,6 @@ input[type="file"] {
     border: none;
     margin-bottom: 5px;
 }
-
 
 input[type="file"] input[name="file-upload-button"] {
     background-color: transparent;
@@ -200,8 +199,8 @@ form {
     }
 
     .main {
-            font-size: 5vw;
-        }
+        font-size: 5vw;
+    }
 
     .submit-button {
         font-size: larger;
@@ -302,4 +301,51 @@ form {
     .lotixam {
         opacity: 0.9;
     }
+}
+
+/* Réduire la taille du texte pour les appareils mobiles */
+@media screen and (max-width: 768px) {
+    .submit-button {
+        font-size: 14px;
+        /* Réduire la taille du texte du bouton */
+    }
+
+    input[type="text"],
+    input[type="email"],
+    input[type="tel"],
+    textarea {
+        font-size: 25px;
+        width: 100%;
+    }
+
+    input[type="file"] {
+        font-size: 20px;
+        /* Réduire la taille de la police pour les boutons de téléchargement de fichiers */
+    }
+
+    #msg {
+        font-size: 12px;
+        /* Réduire la taille de la police pour la zone de texte */
+        height: 80px;
+        /* Réduire la hauteur de la zone de texte */
+    }
+
+    .logo-img {
+        max-width: 80%;
+        /* Ajuster la taille du logo */
+    }
+
+        .td-1 .div-connexion {
+            transform: scale(0.6);
+            /* Ajustez la valeur de l'échelle selon vos préférences */
+        }
+
+        .div-connexion {
+            width: 100%;
+        }
+
+        .lotixam {
+            display: none;
+        }
+
 }

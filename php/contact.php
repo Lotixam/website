@@ -64,11 +64,13 @@
 <!DOCTYPE html>
 <html lang="fr">
     <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Contact</title>
-        <link href="../css/common.css" rel="stylesheet"/>
-        <link href="../css/banniere/banniere.css" rel="stylesheet"/>
-        <link href="../css/contact.css" rel="stylesheet" />
-        <link href="../img/logo.png" rel="icon"/>
+        <link rel="stylesheet" href="../css/common.css">
+        <link rel="stylesheet" href="../css/banniere/banniere.css">
+        <link rel="stylesheet" href="../css/contact.css">
+        <link rel="icon" href="../img/logo.png">
     </head>
     <body>
         <!-- Page principale -->
@@ -77,46 +79,34 @@
             <div class="td-1">
                 <!-- Formulaire et logo -->
                 <div class="div-connexion">
+                    <!-- Logo Lotixam -->
                     <div class="logo-sign">
-                        <img src="../img/logo.png" alt="Logo Lotixam"/>
+                        <img src="../img/logo.png" alt="Logo Lotixam" class="logo-img" />
                     </div>
+                    <br>
                     <h1>Contact</h1>
-                    <form id="loginForm" action="contact.php/response=true" method="post" enctype="multipart/form-data">
-                        <label>Nom &amp; Prénom :</label>
-                        <br>
-                        <input name="name" id="name" type="text" required
-                        oninvalid="this.setCustomValidity('Veuillez entrer votre nom')"
-                        oninput="this.setCustomValidity('')" />
+                    <form id="loginForm" action="contact.php" method="post" enctype="multipart/form-data">
+                        <label for="name">Nom &amp; Prénom :</label><br>
+                        <input type="text" id="name" name="name" required oninvalid="this.setCustomValidity('Veuillez entrer votre nom')" oninput="this.setCustomValidity('')">
                         <p></p>
-                        <label>E-mail :</label>
-                        <br>
-                        <input name="mail" id="mail" type="email" required
-                        oninvalid="this.setCustomValidity('Veuillez entrer votre mail')"
-                        oninput="this.setCustomValidity('')" />
+                        <label for="mail">E-mail :</label><br>
+                        <input type="email" id="mail" name="mail" required oninvalid="this.setCustomValidity('Veuillez entrer votre mail')" oninput="this.setCustomValidity('')">
                         <p></p>
-                        <label>Téléphone :</label>
-                        <br>
-                        <input name="tel" id="tel" type="text" required
-                        oninvalid="this.setCustomValidity('Veuillez entrer votre téléphone.')"
-                        oninput="this.setCustomValidity('')" />
+                        <label for="tel">Téléphone :</label><br>
+                        <input type="tel" id="tel" name="tel" required oninvalid="this.setCustomValidity('Veuillez entrer votre téléphone.')" oninput="this.setCustomValidity('')">
                         <p></p>
-                        <label>Votre message :</label>
-                        <br>
-                        <textarea name="msg" id="msg" required
-                        oninvalid="this.setCustomValidity('Renseignez votre message.')"
-                        oninput="this.setCustomValidity('')"></textarea>
+                        <label for="msg">Votre message :</label><br>
+                        <textarea id="msg" name="msg" required oninvalid="this.setCustomValidity('Renseignez votre message.')" oninput="this.setCustomValidity('')"></textarea>
                         <p></p>
-                        <label for="join1">Joindre un ou plusieurs fichiers</label>
-                        <br><br>
-                        <input type="file" id="join1" name="join1" />
+                        <label for="join1">Joindre un ou plusieurs fichiers</label><br><br>
+                        <input type="file" id="join1" name="join1">
                         <br>
-                        <input type="file" id="join2" name="join2" />
+                        <input type="file" id="join2" name="join2">
                         <br>
-                        <input type="file" id="join3" name="join3" />
-                        <br>
-                        <p></p>
+                        <input type="file" id="join3" name="join3">
+                        <br><p></p>
                         <div class="submit-zone">
-                            <button class="submit-button" type="submit">Valider</button>
+                            <button type="submit" class="submit-button">Valider</button>
                         </div>
                         <br>
                         <div class="back">
@@ -140,8 +130,9 @@
                 </p>
             </div>
             <div class="lotixam">
-                <img src="../img/lotixam.png" alt="Lotixam"/>
+                <img src="../img/lotixam.png" alt="Lotixam">
             </div>
         </div>
     </body>
 </html>
+
