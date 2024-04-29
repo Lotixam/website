@@ -62,7 +62,7 @@
 ?>
 
 <!DOCTYPE html>
-<html>
+<html lang="fr">
     <head>
         <title>Contact</title>
         <link href="../css/common.css" rel="stylesheet"/>
@@ -78,42 +78,43 @@
                 <!-- Formulaire et logo -->
                 <div class="div-connexion">
                     <div class="logo-sign">
-                        <img src="../img/logo.png"/>
+                        <img src="../img/logo.png" alt="Logo Lotixam"/>
                     </div>
                     <h1>Contact</h1>
-                    <form id="loginForm" action="" method="post" enctype="multipart/form-data">
+                    <form id="loginForm" action="contact.php/response=true" method="post" enctype="multipart/form-data">
                         <label>Nom &amp; Prénom :</label>
                         <br>
                         <input name="name" id="name" type="text" required
                         oninvalid="this.setCustomValidity('Veuillez entrer votre nom')"
                         oninput="this.setCustomValidity('')" />
-                        </p>
+                        <p></p>
                         <label>E-mail :</label>
                         <br>
-                        <input name="mail" id="mail" type="mail" required
+                        <input name="mail" id="mail" type="email" required
                         oninvalid="this.setCustomValidity('Veuillez entrer votre mail')"
                         oninput="this.setCustomValidity('')" />
-                        </p>
+                        <p></p>
                         <label>Téléphone :</label>
                         <br>
                         <input name="tel" id="tel" type="text" required
                         oninvalid="this.setCustomValidity('Veuillez entrer votre téléphone.')"
                         oninput="this.setCustomValidity('')" />
-                        </p>
+                        <p></p>
                         <label>Votre message :</label>
                         <br>
-                        <textarea name="msg" id="msg" type="text" required
+                        <textarea name="msg" id="msg" required
                         oninvalid="this.setCustomValidity('Renseignez votre message.')"
                         oninput="this.setCustomValidity('')"></textarea>
-                        </p>
-                        <label for="joindre">Joindre un ou plusieurs fichiers</label>
+                        <p></p>
+                        <label for="join1">Joindre un ou plusieurs fichiers</label>
                         <br><br>
                         <input type="file" id="join1" name="join1" />
                         <br>
                         <input type="file" id="join2" name="join2" />
                         <br>
                         <input type="file" id="join3" name="join3" />
-                        <br></p>
+                        <br>
+                        <p></p>
                         <div class="submit-zone">
                             <button class="submit-button" type="submit">Valider</button>
                         </div>
@@ -139,7 +140,7 @@
                 </p>
             </div>
             <div class="lotixam">
-                <img src="../img/lotixam.png" />
+                <img src="../img/lotixam.png" alt="Lotixam"/>
             </div>
         </div>
     </body>
