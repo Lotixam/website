@@ -131,7 +131,6 @@ h2 {
     color: black;
     font-family: Montserrat-Bold;
     font-size: 22px;
-
 }
 
 .liste-conditons li {
@@ -276,6 +275,7 @@ td {
     .p-up h1 {
         text-align: center;
         line-height: 40px;
+        font-size: 27px;
     }
 
     .photo-investor {
@@ -285,10 +285,6 @@ td {
         justify-content: center;
     }
 
-    .h1-up {
-        font-size: 200%;
-
-    }
 
     .p-up {
         font-size: 17px;
