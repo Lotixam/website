@@ -202,10 +202,6 @@ form {
         font-size: 5vw;
     }
 
-    .submit-button {
-        font-size: larger;
-    }
-
     .back {
         display: none;
     }
@@ -289,10 +285,10 @@ form {
         font-size: 20px;
     }
 
-    .submit-button {
+    /* .submit-button {
         border-width: 5px;
         padding: 5px;
-    }
+    } */
 
     .td-1 br {
         margin-top: 0.1em;
@@ -305,10 +301,6 @@ form {
 
 /* Réduire la taille du texte pour les appareils mobiles */
 @media screen and (max-width: 768px) {
-    .submit-button {
-        font-size: 14px;
-        /* Réduire la taille du texte du bouton */
-    }
 
     input[type="text"],
     input[type="email"],
@@ -335,17 +327,24 @@ form {
         /* Ajuster la taille du logo */
     }
 
-        .td-1 .div-connexion {
-            transform: scale(0.6);
-            /* Ajustez la valeur de l'échelle selon vos préférences */
-        }
+    .td-1 .div-connexion {
+        transform: scale(0.6);
+        /* Ajustez la valeur de l'échelle selon vos préférences */
+    }
 
-        .div-connexion {
-            width: 100%;
-        }
+    .div-connexion {
+        width: 100%;
+    }
 
-        .lotixam {
-            display: none;
-        }
+    .lotixam {
+        display: none;
+    }
+
+    .submit-button {
+        font-size: 30px !important;
+        /* Augmenter la taille de la police */
+        padding: 15px 30px !important;
+        /* Augmenter la taille des marges intérieures */
+    }
 
 }
