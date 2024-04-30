@@ -48,15 +48,6 @@
     height: 100%;
 }
 
-/* .div-connexion * {
-    height: auto;
-    max-height: 100%;
-    width: auto;
-    max-width: 100%;
-    transform: scale(0.8);
-    /* Échelle verticale de 80% 
-} */
-
 input,
 textarea {
     border: solid;
@@ -192,6 +183,7 @@ form {
 
     .div-connexion {
         scale: 0.65;
+        margin-top: 50px;
     }
 
     .logo-waiter {
@@ -203,7 +195,8 @@ form {
     }
 
     .back {
-        display: none;
+        font-size: larger;
+        margin-bottom: 50px;
     }
 
     .td-2 {
@@ -280,11 +273,6 @@ form {
         margin-bottom: 30px;
     }
 
-    #msg {
-        height: 15%;
-        font-size: 20px;
-    }
-
     /* .submit-button {
         border-width: 5px;
         padding: 5px;
@@ -304,22 +292,25 @@ form {
 
     input[type="text"],
     input[type="email"],
-    input[type="tel"],
-    textarea {
+    input[type="tel"] {
         font-size: 25px;
         width: 100%;
     }
 
+    #msg {
+        font-size: 50px;
+        /* Augmenter la taille de la police */
+        width: 150%;
+        /* Définir la largeur à 100% */
+        height: 150px;
+        /* Augmenter la hauteur du textarea */
+        margin: auto;
+        left: 50%;
+        transform: translateX(-15%);
+    }
     input[type="file"] {
         font-size: 20px;
         /* Réduire la taille de la police pour les boutons de téléchargement de fichiers */
-    }
-
-    #msg {
-        font-size: 12px;
-        /* Réduire la taille de la police pour la zone de texte */
-        height: 80px;
-        /* Réduire la hauteur de la zone de texte */
     }
 
     .logo-img {
