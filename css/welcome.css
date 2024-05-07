@@ -17,6 +17,11 @@ a:hover {
     color: #b1e810;
 }
 
+.first-h1 {
+    font-family: Montserrat-Medium;
+    font-size: 20px;
+}
+
 
 #contact-welcome {
     padding-top: 1em;
@@ -55,7 +60,7 @@ h2 {
     display: flex;
     justify-content: center;
     align-items: center;
-    background-image: url("../img/Nebot\ Cannelle\ -\ Perpignan.jpg");
+    background-image: url("../img/Nebot\ Cannelle\ -\ Perpignan.webp");
     background-repeat: no-repeat;
     background-size: cover;
     background-position: center;
