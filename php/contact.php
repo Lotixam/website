@@ -67,10 +67,15 @@
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Contact</title>
-        <link rel="stylesheet" href="../css/common.css">
-        <link rel="stylesheet" href="../css/banniere/banniere.css">
-        <link rel="stylesheet" href="../css/contact.css">
-        <link rel="icon" href="../img/logo.png">
+        <link rel="stylesheet" href="https://lotixam.fr/css/common.css">
+        <link rel="stylesheet" href="https://lotixam.fr/css/banniere/banniere.css">
+        <link rel="stylesheet" href="https://lotixam.fr/css/contact.css">
+        <link rel="icon" href="https://cdn.lotixam.fr/img/logo.png">
+        <?php
+            if(!empty($_GET)) {
+                echo "<link rel='canonical' href='https://lotixam.fr/php/contact.php' />";
+            }
+        ?>
     </head>
     <body>
         <!-- Page principale -->
@@ -81,7 +86,7 @@
                 <div class="div-connexion">
                     <!-- Logo Lotixam -->
                     <div class="logo-sign">
-                        <img src="../img/logo.png" alt="Logo Lotixam" class="logo-img" />
+                        <img src="https://cdn.lotixam.fr/img/logo.png" alt="Logo Lotixam" class="logo-img" />
                     </div>
                     <br>
                     <h1>Contact</h1>
@@ -110,7 +115,7 @@
                         </div>
                         <br>
                         <div class="back">
-                            <a href="../html/index.html">&lsaquo; Retour</a>
+                            <a href="https://lotixam.fr/html/index.html">&lsaquo; Retour</a>
                         </div>
                     </form>
                 </div>
@@ -130,7 +135,7 @@
                 </p>
             </div>
             <div class="lotixam">
-                <img src="../img/lotixam.png" alt="Lotixam">
+                <img src="https://cdn.lotixam.fr/img/lotixam.png" alt="Lotixam">
             </div>
         </div>
     </body>
