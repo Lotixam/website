@@ -20,7 +20,7 @@
             $mysqlClient = new PDO(
 	        'mysql:host=localhost:3306;dbname=esxa6815_vues;charset=utf8',
 	        'esxa6815_connexion',
-	        'Z@JV@HtxThT2'
+	        'cQ^1wF1]uybd'
         );
         }
         catch (Exception $e)
