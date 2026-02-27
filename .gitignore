@@ -1,1 +1,3 @@
 test.css
+*.dev.yaml
+docker-compose-shaya.dev.yaml
