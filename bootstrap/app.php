@@ -11,6 +11,8 @@ return Application::configure(basePath: dirname(__DIR__))
         health: '/up',
     )
     ->withMiddleware(function (Middleware $middleware): void {
+        // SSL terminé devant (LWS, CDN) : X-Forwarded-Proto pour que la requête soit vue en HTTPS.
+        $middleware->trustProxies(at: '*');
         $middleware->redirectUsersTo(fn () => route('client.dashboard'));
     })
     ->withExceptions(function (Exceptions $exceptions): void {
