@@ -164,13 +164,13 @@
         </span>
         <h1>8. Hébergement</h1>
         <span>
-            Le site est hébergé par la société O2Switch, spécialisée dans les services d'hébergement web. Cette entreprise assure le
-            stockage sécurisé des données du site et garantit sa disponibilité en ligne. O2Switch, entreprise française, a été choisie pour son service fiable et son support technique en français.
+            Le site est hébergé par la société LWS (Ligne Web Services), spécialisée dans les services d'hébergement web. Cette entreprise assure le
+            stockage sécurisé des données du site et garantit sa disponibilité en ligne. LWS, entreprise française, a été choisie pour son service fiable et son support technique en français.
             <br><br>
-            O2Switch<br>
+            LWS (Ligne Web Services)<br>
 
-            Chem. des Pardiaux<br>
-            63000 Clermont-Ferrand<br>
+            10 Rue de Penthièvre<br>
+            75008 Paris<br>
             France
         </span>
     </div>

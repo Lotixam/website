@@ -22,8 +22,16 @@ class LoginController extends Controller
             'password' => ['required', 'string'],
         ]);
 
-        if (Auth::attempt(['username' => $credentials['username'], 'password' => $credentials['password']], $request->boolean('remember'))) {
+        $login = $credentials['username'];
+        $field = filter_var($login, FILTER_VALIDATE_EMAIL) ? 'email' : 'username';
+
+        if (Auth::attempt([$field => $login, 'password' => $credentials['password']], $request->boolean('remember'))) {
             $request->session()->regenerate();
+
+            $user = Auth::user();
+            if ($user->hasRole('admin') || $user->hasRole('collaborator')) {
+                return redirect()->intended(route('filament.admin.pages.dashboard'));
+            }
 
             return redirect()->intended(route('client.dashboard'));
         }

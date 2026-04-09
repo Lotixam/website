@@ -13,7 +13,13 @@ return Application::configure(basePath: dirname(__DIR__))
     ->withMiddleware(function (Middleware $middleware): void {
         // SSL terminé devant (LWS, CDN) : X-Forwarded-Proto pour que la requête soit vue en HTTPS.
         $middleware->trustProxies(at: '*');
-        $middleware->redirectUsersTo(fn () => route('client.dashboard'));
+        $middleware->redirectUsersTo(function () {
+            $user = auth()->user();
+            if ($user && ($user->hasRole('admin') || $user->hasRole('collaborator'))) {
+                return route('filament.admin.pages.dashboard');
+            }
+            return route('client.dashboard');
+        });
     })
     ->withExceptions(function (Exceptions $exceptions): void {
         //

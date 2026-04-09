@@ -9,37 +9,37 @@ use Illuminate\Support\Facades\Route;
 
 /*
 |--------------------------------------------------------------------------
-| Vitrine (fichiers HTML dans public/html)
+| Vitrine (vues Blade dans resources/views/vitrine)
 |--------------------------------------------------------------------------
 */
 Route::get('/', [StaticPageController::class, 'home'])->name('home');
 
 Route::get('/qui-sommes-nous', [StaticPageController::class, 'show'])
-    ->defaults('vitrinePage', 'about.html')
+    ->defaults('vitrinePage', 'about')
     ->name('vitrine.about');
 
 Route::get('/nous-achetons', [StaticPageController::class, 'show'])
-    ->defaults('vitrinePage', 'seller.html')
+    ->defaults('vitrinePage', 'seller')
     ->name('vitrine.seller');
 
 Route::get('/nous-vendons', [StaticPageController::class, 'show'])
-    ->defaults('vitrinePage', 'buyer.html')
+    ->defaults('vitrinePage', 'buyer')
     ->name('vitrine.buyer');
 
 Route::get('/investisseurs', [StaticPageController::class, 'show'])
-    ->defaults('vitrinePage', 'investor.html')
+    ->defaults('vitrinePage', 'investor')
     ->name('vitrine.investor');
 
 Route::get('/mentions-legales', [StaticPageController::class, 'show'])
-    ->defaults('vitrinePage', 'legals.html')
+    ->defaults('vitrinePage', 'legals')
     ->name('vitrine.legals');
 
 Route::get('/contributeurs', [StaticPageController::class, 'show'])
-    ->defaults('vitrinePage', 'contributors.html')
+    ->defaults('vitrinePage', 'contributors')
     ->name('vitrine.contributors');
 
 Route::get('/simulation', [StaticPageController::class, 'show'])
-    ->defaults('vitrinePage', 'simulation.html')
+    ->defaults('vitrinePage', 'simulation')
     ->name('vitrine.simulation');
 
 /*
