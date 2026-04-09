@@ -1,0 +1,267 @@
+/* Connexion — même ADN (gris / vert lime / photo de fond), responsive propre */
+
+html {
+    height: 100%;
+}
+
+body {
+    margin: 0;
+    min-height: 100dvh;
+    min-height: 100vh;
+    font-family: Montserrat, system-ui, sans-serif;
+    color: #fff;
+    background-color: #000;
+    overflow-x: hidden;
+    overflow-y: auto;
+    -webkit-font-smoothing: antialiased;
+}
+
+.sign-page {
+    position: relative;
+    display: flex;
+    min-height: 100dvh;
+    min-height: 100vh;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+/* Fond plein écran — fixe au viewport : ne défile pas avec le contenu */
+.td-2 {
+    position: fixed;
+    inset: 0;
+    z-index: 1;
+    background-image: url("/img/Nebot%20Cannelle%20-%20Perpignan-1.jpg");
+    background-size: cover;
+    background-position: center;
+}
+
+.td-1 {
+    position: relative;
+    z-index: 2;
+    box-sizing: border-box;
+    background-color: rgba(85, 85, 85, 0.95);
+    display: flex;
+    flex-direction: column;
+}
+
+.div-connexion {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: stretch;
+    width: 100%;
+    box-sizing: border-box;
+    gap: 0.5rem;
+    padding: 1rem 1.25rem 1.5rem;
+}
+
+.logo-sign {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.logo-sign img {
+    width: auto;
+    max-width: min(200px, 55vw);
+    height: auto;
+}
+
+.back {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    font-size: clamp(0.95rem, 2.5vw, 1.1rem);
+}
+
+.back a {
+    color: #fff;
+    text-decoration: underline;
+    text-underline-offset: 3px;
+}
+
+.back a:hover {
+    color: #b1ea0c;
+}
+
+.sign-page h2 {
+    margin: 0.25rem 0 0.5rem;
+    text-align: center;
+    font-size: clamp(1.35rem, 4vw, 1.75rem);
+    font-family: Montserrat-Bold, Montserrat, sans-serif;
+}
+
+.sign-page label {
+    font-size: clamp(0.9rem, 2.2vw, 1rem);
+}
+
+.sign-page input[type="text"],
+.sign-page input[type="password"] {
+    width: 100%;
+    max-width: 100%;
+    box-sizing: border-box;
+    min-height: 2.75rem;
+    padding: 0.35rem 0.6rem;
+    border: 2px solid rgba(255, 255, 255, 0.35);
+    border-radius: 6px;
+    font-size: 1rem;
+    font-family: inherit;
+    background: rgba(0, 0, 0, 0.25);
+    color: #fff;
+}
+
+.sign-page input:focus {
+    outline: 2px solid #b1ea0c;
+    outline-offset: 1px;
+}
+
+.error {
+    color: #ff995e;
+    font-size: 0.95rem;
+    text-align: center;
+    margin: 0 0 0.25rem;
+}
+
+.remember {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    flex-wrap: wrap;
+    margin-top: 0.25rem;
+}
+
+.remember input {
+    width: auto;
+    min-height: unset;
+}
+
+.remember label {
+    font-size: 0.95rem;
+    cursor: pointer;
+}
+
+.submit-zone {
+    display: flex;
+    justify-content: center;
+    margin-top: 0.75rem;
+}
+
+.submit-button {
+    background-color: transparent;
+    color: #fff;
+    border: 2px solid rgba(255, 255, 255, 0.5);
+    border-radius: 6px;
+    padding: 0.55rem 1.5rem;
+    font-size: clamp(1rem, 2.5vw, 1.15rem);
+    font-family: Montserrat-Bold, Montserrat, sans-serif;
+    cursor: pointer;
+    min-height: 44px;
+    transition: color 0.2s ease, border-color 0.2s ease, background-color 0.2s ease;
+}
+
+.submit-button:hover {
+    color: #b1ea0c;
+    border-color: #b1ea0c;
+}
+
+.lotixam {
+    position: absolute;
+    bottom: max(12px, env(safe-area-inset-bottom));
+    right: max(12px, env(safe-area-inset-right));
+    z-index: 3;
+    pointer-events: none;
+}
+
+.lotixam img {
+    width: min(220px, 42vw);
+    height: auto;
+    display: block;
+    opacity: 0.95;
+}
+
+/* ——— Mobile / tablette : carte centrée ——— */
+@media (max-width: 991px) {
+    .sign-page {
+        align-items: flex-start;
+        justify-content: center;
+        padding: max(0.75rem, env(safe-area-inset-top)) 1rem max(1rem, env(safe-area-inset-bottom));
+    }
+
+    .td-1 {
+        width: 100%;
+        max-width: 22rem;
+        margin-inline: auto;
+        border-radius: 16px;
+        background-color: rgba(85, 85, 85, 0.9);
+        min-height: 0;
+    }
+
+    .div-connexion {
+        justify-content: flex-start;
+        padding: 1.25rem 1.25rem 1.5rem;
+    }
+
+    .back {
+        order: 0;
+    }
+
+    .logo-sign {
+        order: -1;
+        margin-bottom: 0.25rem;
+    }
+
+    .lotixam img {
+        width: min(160px, 38vw);
+    }
+}
+
+/* ——— Grand écran : bandeau gauche ——— */
+@media (min-width: 992px) {
+    .td-1 {
+        width: 40%;
+        max-width: 700px;
+        min-height: 100dvh;
+        min-height: 100vh;
+    }
+
+    .div-connexion {
+        flex: 1;
+        min-height: 0;
+        padding: 3.25rem 1.75rem 2rem;
+        max-width: 100%;
+    }
+
+    .back {
+        position: absolute;
+        top: max(1rem, env(safe-area-inset-top));
+        left: 0;
+        right: 0;
+        width: 100%;
+    }
+
+    .logo-sign {
+        margin-top: 0;
+    }
+
+    .sign-page h2 {
+        margin-top: 0.5rem;
+    }
+
+    .div-connexion form {
+        width: 100%;
+        max-width: 20rem;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    .sign-page form > span {
+        text-align: center;
+        display: block;
+    }
+
+    .remember {
+        justify-content: center;
+    }
+}

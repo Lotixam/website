@@ -1,0 +1,10 @@
+User-agent: *
+Disallow: .md
+Disallow: 401.shtml
+Disallow: 403.shtml
+Disallow: 404.shtml
+Disallow: 500.shtml
+Disallow: /maintenance
+Disallow: /html/maintenance.html
+Disallow: /php/maintenance.php
+Disallow: /.git/
