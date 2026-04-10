@@ -53,7 +53,7 @@ class BlogController extends Controller
         }
         $heroPosts = $heroQuery
             ->orderByDesc('published_at')
-            ->limit(5)
+            ->limit(3)
             ->get();
 
         $listQuery = BlogPost::query()->published()->orderBy('sort_order');

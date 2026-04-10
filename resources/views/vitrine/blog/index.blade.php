@@ -1,29 +1,76 @@
 @extends('vitrine.blog.layout', ['pageTitle' => 'Blog'])
 
+@push('scripts')
+    <script src="/script/blog-hero.js" defer></script>
+@endpush
+
 @section('blog_content')
-    <section class="blog-hero" aria-label="Articles récents">
-        <div class="blog-hero-header">
-            <h1 class="blog-page-title">Le blog</h1>
+    <section class="blog-hero-zone" aria-labelledby="blog-page-heading">
+        <div class="blog-hero-intro">
+            <h1 class="blog-page-title" id="blog-page-heading">Le blog</h1>
             <p class="blog-lead">L’essentiel de notre actualité immobilière et de nos analyses.</p>
         </div>
         @if($heroPosts->isEmpty())
-            <p class="blog-empty-hero">Les prochains articles seront publiés ici.</p>
+            <p class="blog-empty-hero blog-hero-intro">Les prochains articles seront publiés ici.</p>
         @else
-            <div class="blog-hero-scroll" role="list">
-                @foreach($heroPosts as $post)
-                    <article class="blog-hero-card" role="listitem">
-                        <a href="{{ route('blog.show', ['slug' => $post->slug]) }}" class="blog-hero-card-link">
-                            <time class="blog-card-date" datetime="{{ $post->published_at->toIso8601String() }}">
-                                {{ $post->published_at->translatedFormat('d M Y') }}
-                            </time>
-                            <h2 class="blog-hero-card-title">{{ $post->title }}</h2>
-                            @if(filled($post->excerpt))
-                                <p class="blog-hero-card-excerpt">{{ \Illuminate\Support\Str::limit($post->excerpt, 160) }}</p>
-                            @endif
-                            <span class="blog-hero-card-cta">Lire l’article</span>
-                        </a>
-                    </article>
-                @endforeach
+            <div
+                class="blog-hero-fullbleed"
+                data-blog-hero
+                role="region"
+                aria-roledescription="carrousel"
+                aria-label="Derniers articles en vedette"
+            >
+                <div class="blog-hero-viewport">
+                    @foreach($heroPosts as $i => $post)
+                        @php
+                            $coverUrl = $post->coverImageUrl();
+                        @endphp
+                        <article
+                            class="blog-hero-slide {{ $i === 0 ? 'is-active' : '' }} {{ $coverUrl ? 'has-cover' : 'no-cover' }}"
+                            data-hero-slide
+                            id="blog-hero-slide-{{ $i }}"
+                            aria-hidden="{{ $i === 0 ? 'false' : 'true' }}"
+                            @if($coverUrl) style="--blog-hero-cover: url({{ \Illuminate\Support\Js::from($coverUrl) }})" @endif
+                        >
+                            <div class="blog-hero-slide-overlay" aria-hidden="true"></div>
+                            <div class="blog-hero-slide-inner">
+                                <time class="blog-hero-slide-date" datetime="{{ $post->published_at->toIso8601String() }}">
+                                    {{ $post->published_at->translatedFormat('d M Y') }}
+                                </time>
+                                <h2 class="blog-hero-slide-title">
+                                    <a href="{{ route('blog.show', ['slug' => $post->slug]) }}">{{ $post->title }}</a>
+                                </h2>
+                                @if(filled($post->excerpt))
+                                    <p class="blog-hero-slide-excerpt">{{ \Illuminate\Support\Str::limit($post->excerpt, 220) }}</p>
+                                @endif
+                                <a href="{{ route('blog.show', ['slug' => $post->slug]) }}" class="blog-hero-slide-cta">Lire l’article</a>
+                            </div>
+                        </article>
+                    @endforeach
+                </div>
+                @if($heroPosts->count() > 1)
+                    <div class="blog-hero-controls">
+                        <button type="button" class="blog-hero-arrow" data-hero-prev>
+                            <span aria-hidden="true">‹</span>
+                            <span class="visually-hidden">Article précédent</span>
+                        </button>
+                        <div class="blog-hero-dots" role="tablist" aria-label="Choisir un article">
+                            @foreach($heroPosts as $i => $post)
+                                <button
+                                    type="button"
+                                    class="blog-hero-dot {{ $i === 0 ? 'is-active' : '' }}"
+                                    data-hero-dot
+                                    aria-label="Afficher : {{ $post->title }}"
+                                    @if($i === 0) aria-current="true" @endif
+                                ></button>
+                            @endforeach
+                        </div>
+                        <button type="button" class="blog-hero-arrow" data-hero-next>
+                            <span aria-hidden="true">›</span>
+                            <span class="visually-hidden">Article suivant</span>
+                        </button>
+                    </div>
+                @endif
             </div>
         @endif
     </section>

@@ -37,5 +37,6 @@
     </main>
 
     @include('vitrine.partials.footer', ['showContributors' => true])
+    @stack('scripts')
 </body>
 </html>

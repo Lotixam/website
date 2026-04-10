@@ -8,6 +8,7 @@ use Filament\Forms\Components\RichEditor\Models\Contracts\HasRichContent;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
 
 class BlogPost extends Model implements HasRichContent
@@ -21,6 +22,7 @@ class BlogPost extends Model implements HasRichContent
         'title',
         'slug',
         'excerpt',
+        'cover_image_path',
         'content',
         'published_at',
         'is_visible',
@@ -38,11 +40,29 @@ class BlogPost extends Model implements HasRichContent
 
     protected function setUpRichContent(): void
     {
-        $this->registerRichContent('content')->json();
+        $this->registerRichContent('content')
+            ->json()
+            ->fileAttachmentsDisk('public')
+            ->fileAttachmentsVisibility('public');
     }
 
     protected static function booted(): void
     {
+        static::updating(function (BlogPost $post): void {
+            if ($post->isDirty('cover_image_path')) {
+                $previous = $post->getOriginal('cover_image_path');
+                if (is_string($previous) && $previous !== '') {
+                    Storage::disk('public')->delete($previous);
+                }
+            }
+        });
+
+        static::deleting(function (BlogPost $post): void {
+            if (filled($post->cover_image_path)) {
+                Storage::disk('public')->delete($post->cover_image_path);
+            }
+        });
+
         static::creating(function (BlogPost $post): void {
             if (blank($post->sort_order)) {
                 $max = (int) static::query()->max('sort_order');
@@ -85,5 +105,14 @@ class BlogPost extends Model implements HasRichContent
             ->where('is_visible', true)
             ->whereNotNull('published_at')
             ->where('published_at', '<=', now());
+    }
+
+    public function coverImageUrl(): ?string
+    {
+        if (! filled($this->cover_image_path)) {
+            return null;
+        }
+
+        return Storage::disk('public')->url($this->cover_image_path);
     }
 }
