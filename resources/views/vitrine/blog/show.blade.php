@@ -25,7 +25,7 @@
             @endif
         </header>
         <div class="blog-article-body">
-            {!! $post->renderRichContent('content') !!}
+            {!! $post->renderRichContentForPublic() !!}
         </div>
     </article>
 @endsection

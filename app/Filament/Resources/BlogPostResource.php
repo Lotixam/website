@@ -39,6 +39,14 @@ class BlogPostResource extends Resource
     public static function form(Schema $schema): Schema
     {
         return $schema
+            ->columns([
+                'default' => 1,
+                'sm' => 1,
+                'md' => 1,
+                'lg' => 1,
+                'xl' => 1,
+                '2xl' => 1,
+            ])
             ->schema([
                 Section::make('Informations de l’article')
                     ->description('Titre, URL, extrait, image de couverture et paramètres de publication.')
@@ -97,6 +105,9 @@ class BlogPostResource extends Resource
                             ->required(),
                     ]),
                 Section::make('Corps de l’article')
+                    ->extraAttributes([
+                        'class' => 'fi-blog-post-body-block border-t border-gray-200 pt-8 mt-6 dark:border-white/10',
+                    ])
                     ->description(new HtmlString(
                         '<p class="text-sm text-gray-600 dark:text-gray-400 space-y-2">'
                         .'<strong>Images dans le texte (mode actuel)</strong> : dans la barre d’outils, utilisez <strong>Joindre des fichiers</strong> '

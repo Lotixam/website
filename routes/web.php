@@ -11,6 +11,7 @@ use App\Http\Controllers\MaintenanceController;
 use App\Http\Controllers\MeController;
 use App\Http\Controllers\PublicAvatarController;
 use App\Http\Controllers\Site\BlogController;
+use App\Http\Controllers\Site\BlogPublicFileController;
 use App\Http\Controllers\Site\StaticPageController;
 use Illuminate\Support\Facades\Route;
 
@@ -58,6 +59,10 @@ Route::get('/nos-realisations', [StaticPageController::class, 'show'])
     ->name('vitrine.realizations');
 
 Route::permanentRedirect('/nos-realisation', '/nos-realisations');
+
+Route::get('/fichiers-blog/{path}', [BlogPublicFileController::class, 'show'])
+    ->where('path', '.+')
+    ->name('blog.public_file');
 
 Route::get('/blog', [BlogController::class, 'index'])->name('blog.index');
 Route::get('/blog/{slug}', [BlogController::class, 'show'])

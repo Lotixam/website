@@ -113,6 +113,27 @@ class BlogPost extends Model implements HasRichContent
             return null;
         }
 
-        return Storage::disk('public')->url($this->cover_image_path);
+        return route('blog.public_file', ['path' => $this->cover_image_path]);
+    }
+
+    /**
+     * HTML du corps pour la vitrine : réécrit les URLs /storage/blog/… vers la route fichiers-blog
+     * (évite les 403 quand l’hébergeur bloque le lien symbolique public/storage).
+     */
+    public function renderRichContentForPublic(): string
+    {
+        $html = $this->renderRichContent('content');
+        $diskBase = rtrim((string) config('filesystems.disks.public.url'), '/');
+        $serveBase = rtrim(url('/fichiers-blog'), '/');
+
+        if ($diskBase !== '') {
+            $html = str_replace($diskBase.'/', $serveBase.'/', $html);
+        }
+
+        return preg_replace_callback(
+            '#\bsrc="(/storage/(blog/(?:content|covers)/[^"]+))"#',
+            static fn (array $m): string => 'src="'.$serveBase.'/'.$m[2].'"',
+            $html
+        );
     }
 }
