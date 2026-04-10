@@ -81,7 +81,7 @@ class UserResource extends Resource
                     ->maxSize(2048)
                     ->imageEditor()
                     ->nullable()
-                    ->getUploadedFileUsing(function (BaseFileUpload $component, string $file, string | array | null $storedFileNames): ?array {
+                    ->getUploadedFileUsing(function (BaseFileUpload $component, string $file, string|array|null $storedFileNames): ?array {
                         /** @var FilesystemAdapter $storage */
                         $storage = $component->getDisk();
                         $shouldFetchFileInformation = $component->shouldFetchFileInformation();
@@ -177,7 +177,7 @@ class UserResource extends Resource
             ->columns([
                 Tables\Columns\ImageColumn::make('avatar')
                     ->label('')
-                    ->formatStateUsing(function (?string $state, Model $record): ?string {
+                    ->formatStateUsing(function (?string $state, ?Model $record): ?string {
                         return $record instanceof User ? $record->avatarUrl() : null;
                     })
                     ->circular()
@@ -211,19 +211,31 @@ class UserResource extends Resource
                 Tables\Columns\TextColumn::make('roles.name')
                     ->label('Rôle')
                     ->badge()
-                    ->formatStateUsing(fn (string $state) => match ($state) {
-                        'admin' => 'Administrateur',
-                        'collaborator' => 'Collaborateur',
-                        'client' => 'Client',
-                        'seller' => 'Vendeur',
-                        default => $state,
+                    ->placeholder('—')
+                    ->formatStateUsing(function ($state): string {
+                        $role = is_array($state) ? ($state[0] ?? null) : $state;
+                        $role = is_string($role) ? $role : null;
+
+                        return match ($role) {
+                            null, '' => '—',
+                            'admin' => 'Administrateur',
+                            'collaborator' => 'Collaborateur',
+                            'client' => 'Client',
+                            'seller' => 'Vendeur',
+                            default => $role,
+                        };
                     })
-                    ->color(fn (string $state) => match ($state) {
-                        'admin' => 'danger',
-                        'collaborator' => 'info',
-                        'client' => 'success',
-                        'seller' => 'warning',
-                        default => 'gray',
+                    ->color(function ($state): string {
+                        $role = is_array($state) ? ($state[0] ?? null) : $state;
+                        $role = is_string($role) ? $role : '';
+
+                        return match ($role) {
+                            'admin' => 'danger',
+                            'collaborator' => 'info',
+                            'client' => 'success',
+                            'seller' => 'warning',
+                            default => 'gray',
+                        };
                     }),
                 Tables\Columns\TextColumn::make('created_at')
                     ->label('Créé le')
