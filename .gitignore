@@ -15,6 +15,7 @@ test.css
 /storage/*.key
 /storage/pail
 /vendor
+/composer.lock
 Homestead.json
 Homestead.yaml
 Thumbs.db
