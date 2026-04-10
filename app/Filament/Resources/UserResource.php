@@ -17,7 +17,6 @@ use Filament\Schemas\Schema;
 use Filament\Tables;
 use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
-use Illuminate\Database\Eloquent\Model;
 use Illuminate\Filesystem\FilesystemAdapter;
 use League\Flysystem\UnableToCheckFileExistence;
 
@@ -177,9 +176,7 @@ class UserResource extends Resource
             ->columns([
                 Tables\Columns\ImageColumn::make('avatar')
                     ->label('')
-                    ->formatStateUsing(function (?string $state, ?Model $record): ?string {
-                        return $record instanceof User ? $record->avatarUrl() : null;
-                    })
+                    ->getStateUsing(fn (User $record): ?string => $record->avatarUrl())
                     ->circular()
                     ->width(40),
                 Tables\Columns\TextColumn::make('name')
