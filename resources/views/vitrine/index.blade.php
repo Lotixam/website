@@ -22,7 +22,7 @@
         <div id="banniere">
 
             <div class="sign ">
-                <a href="/login">Se connecter / S'inscrire</a>
+                @include('vitrine.partials.login-nav-link', ['guestLabel' => "Se connecter / S'inscrire"])
             </div>
 
             <div id="logo">
@@ -77,7 +77,7 @@
                     <li class="liens"><a href="/nous-vendons">Nous vendons</a></li>
                     <li class="liens"><a href="/investisseurs">Investisseurs</a></li>
                     <li class="liens"><a href="/contact?prev=index&amp;button=false">Contact</a></li>
-                    <li class="liens"><a href="/login">Mon compte</a></li>
+                    <li class="liens">@include('vitrine.partials.login-nav-link', ['guestLabel' => 'Mon compte'])</li>
                 </ul>
             </div>
         </div>
@@ -108,6 +108,20 @@
                     opportunités pour donner vie à vos projets immobiliers.
                 </h1>
             </div>
+
+            @if(isset($publicMetrics) && $publicMetrics->isNotEmpty())
+                <section class="public-metrics">
+                    <h2>Nos chiffres clés</h2>
+                    <div class="public-metrics-grid">
+                        @foreach($publicMetrics as $metric)
+                            <article class="public-metric-card">
+                                <div class="public-metric-value">{{ $metric['value'] }}{{ $metric['suffix'] }}</div>
+                                <p class="public-metric-label">{{ $metric['label'] }}</p>
+                            </article>
+                        @endforeach
+                    </div>
+                </section>
+            @endif
 
             <!-- Tableau  /!\-->
             <table>
@@ -291,24 +305,5 @@
             </iframe> -->
         </div>
     </body>
-    <footer>
-        <div>
-            <b>© LOTIXAM SAS 2024. Tous droits réservés</b>
-        </div>
-        <div class="separator">-</div>            <div>
-            <a href="/mentions-legales">Mentions légales</a>
-        </div>
-        <div class="separator">-</div>
-        <div>
-            <a href="https://blog.lotixam.fr/">Blog</a>
-        </div>
-        <div class="separator">-</div>
-        <div>
-            <a href="https://faq.lotixam.fr/">FAQ</a>
-        </div>
-        <div class="separator">-</div>
-        <div>
-            <a href="/contributeurs">Contributeurs &amp; Partenaires</a>
-        </div>
-    </footer>
+    @include('vitrine.partials.footer')
 </html>

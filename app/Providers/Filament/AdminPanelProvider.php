@@ -6,6 +6,8 @@ use Filament\Http\Middleware\Authenticate;
 use Filament\Http\Middleware\AuthenticateSession;
 use Filament\Http\Middleware\DisableBladeIconComponents;
 use Filament\Http\Middleware\DispatchServingFilamentEvent;
+use Filament\Navigation\MenuItem;
+use Filament\Navigation\NavigationItem;
 use Filament\Pages\Dashboard;
 use Filament\Panel;
 use Filament\PanelProvider;
@@ -17,6 +19,7 @@ use Illuminate\Cookie\Middleware\EncryptCookies;
 use Illuminate\Foundation\Http\Middleware\PreventRequestForgery;
 use Illuminate\Routing\Middleware\SubstituteBindings;
 use Illuminate\Session\Middleware\StartSession;
+use Illuminate\Support\Facades\Route;
 use Illuminate\Support\HtmlString;
 use Illuminate\View\Middleware\ShareErrorsFromSession;
 
@@ -30,6 +33,9 @@ class AdminPanelProvider extends PanelProvider
             ->path('admin')
             ->login()
             ->brandName('Lotixam')
+            ->brandLogo(asset('img/logo.png'))
+            ->brandLogoHeight('2.5rem')
+            ->favicon(asset('img/logo.png'))
             ->colors([
                 'primary' => Color::hex('#b1e90e'),
                 'gray' => Color::Zinc,
@@ -39,6 +45,31 @@ class AdminPanelProvider extends PanelProvider
                 'warning' => Color::Amber,
             ])
             ->sidebarCollapsibleOnDesktop()
+            ->navigationItems([
+                NavigationItem::make('Site public')
+                    ->url(fn (): string => Route::has('home') ? route('home') : url('/'))
+                    ->icon('heroicon-o-globe-alt')
+                    ->group('Vitrine')
+                    ->sort(99_999),
+            ])
+            ->userMenuItems([
+                MenuItem::make()
+                    ->label('Site public')
+                    ->url(fn (): string => Route::has('home') ? route('home') : url('/'))
+                    ->icon('heroicon-o-globe-alt'),
+                MenuItem::make()
+                    ->label('Mon profil')
+                    ->url('/me')
+                    ->icon('heroicon-o-user-circle'),
+            ])
+            ->renderHook(
+                PanelsRenderHook::AUTH_LOGIN_FORM_AFTER,
+                fn () => new HtmlString(
+                    '<p class="mt-6 text-center text-sm text-gray-500 dark:text-gray-400">'
+                    .'<a href="'.e(Route::has('home') ? route('home') : url('/')).'" class="font-medium text-primary-600 hover:underline dark:text-primary-400">← Retour au site Lotixam</a>'
+                    .'</p>'
+                )
+            )
             ->renderHook(
                 PanelsRenderHook::HEAD_END,
                 fn () => new HtmlString(<<<'CSS'
@@ -166,7 +197,9 @@ class AdminPanelProvider extends PanelProvider
                 CSS)
             )
             ->navigationGroups([
+                'Vitrine',
                 'Opérations',
+                'Templates d\'opérations',
                 'Commercial',
                 'Finances',
                 'Administration',

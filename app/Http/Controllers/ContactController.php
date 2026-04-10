@@ -2,9 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\ContactSubmission;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Mail;
 use Illuminate\View\View;
 
 class ContactController extends Controller
@@ -13,56 +13,48 @@ class ContactController extends Controller
     {
         return view('contact', [
             'prev' => $request->query('prev'),
+            'maxAttachments' => config('lotixam.contact_max_attachments'),
         ]);
     }
 
     public function store(Request $request): RedirectResponse
     {
+        $maxFiles = (int) config('lotixam.contact_max_attachments');
+        $maxKb = (int) config('lotixam.contact_max_attachment_kb');
+
         $validated = $request->validate([
             'name' => ['required', 'string', 'max:255'],
             'mail' => ['required', 'email'],
             'tel' => ['nullable', 'string', 'max:50'],
             'msg' => ['required', 'string'],
-            'join1' => ['nullable', 'file', 'max:10240'],
-            'join2' => ['nullable', 'file', 'max:10240'],
-            'join3' => ['nullable', 'file', 'max:10240'],
+            'attachments' => ['nullable', 'array', 'max:'.$maxFiles],
+            'attachments.*' => ['file', 'max:'.$maxKb],
         ]);
 
-        $name = strip_tags($validated['name']);
-        $email = $validated['mail'];
-        $tel = strip_tags($validated['tel'] ?? '');
-        $messageBody = $validated['msg'];
-
-        $text = "Nom: {$name}\n";
-        $text .= "Email: {$email}\n\n";
-        $text .= "Tel: {$tel}\n\n";
-        $text .= "Message:\n{$messageBody}\n";
-
-        $adminTo = config('lotixam.mail_to');
-        $fromAddress = config('lotixam.mail_from_address');
-        $fromName = config('lotixam.mail_from_name');
-
-        $attachments = array_filter([
-            $request->file('join1'),
-            $request->file('join2'),
-            $request->file('join3'),
+        $submission = ContactSubmission::create([
+            'name' => strip_tags($validated['name']),
+            'email' => $validated['mail'],
+            'phone' => strip_tags($validated['tel'] ?? ''),
+            'message' => $validated['msg'],
+            'source_page' => $request->query('prev') ? (string) $request->query('prev') : null,
         ]);
 
-        $bodyHtml = nl2br(e($text), false);
+        $files = array_filter($request->file('attachments') ?? []);
 
-        foreach ([$adminTo, $email] as $recipient) {
-            Mail::html($bodyHtml, function ($message) use ($recipient, $name, $email, $fromAddress, $fromName, $attachments): void {
-                $message->to($recipient)
-                    ->subject('Contact de '.$name)
-                    ->from($fromAddress, $fromName)
-                    ->replyTo($email, $name);
+        foreach ($files as $file) {
+            if (! $file->isValid()) {
+                continue;
+            }
 
-                foreach ($attachments as $file) {
-                    if ($file && $file->isValid()) {
-                        $message->attach($file->getRealPath(), ['as' => $file->getClientOriginalName()]);
-                    }
-                }
-            });
+            $path = $file->store('contact-submissions/'.$submission->id, 'local');
+
+            $submission->attachments()->create([
+                'disk' => 'local',
+                'path' => $path,
+                'original_name' => $file->getClientOriginalName(),
+                'mime_type' => $file->getMimeType(),
+                'size_bytes' => $file->getSize(),
+            ]);
         }
 
         return back()->with('message_sent', true);

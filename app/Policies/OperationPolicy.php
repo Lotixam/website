@@ -14,6 +14,10 @@ class OperationPolicy
 
     public function view(User $user, Operation $operation): bool
     {
+        if ($user->hasRole('collaborator')) {
+            return $operation->assignedUsers()->where('user_id', $user->id)->exists();
+        }
+
         return $user->hasPermissionTo('view_operations');
     }
 
@@ -24,6 +28,11 @@ class OperationPolicy
 
     public function update(User $user, Operation $operation): bool
     {
+        if ($user->hasRole('collaborator')) {
+            return $operation->assignedUsers()->where('user_id', $user->id)->exists()
+                && $user->hasPermissionTo('edit_operations');
+        }
+
         return $user->hasPermissionTo('edit_operations');
     }
 

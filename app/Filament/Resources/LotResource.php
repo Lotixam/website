@@ -6,6 +6,7 @@ use App\Enums\LotStatus;
 use App\Filament\Resources\LotResource\Pages;
 use App\Models\Contact;
 use App\Models\Lot;
+use Filament\Actions;
 use Filament\Forms\Components\DatePicker;
 use Filament\Forms\Components\RichEditor;
 use Filament\Forms\Components\Select;
@@ -14,9 +15,9 @@ use Filament\Forms\Components\TextInput;
 use Filament\Resources\Resource;
 use Filament\Schemas\Components\Section;
 use Filament\Schemas\Schema;
-use Filament\Actions;
 use Filament\Tables;
 use Filament\Tables\Table;
+use Illuminate\Database\Eloquent\Builder;
 
 class LotResource extends Resource
 {
@@ -26,9 +27,9 @@ class LotResource extends Resource
 
     protected static string|\UnitEnum|null $navigationGroup = 'Opérations';
 
-    protected static ?string $modelLabel = 'Lot';
+    protected static ?string $modelLabel = 'Unité du bien';
 
-    protected static ?string $pluralModelLabel = 'Lots';
+    protected static ?string $pluralModelLabel = 'Unités du bien';
 
     protected static ?int $navigationSort = 2;
 
@@ -36,7 +37,7 @@ class LotResource extends Resource
     {
         return $schema
             ->schema([
-                Section::make('Informations du lot')
+                Section::make('Informations de l\'unité')
                     ->columns(2)
                     ->schema([
                         Select::make('operation_id')
@@ -44,9 +45,10 @@ class LotResource extends Resource
                             ->relationship('operation', 'name')
                             ->searchable()
                             ->preload()
-                            ->required(),
+                            ->nullable()
+                            ->helperText('Optionnel : laisser vide pour un bien déjà présent avant la structuration en opération, ou pour constituer un historique manuel (documents, notes sur l’unité).'),
                         TextInput::make('lot_number')
-                            ->label('N° de lot')
+                            ->label('Référence / n° (lot, parcelle, lotissement…)')
                             ->required(),
                         TextInput::make('surface')
                             ->label('Surface (m²)')
@@ -75,6 +77,7 @@ class LotResource extends Resource
                             ])
                             ->createOptionUsing(function (array $data) {
                                 $data['type'] = 'buyer';
+
                                 return Contact::create($data)->id;
                             }),
                         DatePicker::make('sold_at')
@@ -93,8 +96,12 @@ class LotResource extends Resource
     {
         return $table
             ->columns([
-                Tables\Columns\TextColumn::make('lot_number')->label('N° Lot')->searchable()->sortable(),
-                Tables\Columns\TextColumn::make('operation.name')->label('Opération')->sortable()->searchable(),
+                Tables\Columns\TextColumn::make('lot_number')->label('Réf.')->searchable()->sortable(),
+                Tables\Columns\TextColumn::make('operation.name')
+                    ->label('Opération')
+                    ->placeholder('—')
+                    ->sortable()
+                    ->searchable(),
                 Tables\Columns\TextColumn::make('surface')->label('Surface')->suffix(' m²')->sortable(),
                 Tables\Columns\TextColumn::make('selling_price')->label('Prix')->money('EUR')->sortable(),
                 Tables\Columns\TextColumn::make('status')->label('Statut')->badge()
@@ -105,9 +112,17 @@ class LotResource extends Resource
             ])
             ->defaultSort('created_at', 'desc')
             ->filters([
+                Tables\Filters\TernaryFilter::make('has_operation')
+                    ->label('Rattachement opération')
+                    ->placeholder('Toutes les unités')
+                    ->trueLabel('Avec opération')
+                    ->falseLabel('Sans opération')
+                    ->queries(
+                        true: fn (Builder $query) => $query->whereNotNull('operation_id'),
+                        false: fn (Builder $query) => $query->whereNull('operation_id'),
+                        blank: fn (Builder $query) => $query,
+                    ),
                 Tables\Filters\SelectFilter::make('operation_id')->label('Opération')->relationship('operation', 'name'),
-                Tables\Filters\SelectFilter::make('status')->label('Statut')
-                    ->options(collect(LotStatus::cases())->mapWithKeys(fn ($s) => [$s->value => $s->label()])),
             ])
             ->actions([Actions\EditAction::make()])
             ->bulkActions([Actions\BulkActionGroup::make([Actions\DeleteBulkAction::make()])]);

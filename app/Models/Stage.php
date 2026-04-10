@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class Stage extends Model
 {
@@ -26,7 +27,17 @@ class Stage extends Model
     public function operations(): BelongsToMany
     {
         return $this->belongsToMany(Operation::class, 'operation_stage')
-            ->withPivot(['status', 'completed_at', 'notes'])
+            ->withPivot(['status', 'completed_at', 'notes', 'added_by_user_id', 'source'])
             ->withTimestamps();
+    }
+
+    public function documentTemplates(): HasMany
+    {
+        return $this->hasMany(StageDocumentTemplate::class);
+    }
+
+    public function documentRequests(): HasMany
+    {
+        return $this->hasMany(DocumentRequest::class);
     }
 }

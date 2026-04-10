@@ -25,15 +25,15 @@ class StatsOverviewWidget extends BaseWidget
                 ->description('Actives')
                 ->descriptionIcon('heroicon-m-building-office-2')
                 ->color('primary'),
-            Stat::make('Lots disponibles', $availableLots)
-                ->description('À vendre')
+            Stat::make('Unités disponibles', $availableLots)
+                ->description('Biens détaillés à vendre')
                 ->descriptionIcon('heroicon-m-squares-2x2')
                 ->color('success'),
-            Stat::make('Chiffre d\'affaires', number_format($totalIncome, 0, ',', ' ') . ' €')
+            Stat::make('Chiffre d\'affaires', number_format($totalIncome, 0, ',', ' ').' €')
                 ->description('Total entrées')
                 ->descriptionIcon('heroicon-m-arrow-trending-up')
                 ->color('success'),
-            Stat::make('Marge globale', number_format($margin, 0, ',', ' ') . ' €')
+            Stat::make('Marge globale', number_format($margin, 0, ',', ' ').' €')
                 ->description('Entrées - Sorties')
                 ->descriptionIcon($margin >= 0 ? 'heroicon-m-arrow-trending-up' : 'heroicon-m-arrow-trending-down')
                 ->color($margin >= 0 ? 'success' : 'danger'),

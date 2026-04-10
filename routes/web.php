@@ -2,8 +2,13 @@
 
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Client\DashboardController;
+use App\Http\Controllers\Client\DocumentController;
+use App\Http\Controllers\Client\MessageController;
+use App\Http\Controllers\Client\ProfileController;
+use App\Http\Controllers\Client\ProjectController;
 use App\Http\Controllers\ContactController;
 use App\Http\Controllers\MaintenanceController;
+use App\Http\Controllers\MeController;
 use App\Http\Controllers\Site\StaticPageController;
 use Illuminate\Support\Facades\Route;
 
@@ -33,6 +38,10 @@ Route::get('/investisseurs', [StaticPageController::class, 'show'])
 Route::get('/mentions-legales', [StaticPageController::class, 'show'])
     ->defaults('vitrinePage', 'legals')
     ->name('vitrine.legals');
+
+Route::get('/politique-cookies', [StaticPageController::class, 'show'])
+    ->defaults('vitrinePage', 'cookies')
+    ->name('vitrine.cookies');
 
 Route::get('/contributeurs', [StaticPageController::class, 'show'])
     ->defaults('vitrinePage', 'contributors')
@@ -70,6 +79,25 @@ Route::post('/contact', [ContactController::class, 'store']);
 
 Route::get('/maintenance', [MaintenanceController::class, 'show'])->name('maintenance');
 
-Route::middleware('auth')->prefix('client')->name('client.')->group(function () {
+/*
+|--------------------------------------------------------------------------
+| Espace membre /me (tous rôles)
+|--------------------------------------------------------------------------
+*/
+Route::middleware('auth')->prefix('me')->name('me.')->group(function () {
+    Route::get('/', [MeController::class, 'show'])->name('index');
+    Route::get('/edit', [MeController::class, 'edit'])->name('edit');
+    Route::put('/edit', [MeController::class, 'update'])->name('update');
+    Route::delete('/avatar', [MeController::class, 'destroyAvatar'])->name('avatar.destroy');
+    Route::get('/password', [MeController::class, 'editPassword'])->name('password');
+    Route::put('/password', [MeController::class, 'updatePassword'])->name('password.update');
+});
+
+Route::middleware(['auth', 'role:client,admin,collaborator'])->prefix('client')->name('client.')->group(function () {
     Route::get('/', [DashboardController::class, 'index'])->name('dashboard');
+    Route::get('/projet/{operation}', [ProjectController::class, 'show'])->name('project.show');
+    Route::post('/document-request/{documentRequest}/upload', [DocumentController::class, 'store'])->name('document.upload');
+    Route::get('/profil', [ProfileController::class, 'edit'])->name('profile.edit');
+    Route::put('/profil', [ProfileController::class, 'update'])->name('profile.update');
+    Route::post('/projet/{operation}/message', [MessageController::class, 'store'])->name('message.store');
 });

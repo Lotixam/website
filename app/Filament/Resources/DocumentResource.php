@@ -4,7 +4,11 @@ namespace App\Filament\Resources;
 
 use App\Enums\DocumentType;
 use App\Filament\Resources\DocumentResource\Pages;
+use App\Models\Contact;
 use App\Models\Document;
+use App\Models\Lot;
+use App\Models\Operation;
+use Filament\Actions;
 use Filament\Forms\Components\FileUpload;
 use Filament\Forms\Components\Select;
 use Filament\Forms\Components\Textarea;
@@ -13,7 +17,6 @@ use Filament\Resources\Resource;
 use Filament\Schemas\Components\Section;
 use Filament\Schemas\Components\Utilities\Get;
 use Filament\Schemas\Schema;
-use Filament\Actions;
 use Filament\Tables;
 use Filament\Tables\Table;
 
@@ -45,17 +48,22 @@ class DocumentResource extends Resource
                         Select::make('documentable_type')->label('Lié à')
                             ->options([
                                 'App\Models\Operation' => 'Opération',
-                                'App\Models\Lot' => 'Lot',
+                                'App\Models\Lot' => 'Unité du bien',
                                 'App\Models\Contact' => 'Contact',
                             ])->required()->reactive(),
                         Select::make('documentable_id')->label('Élément')
                             ->options(function (Get $get) {
                                 $type = $get('documentable_type');
-                                if (! $type) return [];
+                                if (! $type) {
+                                    return [];
+                                }
+
                                 return match ($type) {
-                                    'App\Models\Operation' => \App\Models\Operation::pluck('name', 'id'),
-                                    'App\Models\Lot' => \App\Models\Lot::with('operation')->get()->mapWithKeys(fn ($l) => [$l->id => "{$l->operation->name} - Lot {$l->lot_number}"]),
-                                    'App\Models\Contact' => \App\Models\Contact::get()->mapWithKeys(fn ($c) => [$c->id => "{$c->first_name} {$c->last_name}"]),
+                                    'App\Models\Operation' => Operation::pluck('name', 'id'),
+                                    'App\Models\Lot' => Lot::with('operation')->get()->mapWithKeys(fn ($l) => [
+                                        $l->id => ($l->operation ? "{$l->operation->name} — " : 'Sans opération — ')."unité {$l->lot_number}",
+                                    ]),
+                                    'App\Models\Contact' => Contact::get()->mapWithKeys(fn ($c) => [$c->id => "{$c->first_name} {$c->last_name}"]),
                                     default => [],
                                 };
                             })->searchable()->required(),
@@ -74,7 +82,7 @@ class DocumentResource extends Resource
                 Tables\Columns\TextColumn::make('documentable_type')->label('Lié à')
                     ->formatStateUsing(fn (string $state) => match ($state) {
                         'App\Models\Operation' => 'Opération',
-                        'App\Models\Lot' => 'Lot',
+                        'App\Models\Lot' => 'Unité du bien',
                         'App\Models\Contact' => 'Contact',
                         default => $state,
                     }),

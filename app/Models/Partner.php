@@ -32,4 +32,9 @@ class Partner extends Model
     {
         return $this->hasMany(PartnerOffer::class);
     }
+
+    public function users(): HasMany
+    {
+        return $this->hasMany(User::class);
+    }
 }

@@ -6,6 +6,7 @@ use App\Enums\TransactionType;
 use App\Filament\Resources\TransactionResource\Pages;
 use App\Models\Transaction;
 use App\Models\TransactionCategory;
+use Filament\Actions;
 use Filament\Forms\Components\DatePicker;
 use Filament\Forms\Components\Select;
 use Filament\Forms\Components\Textarea;
@@ -14,7 +15,6 @@ use Filament\Resources\Resource;
 use Filament\Schemas\Components\Section;
 use Filament\Schemas\Components\Utilities\Get;
 use Filament\Schemas\Schema;
-use Filament\Actions;
 use Filament\Tables;
 use Filament\Tables\Table;
 
@@ -40,7 +40,7 @@ class TransactionResource extends Resource
                     ->columns(2)
                     ->schema([
                         Select::make('operation_id')->label('Opération')->relationship('operation', 'name')->searchable()->preload()->required(),
-                        Select::make('lot_id')->label('Lot')->relationship('lot', 'lot_number')->searchable()->preload(),
+                        Select::make('lot_id')->label('Unité du bien')->relationship('lot', 'lot_number')->searchable()->preload(),
                         Select::make('type')->label('Type')
                             ->options(collect(TransactionType::cases())->mapWithKeys(fn ($t) => [$t->value => $t->label()]))
                             ->required()->reactive(),
@@ -70,7 +70,7 @@ class TransactionResource extends Resource
                 Tables\Columns\TextColumn::make('category.name')->label('Catégorie')->sortable(),
                 Tables\Columns\TextColumn::make('description')->label('Description')->limit(30)->searchable(),
                 Tables\Columns\TextColumn::make('amount')->label('Montant')->money('EUR')->sortable(),
-                Tables\Columns\TextColumn::make('lot.lot_number')->label('Lot')->toggleable(isToggledHiddenByDefault: true),
+                Tables\Columns\TextColumn::make('lot.lot_number')->label('Réf. unité')->toggleable(isToggledHiddenByDefault: true),
             ])
             ->defaultSort('date', 'desc')
             ->filters([

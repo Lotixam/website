@@ -20,7 +20,7 @@
         <div id="banniere">
 
             <div class="sign ">
-                <a href="/login">Se connecter / S'inscrire</a>
+                @include('vitrine.partials.login-nav-link', ['guestLabel' => "Se connecter / S'inscrire"])
             </div>
 
             <div id="logo">
@@ -75,7 +75,7 @@
                     <li class="liens"><a href="/nous-vendons">Nous vendons</a></li>
                     <li class="liens"><a href="/investisseurs">Investisseurs</a></li>
                     <li class="liens"><a href="/contact?prev=seller&amp;button=false">Contact</a></li>
-                    <li class="liens"><a href="/login">Mon compte</a></li>
+                    <li class="liens">@include('vitrine.partials.login-nav-link', ['guestLabel' => 'Mon compte'])</li>
                 </ul>
             </div>
         </div>
@@ -193,25 +193,5 @@
         </div>
     </body>
 
-    <footer>
-        <div>
-            <b>© LOTIXAM SAS 2024. Tous droits réservés</b>
-        </div>
-        <div class="separator">-</div>
-        <div>
-            <a href="/mentions-legales">Mentions légales</a>
-        </div>
-        <div class="separator">-</div>
-        <div>
-            <a href="https://blog.lotixam.fr/">Blog</a>
-        </div>
-        <div class="separator">-</div>
-        <div>
-            <a href="https://faq.lotixam.fr/">FAQ</a>
-        </div>
-        <div class="separator">-</div>
-        <div>
-            <a href="/contributeurs">Contributeurs &amp; Partenaires</a>
-        </div>
-    </footer>
+    @include('vitrine.partials.footer')
 </html>

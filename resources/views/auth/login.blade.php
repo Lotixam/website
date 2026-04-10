@@ -17,7 +17,7 @@
                 <img src="{{ asset('img/logo.png') }}" alt="Lotixam">
             </div>
             <div class="back">
-                <a href="{{ url('/') }}">&lsaquo; Retour</a>
+                <a href="{{ route('home') }}">&lsaquo; Accueil Lotixam</a>
             </div>
             <h2>Connexion</h2>
             <form id="loginForm" action="{{ url('/login') }}" method="post">

@@ -44,22 +44,12 @@
                 <textarea id="msg" name="msg" required
                     oninvalid="this.setCustomValidity('Renseignez votre message.')" oninput="this.setCustomValidity('')">{{ old('msg') }}</textarea>
                 <p></p>
-                <div class="attachments-block">
-                    <span class="attachments-block__title" id="attachments-heading">Pièces jointes <span class="attachments-block__hint">(optionnel · jusqu’à 3 fichiers)</span></span>
-                    <div class="file-picker" role="group" aria-labelledby="attachments-heading">
-                        <input type="file" id="join1" name="join1" class="file-picker__input" aria-describedby="join1-filename">
-                        <label for="join1" class="file-picker__btn">Parcourir</label>
-                        <span class="file-picker__name" id="join1-filename">Aucun fichier</span>
-                    </div>
-                    <div class="file-picker" role="group" aria-labelledby="attachments-heading">
-                        <input type="file" id="join2" name="join2" class="file-picker__input" aria-describedby="join2-filename">
-                        <label for="join2" class="file-picker__btn">Parcourir</label>
-                        <span class="file-picker__name" id="join2-filename">Aucun fichier</span>
-                    </div>
-                    <div class="file-picker" role="group" aria-labelledby="attachments-heading">
-                        <input type="file" id="join3" name="join3" class="file-picker__input" aria-describedby="join3-filename">
-                        <label for="join3" class="file-picker__btn">Parcourir</label>
-                        <span class="file-picker__name" id="join3-filename">Aucun fichier</span>
+                <div class="attachments-block" id="attachments-root" data-max="{{ max(1, (int) ($maxAttachments ?? 20)) }}">
+                    <span class="attachments-block__title" id="attachments-heading">Pièces jointes <span class="attachments-block__hint">(optionnel)</span></span>
+                    <div id="attachment-rows" class="attachment-rows" aria-labelledby="attachments-heading"></div>
+                    <div class="attachments-toolbar">
+                        <button type="button" class="attachments-add-btn" id="attachment-add">+ Ajouter un fichier</button>
+                        <span class="attachments-counter" id="attachment-counter" aria-live="polite"></span>
                     </div>
                 </div>
                 <p></p>
@@ -68,7 +58,7 @@
                 </div>
                 <br>
                 <div class="back">
-                    <a href="{{ url('/') }}">&lsaquo; Retour</a>
+                    <a href="{{ route('home') }}">&lsaquo; Accueil Lotixam</a>
                 </div>
             </form>
         </div>
@@ -79,13 +69,59 @@
     </div>
 </div>
 <script>
-document.querySelectorAll('.file-picker__input').forEach(function (input) {
-    var out = document.getElementById(input.id + '-filename');
-    if (!out) return;
-    input.addEventListener('change', function () {
-        out.textContent = input.files && input.files.length ? input.files[0].name : 'Aucun fichier';
-    });
-});
+(function () {
+    var root = document.getElementById('attachments-root');
+    var rowsEl = document.getElementById('attachment-rows');
+    var addBtn = document.getElementById('attachment-add');
+    var counterEl = document.getElementById('attachment-counter');
+    if (!root || !rowsEl || !addBtn) return;
+
+    var max = parseInt(root.getAttribute('data-max'), 10) || 20;
+    var idSeq = 0;
+
+    function updateCounter() {
+        var n = rowsEl.querySelectorAll('.attachment-row').length;
+        counterEl.textContent = n ? (n + ' / ' + max + ' fichier' + (n > 1 ? 's' : '')) : '';
+        addBtn.disabled = n >= max;
+    }
+
+    function bindRow(row) {
+        var input = row.querySelector('.file-picker__input');
+        var out = row.querySelector('.file-picker__name');
+        var removeBtn = row.querySelector('.attachment-remove');
+        if (input && out) {
+            input.addEventListener('change', function () {
+                out.textContent = input.files && input.files.length ? input.files[0].name : 'Aucun fichier';
+            });
+        }
+        if (removeBtn) {
+            removeBtn.addEventListener('click', function () {
+                row.remove();
+                updateCounter();
+            });
+        }
+    }
+
+    function addRow() {
+        if (rowsEl.querySelectorAll('.attachment-row').length >= max) return;
+        idSeq += 1;
+        var uid = 'att-' + idSeq;
+        var row = document.createElement('div');
+        row.className = 'attachment-row file-picker';
+        row.setAttribute('role', 'group');
+        row.innerHTML =
+            '<input type="file" id="' + uid + '" name="attachments[]" class="file-picker__input">' +
+            '<label for="' + uid + '" class="file-picker__btn">Parcourir</label>' +
+            '<span class="file-picker__name">Aucun fichier</span>' +
+            '<button type="button" class="attachment-remove" aria-label="Retirer ce fichier">×</button>';
+        rowsEl.appendChild(row);
+        bindRow(row);
+        updateCounter();
+    }
+
+    addBtn.addEventListener('click', addRow);
+    updateCounter();
+})();
 </script>
 </body>
 </html>

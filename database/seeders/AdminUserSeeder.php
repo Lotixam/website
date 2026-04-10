@@ -18,6 +18,14 @@ class AdminUserSeeder extends Seeder
             ]
         );
 
+        $user->profile()->updateOrCreate(
+            [],
+            [
+                'first_name' => 'Lucas',
+                'last_name' => 'Espinar',
+            ]
+        );
+
         $user->assignRole('admin');
     }
 }

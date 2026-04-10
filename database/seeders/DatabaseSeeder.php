@@ -12,6 +12,8 @@ class DatabaseSeeder extends Seeder
             RoleSeeder::class,
             AdminUserSeeder::class,
             StageSeeder::class,
+            WorkflowTemplateSeeder::class,
+            PublicMetricSeeder::class,
             TransactionCategorySeeder::class,
         ]);
     }

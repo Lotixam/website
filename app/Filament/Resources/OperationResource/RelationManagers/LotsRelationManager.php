@@ -4,13 +4,13 @@ namespace App\Filament\Resources\OperationResource\RelationManagers;
 
 use App\Enums\LotStatus;
 use App\Models\Contact;
+use Filament\Actions;
 use Filament\Forms\Components\DatePicker;
 use Filament\Forms\Components\Select;
 use Filament\Forms\Components\Textarea;
 use Filament\Forms\Components\TextInput;
 use Filament\Resources\RelationManagers\RelationManager;
 use Filament\Schemas\Schema;
-use Filament\Actions;
 use Filament\Tables;
 use Filament\Tables\Table;
 
@@ -18,14 +18,14 @@ class LotsRelationManager extends RelationManager
 {
     protected static string $relationship = 'lots';
 
-    protected static ?string $title = 'Lots / Parcelles';
+    protected static ?string $title = 'Unités du bien';
 
     public function form(Schema $schema): Schema
     {
         return $schema
             ->schema([
                 TextInput::make('lot_number')
-                    ->label('N° de lot')
+                    ->label('Référence / n° (lot, parcelle, lotissement…)')
                     ->required(),
                 TextInput::make('surface')
                     ->label('Surface (m²)')
@@ -61,7 +61,7 @@ class LotsRelationManager extends RelationManager
         return $table
             ->columns([
                 Tables\Columns\TextColumn::make('lot_number')
-                    ->label('N° Lot')
+                    ->label('Réf.')
                     ->sortable(),
                 Tables\Columns\TextColumn::make('surface')
                     ->label('Surface')
@@ -81,7 +81,11 @@ class LotsRelationManager extends RelationManager
                     ->formatStateUsing(fn ($record) => $record->buyer ? "{$record->buyer->first_name} {$record->buyer->last_name}" : '—'),
             ])
             ->headerActions([
-                Actions\CreateAction::make(),
+                Actions\CreateAction::make()
+                    ->label('Ajouter une unité')
+                    ->mutateFormDataUsing(fn (array $data): array => array_merge($data, [
+                        'operation_id' => $this->getOwnerRecord()->getKey(),
+                    ])),
             ])
             ->actions([
                 Actions\EditAction::make(),

@@ -5,6 +5,7 @@ namespace App\Filament\Resources;
 use App\Enums\PartnerType;
 use App\Filament\Resources\PartnerResource\Pages;
 use App\Models\Partner;
+use Filament\Actions;
 use Filament\Forms\Components\FileUpload;
 use Filament\Forms\Components\RichEditor;
 use Filament\Forms\Components\Select;
@@ -13,9 +14,9 @@ use Filament\Forms\Components\Toggle;
 use Filament\Resources\Resource;
 use Filament\Schemas\Components\Section;
 use Filament\Schemas\Schema;
-use Filament\Actions;
 use Filament\Tables;
 use Filament\Tables\Table;
+use Illuminate\Database\Eloquent\Builder;
 
 class PartnerResource extends Resource
 {
@@ -25,11 +26,29 @@ class PartnerResource extends Resource
 
     protected static string|\UnitEnum|null $navigationGroup = 'Commercial';
 
-    protected static ?string $modelLabel = 'Partenaire';
+    protected static ?string $modelLabel = 'Entreprise';
 
-    protected static ?string $pluralModelLabel = 'Partenaires';
+    protected static ?string $pluralModelLabel = 'Entreprises';
+
+    protected static ?string $navigationLabel = 'Entreprises';
 
     protected static ?int $navigationSort = 2;
+
+    public static function getEloquentQuery(): Builder
+    {
+        $query = parent::getEloquentQuery();
+
+        $user = auth()->user();
+        if ($user && $user->hasRole('collaborator') && ! $user->hasRole('admin')) {
+            if ($user->partner_id) {
+                $query->whereKey($user->partner_id);
+            } else {
+                $query->whereRaw('1 = 0');
+            }
+        }
+
+        return $query;
+    }
 
     public static function form(Schema $schema): Schema
     {
@@ -39,9 +58,10 @@ class PartnerResource extends Resource
                     ->columns(2)
                     ->schema([
                         TextInput::make('name')->label('Nom')->required(),
-                        Select::make('type')->label('Type')
+                        Select::make('type')->label('Type d\'entreprise')
                             ->options(collect(PartnerType::cases())->mapWithKeys(fn ($t) => [$t->value => $t->label()]))
-                            ->default('constructor')->required(),
+                            ->default(PartnerType::Other->value)
+                            ->required(),
                         TextInput::make('contact_name')->label('Nom du contact'),
                         TextInput::make('email')->label('Email')->email(),
                         TextInput::make('phone')->label('Téléphone')->tel(),
@@ -61,7 +81,7 @@ class PartnerResource extends Resource
             ->columns([
                 Tables\Columns\ImageColumn::make('logo_path')->label('')->disk('public')->circular()
                     ->defaultImageUrl(fn () => 'https://ui-avatars.com/api/?background=7c3aed&color=fff&name=P'),
-                Tables\Columns\TextColumn::make('name')->label('Partenaire')->searchable()->sortable(),
+                Tables\Columns\TextColumn::make('name')->label('Entreprise')->searchable()->sortable(),
                 Tables\Columns\TextColumn::make('type')->label('Type')->badge()->formatStateUsing(fn (PartnerType $state) => $state->label()),
                 Tables\Columns\TextColumn::make('contact_name')->label('Contact')->searchable(),
                 Tables\Columns\TextColumn::make('email')->label('Email'),

@@ -36,7 +36,7 @@ class LatestOperationsWidget extends BaseWidget
                     ->label('Prix d\'achat')
                     ->money('EUR'),
                 Tables\Columns\TextColumn::make('lots_count')
-                    ->label('Lots')
+                    ->label('Unités')
                     ->counts('lots'),
             ])
             ->actions([

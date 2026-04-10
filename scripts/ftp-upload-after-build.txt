@@ -1,0 +1,9 @@
+# Après ./scripts/build-for-production.sh, synchroniser au minimum ces chemins
+# (en plus du code applicatif habituel) :
+
+vendor/
+public/build/manifest.json
+public/build/assets/
+
+# Si vendor/ est régénéré sur le serveur via Composer, ne pas uploader vendor/
+# mais toujours uploader public/build/ après chaque npm run build.

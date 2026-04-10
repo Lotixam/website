@@ -22,7 +22,7 @@
     <div id="banniere">
 
         <div class="sign ">
-            <a href="/login">Se connecter / S'inscrire</a>
+            @include('vitrine.partials.login-nav-link', ['guestLabel' => "Se connecter / S'inscrire"])
         </div>
 
         <div id="logo">
@@ -77,7 +77,7 @@
                 <li class="liens"><a href="/nous-vendons">Nous vendons</a></li>
                 <li class="liens"><a href="/investisseurs">Investisseurs</a></li>
                 <li class="liens"><a href="/contact?prev=about&amp;button=false">Contact</a></li>
-                <li class="liens"><a href="/login">Mon compte</a></li>
+                <li class="liens">@include('vitrine.partials.login-nav-link', ['guestLabel' => 'Mon compte'])</li>
             </ul>
         </div>
     </div>
@@ -131,7 +131,8 @@
             comprendre les tendances d'utilisation. Il est important de noter que l'utilisation des cookies sur notre site n'est en
             aucune façon liée à des informations personnelles identifiables. Les informations collectées par le biais des cookies
             sont agrégées et anonymisées, et ne sont utilisées que dans le but d'améliorer l'expérience globale de nos utilisateurs
-            sur le site.
+            sur le site. Pour le détail des cookies déposés et vos choix, consultez notre
+            <a href="{{ \Illuminate\Support\Facades\Route::has('vitrine.cookies') ? route('vitrine.cookies') : url('/politique-cookies') }}">politique de cookies</a>.
         </span>
         <h1>5. Consentement</h1>
         <span>
@@ -176,26 +177,6 @@
     </div>
     <!-- Fin du corps de page -->
 </body>
-<footer>
-    <div>
-        <b>© LOTIXAM SAS 2024. Tous droits réservés</b>
-    </div>
-    <div class="separator">-</div>
-    <div>
-        <a href="/mentions-legales">Mentions légales</a>
-    </div>
-    <div class="separator">-</div>
-    <div>
-        <a href="https://blog.lotixam.fr/">Blog</a>
-    </div>
-    <div class="separator">-</div>
-    <div>
-        <a href="https://faq.lotixam.fr/">FAQ</a>
-    </div>
-    <div class="separator">-</div>
-    <div>
-        <a href="/contributeurs">Contributeurs &amp; Partenaires</a>
-    </div>
-</footer>
+@include('vitrine.partials.footer')
 
 </html>

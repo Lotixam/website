@@ -2,6 +2,9 @@
 
 namespace App\Providers;
 
+use App\Models\WorkflowTemplate;
+use App\Policies\WorkflowTemplatePolicy;
+use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\Facades\URL;
 use Illuminate\Support\ServiceProvider;
 
@@ -27,6 +30,8 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
+        Gate::policy(WorkflowTemplate::class, WorkflowTemplatePolicy::class);
+
         if ($this->app->environment('local')) {
             URL::forceScheme('http');
         } elseif ($this->app->environment('production')) {

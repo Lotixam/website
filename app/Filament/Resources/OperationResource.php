@@ -2,12 +2,15 @@
 
 namespace App\Filament\Resources;
 
+use App\Enums\OperationMission;
 use App\Enums\OperationStatus;
 use App\Enums\OperationType;
 use App\Filament\Resources\OperationResource\Pages;
 use App\Filament\Resources\OperationResource\RelationManagers;
 use App\Models\Contact;
 use App\Models\Operation;
+use App\Models\WorkflowTemplate;
+use Filament\Actions;
 use Filament\Forms\Components\DatePicker;
 use Filament\Forms\Components\RichEditor;
 use Filament\Forms\Components\Select;
@@ -15,9 +18,9 @@ use Filament\Forms\Components\TextInput;
 use Filament\Resources\Resource;
 use Filament\Schemas\Components\Section;
 use Filament\Schemas\Schema;
-use Filament\Actions;
 use Filament\Tables;
 use Filament\Tables\Table;
+use Illuminate\Database\Eloquent\Builder;
 
 class OperationResource extends Resource
 {
@@ -67,6 +70,7 @@ class OperationResource extends Resource
                             ])
                             ->createOptionUsing(function (array $data) {
                                 $data['type'] = 'seller';
+
                                 return Contact::create($data)->id;
                             }),
                     ]),
@@ -102,6 +106,34 @@ class OperationResource extends Resource
                             ->columnSpanFull(),
                     ])
                     ->collapsible(),
+                Section::make('Workflow & généalogie')
+                    ->columns(2)
+                    ->schema([
+                        Select::make('parent_operation_id')
+                            ->label('Projet parent')
+                            ->relationship('parentOperation', 'name')
+                            ->searchable()
+                            ->preload()
+                            ->nullable(),
+                        Select::make('workflow_template_id')
+                            ->label('Template d\'opération (référence)')
+                            ->options(fn () => WorkflowTemplate::query()->pluck('name', 'id'))
+                            ->searchable()
+                            ->nullable(),
+                        TextInput::make('participant_label')
+                            ->label('Libellé public pour participants')
+                            ->maxLength(255)
+                            ->columnSpanFull(),
+                        RichEditor::make('internal_objective')
+                            ->label('Objectif interne (admin)')
+                            ->columnSpanFull(),
+                        Select::make('mission')
+                            ->label('Mission finale')
+                            ->options(collect(OperationMission::cases())->mapWithKeys(fn ($m) => [$m->value => $m->label()]))
+                            ->nullable(),
+                    ])
+                    ->collapsible()
+                    ->collapsed(),
             ]);
     }
 
@@ -131,7 +163,7 @@ class OperationResource extends Resource
                     ->money('EUR')
                     ->sortable(),
                 Tables\Columns\TextColumn::make('lots_count')
-                    ->label('Lots')
+                    ->label('Unités')
                     ->counts('lots')
                     ->sortable(),
                 Tables\Columns\TextColumn::make('updated_at')
@@ -160,14 +192,30 @@ class OperationResource extends Resource
             ]);
     }
 
+    public static function getEloquentQuery(): Builder
+    {
+        $query = parent::getEloquentQuery();
+
+        if (auth()->user()?->hasRole('collaborator')) {
+            $query->whereHas('assignedUsers', fn (Builder $q) => $q->where('user_id', auth()->id()));
+        }
+
+        return $query;
+    }
+
     public static function getRelations(): array
     {
         return [
+            RelationManagers\WorkflowNodesRelationManager::class,
+            RelationManagers\WorkflowAuditEventsRelationManager::class,
+            RelationManagers\ProposalsRelationManager::class,
             RelationManagers\LotsRelationManager::class,
             RelationManagers\StagesRelationManager::class,
             RelationManagers\TransactionsRelationManager::class,
             RelationManagers\DocumentsRelationManager::class,
             RelationManagers\EventsRelationManager::class,
+            RelationManagers\AssignedUsersRelationManager::class,
+            RelationManagers\DocumentRequestsRelationManager::class,
         ];
     }
 

@@ -5,6 +5,7 @@ namespace App\Filament\Resources;
 use App\Enums\EventType;
 use App\Filament\Resources\EventResource\Pages;
 use App\Models\Event;
+use Filament\Actions;
 use Filament\Forms\Components\DateTimePicker;
 use Filament\Forms\Components\RichEditor;
 use Filament\Forms\Components\Select;
@@ -13,7 +14,6 @@ use Filament\Forms\Components\Toggle;
 use Filament\Resources\Resource;
 use Filament\Schemas\Components\Section;
 use Filament\Schemas\Schema;
-use Filament\Actions;
 use Filament\Tables;
 use Filament\Tables\Table;
 
@@ -46,7 +46,7 @@ class EventResource extends Resource
                         DateTimePicker::make('start_at')->label('Début')->required(),
                         DateTimePicker::make('end_at')->label('Fin'),
                         Select::make('operation_id')->label('Opération')->relationship('operation', 'name')->searchable()->preload(),
-                        Select::make('lot_id')->label('Lot')->relationship('lot', 'lot_number')->searchable()->preload(),
+                        Select::make('lot_id')->label('Unité du bien')->relationship('lot', 'lot_number')->searchable()->preload(),
                         Select::make('contact_id')->label('Contact')->relationship('contact', 'last_name')
                             ->getOptionLabelFromRecordUsing(fn ($r) => "{$r->first_name} {$r->last_name}")
                             ->searchable(['first_name', 'last_name'])->preload(),

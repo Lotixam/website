@@ -4,6 +4,7 @@ namespace App\Filament\Resources\OperationResource\RelationManagers;
 
 use App\Enums\TransactionType;
 use App\Models\TransactionCategory;
+use Filament\Actions;
 use Filament\Forms\Components\DatePicker;
 use Filament\Forms\Components\Select;
 use Filament\Forms\Components\Textarea;
@@ -11,7 +12,6 @@ use Filament\Forms\Components\TextInput;
 use Filament\Resources\RelationManagers\RelationManager;
 use Filament\Schemas\Components\Utilities\Get;
 use Filament\Schemas\Schema;
-use Filament\Actions;
 use Filament\Tables;
 use Filament\Tables\Table;
 
@@ -48,7 +48,7 @@ class TransactionsRelationManager extends RelationManager
                     ->label('Description')
                     ->columnSpanFull(),
                 Select::make('lot_id')
-                    ->label('Lot concerné')
+                    ->label('Unité du bien concernée')
                     ->relationship('lot', 'lot_number')
                     ->searchable()
                     ->preload(),
@@ -81,7 +81,7 @@ class TransactionsRelationManager extends RelationManager
                     ->money('EUR')
                     ->sortable(),
                 Tables\Columns\TextColumn::make('lot.lot_number')
-                    ->label('Lot'),
+                    ->label('Réf. unité'),
             ])
             ->defaultSort('date', 'desc')
             ->headerActions([

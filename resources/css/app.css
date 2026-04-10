@@ -1,5 +1,12 @@
 @import 'tailwindcss';
 
+/* Thème /me : classe sur <html> (ne remplace pas le dark: global basé sur le système pour welcome, etc.) */
+@custom-variant me-dark (&:where(.me-dark, .me-dark *));
+
+html.me-dark {
+    color-scheme: dark;
+}
+
 @source '../../vendor/laravel/framework/src/Illuminate/Pagination/resources/views/*.blade.php';
 @source '../../storage/framework/views/*.php';
 @source '../**/*.blade.php';
