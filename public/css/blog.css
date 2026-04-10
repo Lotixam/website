@@ -608,6 +608,24 @@
     font-size: 0.9em;
 }
 
+/* Signature éditoriale (fin d’article, style presse) */
+.blog-article-signature {
+    margin-top: 2.5rem;
+    padding-top: 1.25rem;
+    border-top: 1px solid #e0e0e0;
+}
+
+.blog-article-signature-text {
+    margin: 0;
+    font-size: 0.75rem;
+    line-height: 1.5;
+    color: #999;
+}
+
+.blog-article-signature-name {
+    color: #777;
+}
+
 .visually-hidden {
     position: absolute;
     width: 1px;

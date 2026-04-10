@@ -22,6 +22,8 @@ class BlogPost extends Model implements HasRichContent
         'title',
         'slug',
         'excerpt',
+        'author_first_name',
+        'author_last_name',
         'cover_image_path',
         'content',
         'published_at',
@@ -111,6 +113,21 @@ class BlogPost extends Model implements HasRichContent
      * URL d’affichage pour un fichier sur le disque public (admin + vitrine).
      * Les chemins blog/content et blog/covers passent par la route fichiers-blog (contourne les 403 sur /storage).
      */
+    /**
+     * Nom affiché en signature de fin d’article (presse). Défaut : Lotixam SAS.
+     */
+    public function bylineDisplay(): string
+    {
+        $first = trim((string) $this->author_first_name);
+        $last = trim((string) $this->author_last_name);
+
+        if ($first === '' && $last === '') {
+            return 'Lotixam SAS';
+        }
+
+        return trim($first.' '.$last);
+    }
+
     public static function publicFileDisplayUrl(string $path): string
     {
         if (preg_match('#^blog/(content|covers)/#', $path)) {

@@ -27,5 +27,10 @@
         <div class="blog-article-body">
             {!! $post->renderRichContentForPublic() !!}
         </div>
+        <footer class="blog-article-signature">
+            <p class="blog-article-signature-text">
+                Rédaction : <span class="blog-article-signature-name">{{ $post->bylineDisplay() }}</span>
+            </p>
+        </footer>
     </article>
 @endsection

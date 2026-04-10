@@ -82,6 +82,14 @@ class BlogPostResource extends Resource
                             ->label('Extrait / chapô')
                             ->rows(3)
                             ->columnSpanFull(),
+                        TextInput::make('author_first_name')
+                            ->label('Prénom du rédacteur')
+                            ->maxLength(120)
+                            ->helperText('Optionnel. Affiché en petite signature en fin d’article.'),
+                        TextInput::make('author_last_name')
+                            ->label('Nom du rédacteur')
+                            ->maxLength(120)
+                            ->helperText('Si prénom et nom sont vides, la signature indiquera « Lotixam SAS ».'),
                         FileUpload::make('cover_image_path')
                             ->label('Image de couverture')
                             ->image()

@@ -78,6 +78,26 @@ class BlogPagesTest extends TestCase
 
         $response->assertOk();
         $response->assertSee('Lecture article', false);
+        $response->assertSee('Rédaction : Lotixam SAS', false);
+    }
+
+    public function test_show_displays_author_byline_when_set(): void
+    {
+        BlogPost::factory()->create([
+            'title' => 'Article signé',
+            'slug' => 'article-signe',
+            'author_first_name' => 'Marie',
+            'author_last_name' => 'Dupont',
+            'published_at' => now()->subDay(),
+            'is_visible' => true,
+            'sort_order' => 1,
+        ]);
+
+        $response = $this->get(route('blog.show', ['slug' => 'article-signe']));
+
+        $response->assertOk();
+        $response->assertSee('Rédaction : Marie Dupont', false);
+        $response->assertDontSee('Rédaction : Lotixam SAS', false);
     }
 
     public function test_show_draft_returns_404(): void
