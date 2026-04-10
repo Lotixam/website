@@ -5,7 +5,10 @@
     <div class="mb-8">
         <a href="{{ route('client.dashboard') }}" class="text-sm text-zinc-400 hover:text-zinc-600 transition mb-2 inline-block">&larr; Retour aux projets</a>
         <h1 class="text-2xl font-bold text-zinc-900">{{ $operation->name }}</h1>
-        <p class="text-zinc-500">{{ $operation->address }} {{ $operation->postal_code }} {{ $operation->city }}</p>
+        @if (!empty($isSellerParticipant))
+            <p class="text-sm font-medium text-zinc-600 mt-1">Suivi de votre vente avec Lotixam</p>
+        @endif
+        <p class="text-zinc-500 {{ !empty($isSellerParticipant) ? 'mt-1' : '' }}">{{ $operation->address }} {{ $operation->postal_code }} {{ $operation->city }}</p>
     </div>
 
     {{-- Progression globale --}}
@@ -23,9 +26,9 @@
             <div class="bg-white rounded-xl border border-zinc-200 p-5">
                 <h2 class="font-semibold text-zinc-900 mb-4">
                     @if ($hasWorkflow)
-                        Avancement du projet
+                        {{ !empty($isSellerParticipant) ? 'Avancement de votre vente' : 'Avancement du projet' }}
                     @else
-                        Étapes du projet
+                        {{ !empty($isSellerParticipant) ? 'Étapes de votre vente' : 'Étapes du projet' }}
                     @endif
                 </h2>
                 @if ($hasWorkflow)

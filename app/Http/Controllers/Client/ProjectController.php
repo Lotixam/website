@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Client;
 
+use App\Enums\OperationParticipantKind;
 use App\Http\Controllers\Controller;
 use App\Models\Operation;
 use App\Services\Workflow\WorkflowEngine;
@@ -32,11 +33,15 @@ class ProjectController extends Controller
             : collect();
         $progress = $workflow->clientProgressPercent($operation, $user);
 
+        $assignment = $operation->assignedUsers()->where('users.id', $user->id)->first();
+        $isSellerParticipant = $assignment?->pivot?->participant_kind === OperationParticipantKind::Seller->value;
+
         return view('client.project.show', [
             'operation' => $operation,
             'progress' => $progress,
             'hasWorkflow' => $hasWorkflow,
             'workflowNodes' => $workflowNodes,
+            'isSellerParticipant' => $isSellerParticipant,
         ]);
     }
 }

@@ -3,6 +3,7 @@
 namespace App\Services\Workflow;
 
 use App\Enums\DocumentRequestStatus;
+use App\Enums\OperationParticipantKind;
 use App\Enums\WorkflowApprovalState;
 use App\Enums\WorkflowNodeStatus;
 use App\Enums\WorkflowParticipantVisibility;
@@ -255,12 +256,16 @@ class WorkflowEngine
         $assignment = $operation->assignedUsers()->where('users.id', $user->id)->first();
         $pivot = $assignment?->pivot;
         $isPartner = $pivot && ($pivot->participant_kind === 'partner' || ($pivot->role === 'collaborator' && $pivot->participant_kind === 'partner'));
+        $isSeller = $pivot && $pivot->participant_kind === OperationParticipantKind::Seller->value;
 
-        $filtered = $nodes->filter(function (OperationWorkflowNode $n) use ($user, $isPartner) {
+        $filtered = $nodes->filter(function (OperationWorkflowNode $n) use ($user, $isPartner, $isSeller) {
             if ($n->participant_visibility === WorkflowParticipantVisibility::AdminOnly) {
                 return $user->hasRole('admin');
             }
             if ($n->participant_visibility === WorkflowParticipantVisibility::HideFromB2b && $isPartner) {
+                return false;
+            }
+            if ($n->participant_visibility === WorkflowParticipantVisibility::HideFromSeller && $isSeller) {
                 return false;
             }
 
@@ -473,7 +478,7 @@ class WorkflowEngine
 
     protected function createClientApprovals(OperationWorkflowNode $node, Operation $op): void
     {
-        $clients = $op->assignedUsers()->wherePivot('role', 'client')->get();
+        $clients = $op->assignedUsers()->wherePivotIn('role', ['client', 'seller'])->get();
         if ($clients->isEmpty()) {
             OperationWorkflowApproval::create([
                 'operation_workflow_node_id' => $node->id,
@@ -531,7 +536,7 @@ class WorkflowEngine
                 if ($approval->user_id && $approval->user_id === $user->id) {
                     return $approval;
                 }
-                if (! $approval->user_id && $user->hasRole('client')) {
+                if (! $approval->user_id && ($user->hasRole('client') || $user->hasRole('seller'))) {
                     return $approval;
                 }
             }

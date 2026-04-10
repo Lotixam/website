@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Casts\SafeBackedEnumCast;
 use App\Enums\EventType;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
@@ -23,7 +24,7 @@ class Event extends Model
     protected function casts(): array
     {
         return [
-            'type' => EventType::class,
+            'type' => SafeBackedEnumCast::class.':'.EventType::class.','.EventType::Reminder->value,
             'start_at' => 'datetime',
             'end_at' => 'datetime',
             'is_completed' => 'boolean',

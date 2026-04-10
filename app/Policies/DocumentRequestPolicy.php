@@ -14,7 +14,7 @@ class DocumentRequestPolicy
 
     public function view(User $user, DocumentRequest $documentRequest): bool
     {
-        if ($user->hasRole('client')) {
+        if ($user->hasRole('client') || $user->hasRole('seller')) {
             return $documentRequest->assigned_to_user_id === $user->id;
         }
 

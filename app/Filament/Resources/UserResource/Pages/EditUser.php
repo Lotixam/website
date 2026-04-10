@@ -55,10 +55,10 @@ class EditUser extends EditRecord
 
         if ($role === 'admin') {
             $data['partner_id'] = null;
-        } elseif (in_array($role, ['client', 'collaborator'], true)) {
+        } elseif (in_array($role, ['client', 'collaborator', 'seller'], true)) {
             if (empty($data['partner_id'])) {
                 throw ValidationException::withMessages([
-                    'partner_id' => 'Une entreprise est obligatoire pour un client ou un collaborateur.',
+                    'partner_id' => 'Une entreprise est obligatoire pour un client, un vendeur ou un collaborateur.',
                 ]);
             }
         }

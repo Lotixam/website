@@ -14,7 +14,7 @@ class MessagePolicy
 
     public function view(User $user, Message $message): bool
     {
-        if ($user->hasRole('client')) {
+        if ($user->hasRole('client') || $user->hasRole('seller')) {
             return $message->operation
                 ->assignedUsers()
                 ->where('user_id', $user->id)

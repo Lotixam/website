@@ -12,11 +12,22 @@
                 <div class="min-w-0">
                     <h2 class="text-xl font-semibold text-white break-words">{{ $user->name }}</h2>
                     <p class="text-zinc-400 text-sm break-all">{{ '@' . $user->username }}</p>
+                    @php
+                        $meRole = $user->getRoleNames()->first();
+                        $meRoleLabel = match ($meRole) {
+                            'admin' => 'Administrateur',
+                            'collaborator' => 'Collaborateur',
+                            'client' => 'Client',
+                            'seller' => 'Vendeur',
+                            default => $meRole ? ucfirst((string) $meRole) : 'Membre',
+                        };
+                    @endphp
                     <span class="inline-block mt-1 px-2 py-0.5 text-xs font-medium rounded-full
                         {{ $user->hasRole('admin') ? 'bg-amber-400/20 text-amber-300' : '' }}
                         {{ $user->hasRole('collaborator') ? 'bg-sky-400/20 text-sky-300' : '' }}
-                        {{ $user->hasRole('client') ? 'bg-emerald-400/20 text-emerald-300' : '' }}">
-                        {{ ucfirst($user->getRoleNames()->first() ?? 'Membre') }}
+                        {{ $user->hasRole('client') ? 'bg-emerald-400/20 text-emerald-300' : '' }}
+                        {{ $user->hasRole('seller') ? 'bg-amber-400/20 text-amber-200' : '' }}">
+                        {{ $meRoleLabel }}
                     </span>
                 </div>
             </div>

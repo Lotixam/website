@@ -3,6 +3,7 @@
 namespace Tests\Feature;
 
 use App\Enums\DocumentRequestStatus;
+use App\Enums\OperationParticipantKind;
 use App\Enums\OperationStatus;
 use App\Enums\OperationType;
 use App\Enums\WorkflowNodeStatus;
@@ -66,7 +67,7 @@ class WorkflowEngineTest extends TestCase
 
         $financeur = $operation->fresh()->workflowNodes()->where('title', 'Branche financeur')->firstOrFail();
         $apporteur = $operation->fresh()->workflowNodes()->where('title', 'Branche apporteur d’affaires')->firstOrFail();
-        $ma = $operation->fresh()->workflowNodes()->where('title', 'Branche constructeur / Maison Alysia')->firstOrFail();
+        $ma = $operation->fresh()->workflowNodes()->where('title', 'Branche constructeur')->firstOrFail();
         $merge = $operation->fresh()->workflowNodes()->where('title', 'Point de fusion')->firstOrFail();
 
         $this->assertSame(WorkflowNodeStatus::InProgress, $financeur->status);
@@ -117,7 +118,62 @@ class WorkflowEngineTest extends TestCase
 
         $this->assertNotContains('Branche apporteur d’affaires', $visible);
         $this->assertNotContains('Branche financeur', $visible);
-        $this->assertContains('Branche constructeur / Maison Alysia', $visible);
+        $this->assertContains('Branche constructeur', $visible);
+    }
+
+    public function test_hide_from_seller_filters_timeline_for_seller_participant(): void
+    {
+        $admin = $this->makeAdmin();
+        $seller = $this->makeSeller('seller-parcel');
+        $this->actingAs($admin);
+
+        $operation = $this->makeOperation();
+        $operation->assignedUsers()->attach($seller->id, [
+            'role' => 'seller',
+            'participant_kind' => OperationParticipantKind::Seller->value,
+            'hide_upstream_steps' => false,
+        ]);
+
+        $template = WorkflowTemplate::query()->where('key', 'division_parcellaire')->firstOrFail();
+        $engine = app(WorkflowEngine::class);
+        $engine->instantiateFromTemplate($operation, $template);
+
+        $visible = $engine->visibleNodesForUser($operation->fresh(), $seller)
+            ->pluck('title')
+            ->all();
+
+        $this->assertNotContains('Démarrage du projet', $visible);
+        $this->assertNotContains('Branche financeur', $visible);
+        $this->assertNotContains('Branche constructeur', $visible);
+        $this->assertNotContains('Point de fusion', $visible);
+        $this->assertContains('Mise en vente des lots', $visible);
+        $this->assertContains('Validation conjointe & clôture', $visible);
+    }
+
+    public function test_create_client_approvals_includes_pivot_seller_role(): void
+    {
+        $admin = $this->makeAdmin();
+        $seller = $this->makeSeller('seller-approvals');
+        $this->actingAs($admin);
+
+        $operation = $this->makeOperation();
+        $operation->assignedUsers()->attach($seller->id, [
+            'role' => 'seller',
+            'participant_kind' => OperationParticipantKind::Seller->value,
+            'hide_upstream_steps' => false,
+        ]);
+
+        $template = WorkflowTemplate::query()->where('key', 'terrain_vendeur_particulier')->firstOrFail();
+        $engine = app(WorkflowEngine::class);
+        $engine->instantiateFromTemplate($operation, $template);
+
+        $firstNode = $operation->fresh()->workflowRootNodes()->firstOrFail();
+        $userIds = $firstNode->approvals()
+            ->where('actor_role', 'client')
+            ->pluck('user_id')
+            ->all();
+
+        $this->assertContains($seller->id, $userIds);
     }
 
     public function test_single_document_reopen_resets_document_and_reopens_node(): void
@@ -188,6 +244,14 @@ class WorkflowEngineTest extends TestCase
     {
         $user = User::factory()->create(['username' => $username]);
         $user->assignRole('client');
+
+        return $user;
+    }
+
+    private function makeSeller(string $username): User
+    {
+        $user = User::factory()->create(['username' => $username]);
+        $user->assignRole('seller');
 
         return $user;
     }

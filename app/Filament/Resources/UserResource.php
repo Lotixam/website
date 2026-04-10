@@ -113,6 +113,7 @@ class UserResource extends Resource
                         'admin' => 'Administrateur',
                         'collaborator' => 'Collaborateur',
                         'client' => 'Client',
+                        'seller' => 'Vendeur',
                     ])
                     ->required()
                     ->default('client')
@@ -128,9 +129,9 @@ class UserResource extends Resource
                     ->searchable()
                     ->preload()
                     ->nullable()
-                    ->required(fn (Get $get) => in_array((string) $get('role'), ['client', 'collaborator'], true))
-                    ->visible(fn (Get $get) => in_array((string) $get('role'), ['client', 'collaborator'], true))
-                    ->helperText('Obligatoire pour tout client ou collaborateur (financeur, apporteur d’affaires, constructeur, interne partenaire, etc.). Les administrateurs Lotixam n’ont pas d’entreprise rattachée.'),
+                    ->required(fn (Get $get) => in_array((string) $get('role'), ['client', 'collaborator', 'seller'], true))
+                    ->visible(fn (Get $get) => in_array((string) $get('role'), ['client', 'collaborator', 'seller'], true))
+                    ->helperText('Obligatoire pour tout client, vendeur ou collaborateur (financeur, apporteur d’affaires, constructeur, interne partenaire, etc.). Les administrateurs Lotixam n’ont pas d’entreprise rattachée.'),
             ]);
     }
 
@@ -181,12 +182,14 @@ class UserResource extends Resource
                         'admin' => 'Administrateur',
                         'collaborator' => 'Collaborateur',
                         'client' => 'Client',
+                        'seller' => 'Vendeur',
                         default => $state,
                     })
                     ->color(fn (string $state) => match ($state) {
                         'admin' => 'danger',
                         'collaborator' => 'info',
                         'client' => 'success',
+                        'seller' => 'warning',
                         default => 'gray',
                     }),
                 Tables\Columns\TextColumn::make('created_at')
@@ -203,6 +206,7 @@ class UserResource extends Resource
                         'admin' => 'Administrateur',
                         'collaborator' => 'Collaborateur',
                         'client' => 'Client',
+                        'seller' => 'Vendeur',
                     ])
                     ->query(fn (Builder $query, array $data) => $data['value']
                         ? $query->role($data['value'])

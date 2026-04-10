@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Casts\SafeBackedEnumCast;
 use App\Enums\OperationMission;
 use App\Enums\OperationStatus;
 use App\Enums\OperationType;
@@ -38,9 +39,9 @@ class Operation extends Model
     protected function casts(): array
     {
         return [
-            'type' => OperationType::class,
-            'status' => OperationStatus::class,
-            'mission' => OperationMission::class,
+            'type' => SafeBackedEnumCast::class.':'.OperationType::class.','.OperationType::Autre->value,
+            'status' => SafeBackedEnumCast::class.':'.OperationStatus::class.','.OperationStatus::Prospection->value,
+            'mission' => SafeBackedEnumCast::class.':'.OperationMission::class.','.OperationMission::Acquire->value,
             'purchase_date' => 'date',
             'purchase_price' => 'decimal:2',
             'estimated_resale_total' => 'decimal:2',

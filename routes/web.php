@@ -93,7 +93,7 @@ Route::middleware('auth')->prefix('me')->name('me.')->group(function () {
     Route::put('/password', [MeController::class, 'updatePassword'])->name('password.update');
 });
 
-Route::middleware(['auth', 'role:client,admin,collaborator'])->prefix('client')->name('client.')->group(function () {
+Route::middleware(['auth', 'role:client,seller,admin,collaborator'])->prefix('client')->name('client.')->group(function () {
     Route::get('/', [DashboardController::class, 'index'])->name('dashboard');
     Route::get('/projet/{operation}', [ProjectController::class, 'show'])->name('project.show');
     Route::post('/document-request/{documentRequest}/upload', [DocumentController::class, 'store'])->name('document.upload');

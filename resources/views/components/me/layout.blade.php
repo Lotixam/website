@@ -69,7 +69,7 @@
                             Administration
                         </a>
                     @endif
-                    @if($user->hasRole('client'))
+                    @if($user->hasRole('client') || $user->hasRole('seller'))
                         <a href="{{ route('client.dashboard') }}" class="px-3 py-2 rounded-lg text-zinc-400 hover:text-white hover:bg-white/5 transition text-xs uppercase tracking-wider">
                             Mes projets
                         </a>
@@ -106,7 +106,7 @@
                 <a href="{{ route('home') }}" class="px-2 py-1.5 rounded-lg text-zinc-300 hover:text-white hover:bg-white/5 transition">Accueil site</a>
                 <a href="{{ route('me.index') }}" class="px-2 py-1.5 rounded-lg text-zinc-300 hover:text-white hover:bg-white/5 transition">Profil</a>
                 <a href="{{ route('me.password') }}" class="px-2 py-1.5 rounded-lg text-zinc-300 hover:text-white hover:bg-white/5 transition">Mot de passe</a>
-                @if(auth()->user()->hasRole('client'))
+                @if(auth()->user()->hasRole('client') || auth()->user()->hasRole('seller'))
                     <a href="{{ route('client.dashboard') }}" class="px-2 py-1.5 rounded-lg text-zinc-300 hover:text-white hover:bg-white/5 transition">Mes projets</a>
                 @endif
                 @if(auth()->user()->hasRole('admin') || auth()->user()->hasRole('collaborator'))

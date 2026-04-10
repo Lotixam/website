@@ -30,8 +30,8 @@ class LatestOperationsWidget extends BaseWidget
                 Tables\Columns\TextColumn::make('status')
                     ->label('Statut')
                     ->badge()
-                    ->formatStateUsing(fn (OperationStatus $state) => $state->label())
-                    ->color(fn (OperationStatus $state) => $state->color()),
+                    ->formatStateUsing(fn (?OperationStatus $state) => $state?->label() ?? '—')
+                    ->color(fn (?OperationStatus $state) => $state?->color() ?? 'gray'),
                 Tables\Columns\TextColumn::make('purchase_price')
                     ->label('Prix d\'achat')
                     ->money('EUR'),

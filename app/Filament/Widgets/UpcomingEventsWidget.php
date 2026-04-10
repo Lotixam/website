@@ -32,8 +32,8 @@ class UpcomingEventsWidget extends BaseWidget
                 Tables\Columns\TextColumn::make('type')
                     ->label('Type')
                     ->badge()
-                    ->formatStateUsing(fn (EventType $state) => $state->label())
-                    ->color(fn (EventType $state) => $state->color()),
+                    ->formatStateUsing(fn (?EventType $state) => $state?->label() ?? '—')
+                    ->color(fn (?EventType $state) => $state?->color() ?? 'gray'),
                 Tables\Columns\TextColumn::make('start_at')
                     ->label('Date')
                     ->dateTime('d/m/Y H:i'),

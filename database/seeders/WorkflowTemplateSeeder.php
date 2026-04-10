@@ -61,17 +61,25 @@ class WorkflowTemplateSeeder extends Seeder
             return;
         }
 
-        $start = $this->node($t, null, 'Démarrage du projet', 0, policy: WorkflowValidationPolicy::LotixamOnly, description: 'Notes, collaborateurs, financeurs, apporteurs.');
+        $start = $this->node($t, null, 'Démarrage du projet', 0, policy: WorkflowValidationPolicy::LotixamOnly, visibility: WorkflowParticipantVisibility::HideFromSeller, description: 'Notes, collaborateurs, financeurs, apporteurs.');
 
         $fork = 'parcel_fork_1';
-        $this->node($t, $start->id, 'Branche financeur', 0, group: $fork, policy: WorkflowValidationPolicy::BothAll, description: 'Acceptation projet, documents, montant.');
+        $this->node($t, $start->id, 'Branche financeur', 0, group: $fork, policy: WorkflowValidationPolicy::BothAll, visibility: WorkflowParticipantVisibility::HideFromSeller, description: 'Acceptation projet, documents, montant.');
         $this->node($t, $start->id, 'Branche apporteur d\'affaires', 1, group: $fork, policy: WorkflowValidationPolicy::LotixamOnly, visibility: WorkflowParticipantVisibility::AdminOnly, description: 'Visible admin uniquement (marge, négociation).');
-        $this->node($t, $start->id, 'Branche constructeur', 2, group: $fork, policy: WorkflowValidationPolicy::BothAll, description: 'Plans, documents techniques.');
+        $this->node($t, $start->id, 'Branche constructeur', 2, group: $fork, policy: WorkflowValidationPolicy::BothAll, visibility: WorkflowParticipantVisibility::HideFromSeller, description: 'Plans, documents techniques.');
 
-        $merge = $this->node($t, $start->id, 'Point de fusion', 3, merge: true, description: 'Débloqué lorsque toutes les branches parallèles sont terminées.');
+        $merge = $this->node(
+            $t,
+            $start->id,
+            'Point de fusion',
+            3,
+            merge: true,
+            visibility: WorkflowParticipantVisibility::HideFromSeller,
+            description: 'Débloqué lorsque toutes les branches parallèles sont terminées.',
+        );
 
-        $this->node($t, $merge->id, 'Permis d\'aménager', 0, policy: WorkflowValidationPolicy::LotixamOnly);
-        $this->node($t, $merge->id, 'Bornage / Géomètre', 1, policy: WorkflowValidationPolicy::LotixamOnly);
+        $this->node($t, $merge->id, 'Permis d\'aménager', 0, policy: WorkflowValidationPolicy::LotixamOnly, visibility: WorkflowParticipantVisibility::HideFromSeller);
+        $this->node($t, $merge->id, 'Bornage / Géomètre', 1, policy: WorkflowValidationPolicy::LotixamOnly, visibility: WorkflowParticipantVisibility::HideFromSeller);
         $this->node($t, $merge->id, 'Mise en vente des lots', 2, policy: WorkflowValidationPolicy::BothAll);
         $this->node($t, $merge->id, 'Validation conjointe & clôture', 3, policy: WorkflowValidationPolicy::BothAll);
     }

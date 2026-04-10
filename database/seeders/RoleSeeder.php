@@ -13,6 +13,8 @@ class RoleSeeder extends Seeder
     {
         app()[PermissionRegistrar::class]->forgetCachedPermissions();
 
+        $guard = config('auth.defaults.guard', 'web');
+
         $permissions = [
             'view_operations', 'create_operations', 'edit_operations', 'delete_operations',
             'view_lots', 'create_lots', 'edit_lots', 'delete_lots',
@@ -30,20 +32,26 @@ class RoleSeeder extends Seeder
         ];
 
         foreach ($permissions as $permission) {
-            Permission::firstOrCreate(['name' => $permission]);
+            Permission::firstOrCreate(['name' => $permission, 'guard_name' => $guard]);
         }
 
-        $admin = Role::firstOrCreate(['name' => 'admin']);
+        $admin = Role::firstOrCreate(['name' => 'admin', 'guard_name' => $guard]);
         $admin->syncPermissions($permissions);
 
         $collaboratorPerms = array_filter($permissions, fn ($p) => ! in_array($p, [
             'manage_users', 'manage_settings', 'view_own_operations', 'upload_documents',
         ]));
-        $collaborator = Role::firstOrCreate(['name' => 'collaborator']);
+        $collaborator = Role::firstOrCreate(['name' => 'collaborator', 'guard_name' => $guard]);
         $collaborator->syncPermissions($collaboratorPerms);
 
-        $client = Role::firstOrCreate(['name' => 'client']);
+        $client = Role::firstOrCreate(['name' => 'client', 'guard_name' => $guard]);
         $client->syncPermissions([
+            'view_own_operations', 'upload_documents', 'view_messages', 'send_messages',
+            'view_document_requests',
+        ]);
+
+        $seller = Role::firstOrCreate(['name' => 'seller', 'guard_name' => $guard]);
+        $seller->syncPermissions([
             'view_own_operations', 'upload_documents', 'view_messages', 'send_messages',
             'view_document_requests',
         ]);
