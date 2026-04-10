@@ -5,6 +5,7 @@
     $legalsUrl = Route::has('vitrine.legals') ? route('vitrine.legals') : url('/mentions-legales');
     $cookiesUrl = Route::has('vitrine.cookies') ? route('vitrine.cookies') : url('/politique-cookies');
     $contributorsUrl = Route::has('vitrine.contributors') ? route('vitrine.contributors') : url('/contributeurs');
+    $realizationsUrl = Route::has('vitrine.realizations') ? route('vitrine.realizations') : url('/nos-realisations');
 @endphp
 <footer>
     <div>
@@ -21,6 +22,10 @@
     <div class="separator">-</div>
     <div>
         <a href="https://blog.lotixam.fr/">Blog</a>
+    </div>
+    <div class="separator">-</div>
+    <div>
+        <a href="{{ $realizationsUrl }}">Nos réalisations</a>
     </div>
     <div class="separator">-</div>
     <div>

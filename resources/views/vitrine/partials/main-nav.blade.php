@@ -14,6 +14,9 @@
         <a href="/nos-realisations" class="sous-liens">Nos réalisations</a>
     </div>
     <div>
+        <a href="{{ route('blog.index') }}" class="sous-liens">Blog</a>
+    </div>
+    <div>
         <a href="/nous-achetons" class="sous-liens">Nous achetons</a>
     </div>
     <div>
@@ -40,6 +43,7 @@
         <li class="liens"><a href="/">Accueil</a></li>
         <li class="liens"><a href="/qui-sommes-nous">Qui sommes nous</a></li>
         <li class="liens"><a href="/nos-realisations">Nos réalisations</a></li>
+        <li class="liens"><a href="{{ route('blog.index') }}">Blog</a></li>
         <li class="liens"><a href="/nous-achetons">Nous achetons</a></li>
         <li class="liens"><a href="/nous-vendons">Nous vendons</a></li>
         <li class="liens"><a href="/investisseurs">Investisseurs</a></li>

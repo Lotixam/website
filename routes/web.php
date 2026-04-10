@@ -1,7 +1,6 @@
 <?php
 
 use App\Http\Controllers\Auth\LoginController;
-use App\Http\Controllers\PublicAvatarController;
 use App\Http\Controllers\Client\DashboardController;
 use App\Http\Controllers\Client\DocumentController;
 use App\Http\Controllers\Client\MessageController;
@@ -10,6 +9,8 @@ use App\Http\Controllers\Client\ProjectController;
 use App\Http\Controllers\ContactController;
 use App\Http\Controllers\MaintenanceController;
 use App\Http\Controllers\MeController;
+use App\Http\Controllers\PublicAvatarController;
+use App\Http\Controllers\Site\BlogController;
 use App\Http\Controllers\Site\StaticPageController;
 use Illuminate\Support\Facades\Route;
 
@@ -51,6 +52,17 @@ Route::get('/contributeurs', [StaticPageController::class, 'show'])
 Route::get('/simulation', [StaticPageController::class, 'show'])
     ->defaults('vitrinePage', 'simulation')
     ->name('vitrine.simulation');
+
+Route::get('/nos-realisations', [StaticPageController::class, 'show'])
+    ->defaults('vitrinePage', 'realizations')
+    ->name('vitrine.realizations');
+
+Route::permanentRedirect('/nos-realisation', '/nos-realisations');
+
+Route::get('/blog', [BlogController::class, 'index'])->name('blog.index');
+Route::get('/blog/{slug}', [BlogController::class, 'show'])
+    ->where('slug', '[a-z0-9]+(?:-[a-z0-9]+)*')
+    ->name('blog.show');
 
 /*
 |--------------------------------------------------------------------------

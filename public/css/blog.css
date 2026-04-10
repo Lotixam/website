@@ -1,0 +1,430 @@
+/* Blog vitrine — charte Lotixam (#555555, #b1e90e), Montserrat via common.css */
+
+.blog-body {
+    margin: 0;
+    min-height: 100vh;
+    font-family: Montserrat, system-ui, sans-serif;
+    background: #f4f4f4;
+    color: #555555;
+}
+
+.blog-topbar {
+    background: #555555;
+    color: #fff;
+    box-shadow: 0 2px 12px rgba(0, 0, 0, 0.12);
+}
+
+.blog-topbar-inner {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 0.85rem 1.25rem;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 1rem 1.5rem;
+}
+
+.blog-logo-link {
+    display: flex;
+    align-items: center;
+    flex-shrink: 0;
+}
+
+.blog-logo-link img {
+    display: block;
+    border-radius: 8px;
+}
+
+.blog-topbar-titles {
+    flex: 1;
+    min-width: 160px;
+}
+
+.blog-brand {
+    font-family: Montserrat-Bold, Montserrat, sans-serif;
+    font-size: 1.25rem;
+    color: #fff;
+    text-decoration: none;
+}
+
+.blog-brand:hover {
+    color: #b1e90e;
+}
+
+.blog-tagline {
+    margin: 0.15rem 0 0;
+    font-size: 0.8rem;
+    opacity: 0.85;
+}
+
+.blog-topbar-nav {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.75rem 1.25rem;
+}
+
+.blog-topbar-nav a {
+    color: #e8e8e8;
+    text-decoration: none;
+    font-size: 0.9rem;
+}
+
+.blog-topbar-nav a:hover {
+    color: #b1e90e;
+}
+
+.blog-topbar-account a {
+    color: #b1e90e;
+    font-weight: 600;
+    text-decoration: none;
+    font-size: 0.9rem;
+}
+
+.blog-topbar-account a:hover {
+    text-decoration: underline;
+}
+
+.blog-main {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 2rem 1.25rem 3rem;
+}
+
+.blog-page-title {
+    margin: 0;
+    font-family: Montserrat-Bold, Montserrat, sans-serif;
+    font-size: clamp(1.75rem, 4vw, 2.25rem);
+    color: #555555;
+}
+
+.blog-lead {
+    margin: 0.5rem 0 0;
+    color: #666;
+    font-size: 1rem;
+    max-width: 36rem;
+}
+
+.blog-hero {
+    margin-bottom: 2rem;
+}
+
+.blog-hero-header {
+    margin-bottom: 1.25rem;
+}
+
+.blog-empty-hero,
+.blog-empty {
+    color: #666;
+    font-size: 1rem;
+}
+
+.blog-hero-scroll {
+    display: flex;
+    gap: 1rem;
+    overflow-x: auto;
+    padding-bottom: 0.5rem;
+    scroll-snap-type: x mandatory;
+    -webkit-overflow-scrolling: touch;
+}
+
+.blog-hero-card {
+    flex: 0 0 min(320px, 85vw);
+    scroll-snap-align: start;
+}
+
+.blog-hero-card-link {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    min-height: 200px;
+    padding: 1.25rem;
+    background: #fff;
+    border-radius: 12px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+    text-decoration: none;
+    color: inherit;
+    border: 2px solid transparent;
+    transition: border-color 0.15s ease, box-shadow 0.15s ease;
+}
+
+.blog-hero-card-link:hover {
+    border-color: #b1e90e;
+    box-shadow: 0 6px 24px rgba(177, 233, 14, 0.2);
+}
+
+.blog-hero-card-title {
+    margin: 0.5rem 0;
+    font-family: Montserrat-Bold, Montserrat, sans-serif;
+    font-size: 1.1rem;
+    color: #555555;
+    flex: 1;
+}
+
+.blog-hero-card-excerpt {
+    margin: 0;
+    font-size: 0.88rem;
+    color: #666;
+    line-height: 1.45;
+}
+
+.blog-hero-card-cta {
+    margin-top: 1rem;
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: #555555;
+}
+
+.blog-hero-card-link:hover .blog-hero-card-cta {
+    color: #3d3d00;
+}
+
+.blog-toolbar {
+    margin-bottom: 2rem;
+    padding: 1.25rem;
+    background: #fff;
+    border-radius: 12px;
+    box-shadow: 0 2px 12px rgba(0, 0, 0, 0.06);
+}
+
+.blog-search-form {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+    margin-bottom: 1.25rem;
+}
+
+.blog-search-input {
+    flex: 1;
+    min-width: 200px;
+    padding: 0.65rem 1rem;
+    border: 2px solid #ddd;
+    border-radius: 8px;
+    font-family: inherit;
+    font-size: 1rem;
+    color: #555555;
+}
+
+.blog-search-input:focus {
+    outline: none;
+    border-color: #b1e90e;
+}
+
+.blog-search-btn {
+    padding: 0.65rem 1.25rem;
+    background: #b1e90e;
+    color: #333;
+    border: none;
+    border-radius: 8px;
+    font-family: Montserrat-Bold, Montserrat, sans-serif;
+    font-size: 0.95rem;
+    cursor: pointer;
+}
+
+.blog-search-btn:hover {
+    filter: brightness(0.95);
+}
+
+.blog-timeline-label {
+    margin: 0 0 0.5rem;
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    color: #888;
+}
+
+.blog-timeline-scroll {
+    display: flex;
+    gap: 0.5rem;
+    overflow-x: auto;
+    padding-bottom: 0.35rem;
+    -webkit-overflow-scrolling: touch;
+}
+
+.blog-chip {
+    flex-shrink: 0;
+    padding: 0.45rem 0.9rem;
+    border-radius: 999px;
+    background: #eee;
+    color: #555555;
+    text-decoration: none;
+    font-size: 0.85rem;
+    border: 2px solid transparent;
+}
+
+.blog-chip:hover {
+    background: #e4e4e4;
+}
+
+.blog-chip.is-active {
+    background: #555555;
+    color: #fff;
+    border-color: #b1e90e;
+}
+
+.blog-grid {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: grid;
+    gap: 1.25rem;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+}
+
+.blog-card {
+    height: 100%;
+}
+
+.blog-card-link {
+    display: block;
+    height: 100%;
+    padding: 1.25rem;
+    background: #fff;
+    border-radius: 12px;
+    box-shadow: 0 2px 12px rgba(0, 0, 0, 0.06);
+    text-decoration: none;
+    color: inherit;
+    border: 2px solid transparent;
+    transition: border-color 0.15s ease;
+}
+
+.blog-card-link:hover {
+    border-color: #b1e90e;
+}
+
+.blog-card-date {
+    display: block;
+    font-size: 0.8rem;
+    color: #888;
+    margin-bottom: 0.35rem;
+}
+
+.blog-card-title {
+    margin: 0 0 0.5rem;
+    font-family: Montserrat-Bold, Montserrat, sans-serif;
+    font-size: 1.05rem;
+    color: #555555;
+}
+
+.blog-card-excerpt {
+    margin: 0;
+    font-size: 0.9rem;
+    color: #666;
+    line-height: 1.5;
+}
+
+.blog-article-header {
+    margin-bottom: 2rem;
+    padding-bottom: 1.5rem;
+    border-bottom: 3px solid #b1e90e;
+}
+
+.blog-article-meta {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 0.75rem 1.25rem;
+    margin: 0 0 0.75rem;
+    font-size: 0.9rem;
+    color: #888;
+}
+
+.blog-back {
+    color: #555555;
+    font-weight: 600;
+    text-decoration: none;
+}
+
+.blog-back:hover {
+    color: #b1e90e;
+}
+
+.blog-article-title {
+    margin: 0;
+    font-family: Montserrat-Bold, Montserrat, sans-serif;
+    font-size: clamp(1.5rem, 4vw, 2rem);
+    color: #555555;
+    line-height: 1.2;
+}
+
+.blog-article-excerpt {
+    margin: 1rem 0 0;
+    font-size: 1.1rem;
+    color: #666;
+    line-height: 1.5;
+}
+
+/* Prose — contenu Filament / TipTap rendu en HTML */
+.blog-article-body {
+    font-size: 1.05rem;
+    line-height: 1.65;
+    color: #444;
+}
+
+.blog-article-body h2,
+.blog-article-body h3,
+.blog-article-body h4 {
+    font-family: Montserrat-Bold, Montserrat, sans-serif;
+    color: #555555;
+    margin: 1.75rem 0 0.75rem;
+}
+
+.blog-article-body h2 {
+    font-size: 1.35rem;
+}
+
+.blog-article-body h3 {
+    font-size: 1.15rem;
+}
+
+.blog-article-body p {
+    margin: 0 0 1rem;
+}
+
+.blog-article-body ul,
+.blog-article-body ol {
+    margin: 0 0 1rem 1.25rem;
+    padding: 0;
+}
+
+.blog-article-body blockquote {
+    margin: 1.25rem 0;
+    padding: 0.75rem 1rem 0.75rem 1.25rem;
+    border-left: 4px solid #b1e90e;
+    background: #fafafa;
+    color: #555;
+}
+
+.blog-article-body a {
+    color: #555555;
+    font-weight: 600;
+    text-decoration: underline;
+    text-decoration-color: #b1e90e;
+}
+
+.blog-article-body a:hover {
+    color: #333;
+}
+
+.blog-article-body img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 8px;
+}
+
+.blog-article-body pre,
+.blog-article-body code {
+    font-family: ui-monospace, monospace;
+    font-size: 0.9em;
+}
+
+.visually-hidden {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
+}

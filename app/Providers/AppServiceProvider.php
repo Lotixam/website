@@ -2,7 +2,9 @@
 
 namespace App\Providers;
 
+use App\Models\BlogPost;
 use App\Models\WorkflowTemplate;
+use App\Policies\BlogPostPolicy;
 use App\Policies\WorkflowTemplatePolicy;
 use Illuminate\Cache\RateLimiting\Limit;
 use Illuminate\Http\Request;
@@ -33,6 +35,7 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
+        Gate::policy(BlogPost::class, BlogPostPolicy::class);
         Gate::policy(WorkflowTemplate::class, WorkflowTemplatePolicy::class);
 
         RateLimiter::for('api-login', function (Request $request) {
