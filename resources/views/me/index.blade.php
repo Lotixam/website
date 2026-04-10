@@ -54,7 +54,7 @@
                 <div class="px-4 sm:px-6 lg:px-8 py-4">
                     <div>
                         <dt class="text-xs font-medium text-zinc-500 me-dark:text-zinc-400 uppercase tracking-wider">Membre depuis</dt>
-                        <dd class="mt-0.5 text-zinc-900 me-dark:text-zinc-100">{{ $user->created_at->translatedFormat('d F Y') }}</dd>
+                        <dd class="mt-0.5 text-zinc-900 me-dark:text-zinc-100">{{ $user->created_at?->translatedFormat('d F Y') ?? '—' }}</dd>
                     </div>
                 </div>
             </div>

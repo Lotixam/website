@@ -15,6 +15,6 @@
     @if ($url)
         <img src="{{ $url }}" alt="" class="h-full w-full object-cover">
     @else
-        <span class="{{ $text }}">{{ strtoupper(mb_substr($user->name, 0, 1)) }}</span>
+        <span class="{{ $text }}">{{ strtoupper(mb_substr((string) ($user->name ?? ''), 0, 1)) ?: '?' }}</span>
     @endif
 </div>
