@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Auth\LoginController;
+use App\Http\Controllers\PublicAvatarController;
 use App\Http\Controllers\Client\DashboardController;
 use App\Http\Controllers\Client\DocumentController;
 use App\Http\Controllers\Client\MessageController;
@@ -78,6 +79,10 @@ Route::get('/contact', [ContactController::class, 'create'])->name('contact');
 Route::post('/contact', [ContactController::class, 'store']);
 
 Route::get('/maintenance', [MaintenanceController::class, 'show'])->name('maintenance');
+
+Route::get('/avatars/{filename}', [PublicAvatarController::class, 'show'])
+    ->where('filename', '[a-zA-Z0-9_-]{8,255}\.[a-zA-Z0-9]{2,8}')
+    ->name('storage.avatar');
 
 /*
 |--------------------------------------------------------------------------

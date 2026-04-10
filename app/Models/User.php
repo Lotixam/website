@@ -67,7 +67,12 @@ class User extends Authenticatable implements FilamentUser, HasAvatar
             return null;
         }
 
-        return Storage::disk('public')->url($this->avatar);
+        $filename = basename($this->avatar);
+        if ($filename === '' || $filename === '.' || $filename === '..') {
+            return null;
+        }
+
+        return route('storage.avatar', ['filename' => $filename]);
     }
 
     public function getFilamentAvatarUrl(): ?string
