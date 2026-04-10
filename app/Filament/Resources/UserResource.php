@@ -6,6 +6,7 @@ use App\Enums\Gender;
 use App\Filament\Resources\UserResource\Pages;
 use App\Models\User;
 use Filament\Actions;
+use Filament\Forms\Components\BaseFileUpload;
 use Filament\Forms\Components\FileUpload;
 use Filament\Forms\Components\Select;
 use Filament\Forms\Components\TextInput;
@@ -16,6 +17,9 @@ use Filament\Schemas\Schema;
 use Filament\Tables;
 use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Database\Eloquent\Model;
+use Illuminate\Filesystem\FilesystemAdapter;
+use League\Flysystem\UnableToCheckFileExistence;
 
 class UserResource extends Resource
 {
@@ -76,7 +80,34 @@ class UserResource extends Resource
                     ->disk('public')
                     ->maxSize(2048)
                     ->imageEditor()
-                    ->nullable(),
+                    ->nullable()
+                    ->getUploadedFileUsing(function (BaseFileUpload $component, string $file, string | array | null $storedFileNames): ?array {
+                        /** @var FilesystemAdapter $storage */
+                        $storage = $component->getDisk();
+                        $shouldFetchFileInformation = $component->shouldFetchFileInformation();
+
+                        if ($shouldFetchFileInformation) {
+                            try {
+                                if (! $storage->exists($file)) {
+                                    return null;
+                                }
+                            } catch (UnableToCheckFileExistence) {
+                                return null;
+                            }
+                        }
+
+                        $filename = basename($file);
+                        $url = preg_match('/^[a-zA-Z0-9_-]{8,255}\.[a-zA-Z0-9]{2,8}$/', $filename)
+                            ? route('storage.avatar', ['filename' => $filename])
+                            : $storage->url($file);
+
+                        return [
+                            'name' => ($component->isMultiple() ? ($storedFileNames[$file] ?? null) : $storedFileNames) ?? basename($file),
+                            'size' => $shouldFetchFileInformation ? $storage->size($file) : 0,
+                            'type' => $shouldFetchFileInformation ? $storage->mimeType($file) : null,
+                            'url' => $url,
+                        ];
+                    }),
                 TextInput::make('password')
                     ->label('Mot de passe')
                     ->password()
@@ -146,7 +177,9 @@ class UserResource extends Resource
             ->columns([
                 Tables\Columns\ImageColumn::make('avatar')
                     ->label('')
-                    ->disk('public')
+                    ->formatStateUsing(function (?string $state, Model $record): ?string {
+                        return $record instanceof User ? $record->avatarUrl() : null;
+                    })
                     ->circular()
                     ->width(40),
                 Tables\Columns\TextColumn::make('name')
