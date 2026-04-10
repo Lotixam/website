@@ -60,6 +60,8 @@ class BlogController extends Controller
         $filtered($listQuery);
         $posts = $listQuery->get();
 
+        $qParam = $q !== '' ? $q : null;
+
         $timeline = BlogPost::query()
             ->published()
             ->orderByDesc('published_at')
@@ -75,12 +77,23 @@ class BlogController extends Controller
                 'year' => $row['year'],
                 'month' => $row['month'],
                 'label' => self::MONTHS_FR[$row['month']].' '.$row['year'],
+                'url' => route('blog.index', array_filter([
+                    'year' => $row['year'],
+                    'month' => $row['month'],
+                    'q' => $qParam,
+                ])),
+                'isActive' => $year !== null && $month !== null
+                    && (int) $year === $row['year']
+                    && (int) $month === $row['month'],
             ]);
+
+        $blogTimelineAllUrl = route('blog.index', array_filter(['q' => $qParam]));
 
         return view('vitrine.blog.index', [
             'heroPosts' => $heroPosts,
             'posts' => $posts,
             'timeline' => $timeline,
+            'blogTimelineAllUrl' => $blogTimelineAllUrl,
             'searchQuery' => $q,
             'filterYear' => $year,
             'filterMonth' => $month,

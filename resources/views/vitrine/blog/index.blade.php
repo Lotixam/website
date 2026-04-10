@@ -53,19 +53,9 @@
             <div class="blog-timeline-wrap">
                 <p class="blog-timeline-label">Par période</p>
                 <div class="blog-timeline-scroll" role="tablist" aria-label="Filtrer par mois">
-                    <a
-                        href="{{ route('blog.index', array_filter(['q' => $searchQuery !== '' ? $searchQuery : null])) }}"
-                        class="blog-chip {{ $filterYear === null && $filterMonth === null ? 'is-active' : '' }}"
-                    >Toutes</a>
+                    <a href="{{ $blogTimelineAllUrl }}" class="blog-chip {{ $filterYear === null && $filterMonth === null ? 'is-active' : '' }}">Toutes</a>
                     @foreach($timeline as $row)
-                        <a
-                            href="{{ route('blog.index', array_filter([
-                                'year' => $row['year'],
-                                'month' => $row['month'],
-                                'q' => $searchQuery !== '' ? $searchQuery : null,
-                            ]))"
-                            class="blog-chip {{ (int) $filterYear === $row['year'] && (int) $filterMonth === $row['month'] ? 'is-active' : '' }}"
-                        >{{ $row['label'] }}</a>
+                        <a href="{{ $row['url'] }}" class="blog-chip {{ $row['isActive'] ? 'is-active' : '' }}">{{ $row['label'] }}</a>
                     @endforeach
                 </div>
             </div>
