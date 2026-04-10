@@ -4,6 +4,7 @@ namespace App\Filament\Resources;
 
 use App\Enums\Gender;
 use App\Filament\Resources\UserResource\Pages;
+use App\Filament\Resources\UserResource\RelationManagers;
 use App\Models\User;
 use Filament\Actions;
 use Filament\Forms\Components\BaseFileUpload;
@@ -264,6 +265,13 @@ class UserResource extends Resource
                     Actions\DeleteBulkAction::make(),
                 ]),
             ]);
+    }
+
+    public static function getRelations(): array
+    {
+        return [
+            RelationManagers\PersonalAccessTokensRelationManager::class,
+        ];
     }
 
     public static function getPages(): array

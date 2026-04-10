@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Site;
 
 use App\Http\Controllers\Controller;
 use App\Models\PublicMetric;
+use App\Models\PublicRealization;
 use App\Services\PublicMetricValueResolver;
 use Illuminate\Contracts\View\View;
 use Illuminate\Support\Collection;
@@ -20,6 +21,7 @@ class StaticPageController extends Controller
         'cookies',
         'contributors',
         'simulation',
+        'realizations',
     ];
 
     public function home(): View
@@ -33,7 +35,16 @@ class StaticPageController extends Controller
     {
         abort_unless(in_array($vitrinePage, self::ALLOWED, true), 404);
 
-        return view('vitrine.'.$vitrinePage);
+        $data = [];
+        if ($vitrinePage === 'realizations') {
+            $data['publicRealizations'] = PublicRealization::query()
+                ->where('is_visible', true)
+                ->orderBy('sort_order')
+                ->with(['slides' => fn ($q) => $q->orderBy('sort_order')])
+                ->get();
+        }
+
+        return view('vitrine.'.$vitrinePage, $data);
     }
 
     private function publicMetrics(): Collection

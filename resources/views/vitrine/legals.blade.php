@@ -32,54 +32,7 @@
                 <label id="sentence">L'INVESTISSEUR IMMOBILIER PROFESSIONNEL SI PARTICULIER</label>
             </div>
         </div>
-        <!-- Type de lien en mode Bureau -->
-        <div id="liens">
-            <div>
-                <a href="/" class="sous-liens">
-                    Accueil
-                </a>
-            </div>
-            <div>
-                <a href="/qui-sommes-nous" class="sous-liens">
-                    Qui sommes nous
-                </a>
-            </div>
-            <div>
-                <a href="/nous-achetons" class="sous-liens">
-                    Nous achetons
-                </a>
-            </div>
-            <div>
-                <a href="/nous-vendons" class="sous-liens">
-                    Nous vendons
-                </a>
-            </div>
-            <div>
-                <a href="/investisseurs" class="sous-liens">
-                    Investisseurs
-                </a>
-            </div>
-            <div>
-                <a href="/contact?prev=about&amp;button=false" class="sous-liens">
-                    Contact
-                </a>
-            </div>
-        </div>
-
-        <!-- Structure du menu hamburger -->
-        <div class="menu-toggle">
-            <input type="checkbox" id="toggle">
-            <label for="toggle">&#9776;</label> <!-- icône du menu hamburger -->
-            <ul class="menu">
-                <li class="liens"><a href="/">Accueil</a></li>
-                <li class="liens"><a href="/qui-sommes-nous">Qui sommes nous</a></li>
-                <li class="liens"><a href="/nous-achetons">Nous achetons</a></li>
-                <li class="liens"><a href="/nous-vendons">Nous vendons</a></li>
-                <li class="liens"><a href="/investisseurs">Investisseurs</a></li>
-                <li class="liens"><a href="/contact?prev=about&amp;button=false">Contact</a></li>
-                <li class="liens">@include('vitrine.partials.login-nav-link', ['guestLabel' => 'Mon compte'])</li>
-            </ul>
-        </div>
+        @include('vitrine.partials.main-nav', ['contactPrev' => 'about'])
     </div>
 
     <!--Corps de la page-->
