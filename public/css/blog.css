@@ -246,6 +246,55 @@
     transform: translateY(-1px);
 }
 
+/* Mobile / petit écran : hauteur du hero = hauteur du contenu (slide active en flux) */
+@media (max-width: 767px) {
+    .blog-hero-viewport {
+        min-height: 0;
+        height: auto;
+        overflow: hidden;
+    }
+
+    /* Slides inactives : pas de place dans le flux, pas de hauteur réservée */
+    .blog-hero-slide {
+        position: absolute;
+        left: 0;
+        right: 0;
+        top: 0;
+        height: 0;
+        min-height: 0;
+        overflow: hidden;
+        opacity: 0;
+        visibility: hidden;
+        pointer-events: none;
+        transition: opacity 0.4s ease, visibility 0.4s ease;
+    }
+
+    .blog-hero-slide.is-active {
+        position: relative;
+        top: auto;
+        left: auto;
+        right: auto;
+        height: auto;
+        min-height: 0;
+        overflow: visible;
+        opacity: 1;
+        visibility: visible;
+        pointer-events: auto;
+        z-index: 1;
+    }
+
+    .blog-hero-slide-inner {
+        min-height: 0;
+        justify-content: flex-start;
+        padding-top: 1.35rem;
+        padding-bottom: 1.5rem;
+    }
+
+    .blog-hero-slide-excerpt {
+        max-width: 100%;
+    }
+}
+
 .blog-hero-controls {
     display: flex;
     align-items: center;

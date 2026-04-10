@@ -41,7 +41,7 @@
                                     <a href="{{ route('blog.show', ['slug' => $post->slug]) }}">{{ $post->title }}</a>
                                 </h2>
                                 @if(filled($post->excerpt))
-                                    <p class="blog-hero-slide-excerpt">{{ \Illuminate\Support\Str::limit($post->excerpt, 220) }}</p>
+                                    <p class="blog-hero-slide-excerpt">{{ \Illuminate\Support\Str::limit($post->excerpt, 320) }}</p>
                                 @endif
                                 <a href="{{ route('blog.show', ['slug' => $post->slug]) }}" class="blog-hero-slide-cta">Lire l’article</a>
                             </div>

@@ -5,6 +5,7 @@ namespace App\Filament\Resources;
 use App\Filament\Resources\BlogPostResource\Pages;
 use App\Models\BlogPost;
 use Filament\Actions;
+use Filament\Forms\Components\BaseFileUpload;
 use Filament\Forms\Components\DateTimePicker;
 use Filament\Forms\Components\FileUpload;
 use Filament\Forms\Components\RichEditor;
@@ -17,8 +18,10 @@ use Filament\Schemas\Components\Section;
 use Filament\Schemas\Schema;
 use Filament\Tables;
 use Filament\Tables\Table;
+use Illuminate\Filesystem\FilesystemAdapter;
 use Illuminate\Support\HtmlString;
 use Illuminate\Support\Str;
+use League\Flysystem\UnableToCheckFileExistence;
 
 class BlogPostResource extends Resource
 {
@@ -87,7 +90,29 @@ class BlogPostResource extends Resource
                             ->imageEditor()
                             ->maxSize(5120)
                             ->helperText('Affichée en grand sur l’accueil du blog (hero) et en tête d’article. Format paysage recommandé.')
-                            ->columnSpanFull(),
+                            ->columnSpanFull()
+                            ->getUploadedFileUsing(function (BaseFileUpload $component, string $file, string|array|null $storedFileNames): ?array {
+                                /** @var FilesystemAdapter $storage */
+                                $storage = $component->getDisk();
+                                $shouldFetchFileInformation = $component->shouldFetchFileInformation();
+
+                                if ($shouldFetchFileInformation) {
+                                    try {
+                                        if (! $storage->exists($file)) {
+                                            return null;
+                                        }
+                                    } catch (UnableToCheckFileExistence) {
+                                        return null;
+                                    }
+                                }
+
+                                return [
+                                    'name' => ($component->isMultiple() ? ($storedFileNames[$file] ?? null) : $storedFileNames) ?? basename($file),
+                                    'size' => $shouldFetchFileInformation ? $storage->size($file) : 0,
+                                    'type' => $shouldFetchFileInformation ? $storage->mimeType($file) : null,
+                                    'url' => BlogPost::publicFileDisplayUrl($file),
+                                ];
+                            }),
                         DateTimePicker::make('published_at')
                             ->label('Date de publication')
                             ->seconds(false)
@@ -126,6 +151,13 @@ class BlogPostResource extends Resource
                             ->fileAttachmentsDisk('public')
                             ->fileAttachmentsDirectory('blog/content')
                             ->fileAttachmentsVisibility('public')
+                            ->getFileAttachmentUrlUsing(function (mixed $file): ?string {
+                                if (! is_string($file) || $file === '') {
+                                    return null;
+                                }
+
+                                return BlogPost::publicFileDisplayUrl($file);
+                            })
                             ->resizableImages()
                             ->columnSpanFull()
                             ->helperText('Rédigez ici tout le contenu affiché sur le site. Les images insérées sont stockées avec l’article (dossier blog/content).')
@@ -148,9 +180,11 @@ class BlogPostResource extends Resource
             ->defaultSort('sort_order')
             ->reorderable('sort_order')
             ->columns([
-                Tables\Columns\ImageColumn::make('cover_image_path')
+                Tables\Columns\ImageColumn::make('cover_thumbnail')
                     ->label('Couv.')
-                    ->disk('public')
+                    ->getStateUsing(fn (BlogPost $record): ?string => filled($record->cover_image_path)
+                        ? BlogPost::publicFileDisplayUrl($record->cover_image_path)
+                        : null)
                     ->square()
                     ->toggleable(),
                 Tables\Columns\TextColumn::make('title')

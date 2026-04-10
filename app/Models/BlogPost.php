@@ -107,13 +107,26 @@ class BlogPost extends Model implements HasRichContent
             ->where('published_at', '<=', now());
     }
 
+    /**
+     * URL d’affichage pour un fichier sur le disque public (admin + vitrine).
+     * Les chemins blog/content et blog/covers passent par la route fichiers-blog (contourne les 403 sur /storage).
+     */
+    public static function publicFileDisplayUrl(string $path): string
+    {
+        if (preg_match('#^blog/(content|covers)/#', $path)) {
+            return route('blog.public_file', ['path' => $path]);
+        }
+
+        return Storage::disk('public')->url($path);
+    }
+
     public function coverImageUrl(): ?string
     {
         if (! filled($this->cover_image_path)) {
             return null;
         }
 
-        return route('blog.public_file', ['path' => $this->cover_image_path]);
+        return static::publicFileDisplayUrl($this->cover_image_path);
     }
 
     /**
